@@ -262,14 +262,6 @@ code1 {
 }
 
 .container{
-	float: center;
-	display:flex;
-	justify-content: space-between;
-	flex-wrap:wrap;
-	max-width: 600px;
-}
-  
-.container{
 	max-width: 600px;
 	display:flex;
 	justify-content: space-evenly;
@@ -278,10 +270,9 @@ code1 {
   
  #leftbox, #rightbox { 
  	margin-top: 10%;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-bottom: 0;
-}
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: -5%;
 
 .img-circle {
     border-radius: 50%;
