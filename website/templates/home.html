@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %} {% block content%}
+  <div class="container-fluid" style="background-color: #283B8B; padding: 0px;">
+    <div class="container" style="background-color: #283B8B;">
+      <div class="row">
+        <div class="col-md-6">
+          <br/>
+          <div class="jumbotron d-flex align-items-center" align="left" style="background-color: #283B8B;">
+            <div class="container-fluid">
+              <div class="row">
+                <h1 style="color:#FFFFFF">Making investing <b>EASY</b> for all experience levels</h1>
+                <p style="color:#e2e2e2;">Save yourself time and frustration by using Hubble's easy to use investing tools.</p>
+              </div>
+              <br/>
+              <br/>
+              <div class="row">
+                {% if user.is_authenticated %}
+                <br/>
+                {% else %}
+                <button align="center" type="button" class="btn btn-outline-light" onClick="navToSignIn()">Get Started  →</button>
+                {% endif %}
+              </div>
+            </div>
+            </div>
+          </div>
+        <div class="col-md-6">
+          <img src="https://wyrdie-storage-bucket.s3.us-east-2.amazonaws.com/4/ARCharts.png" class="d-block w-100">
+          <br/>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid" style="background-color: #FFFFFF;">
+      <br/>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4" style="padding: 50px;">
+            <div class="row">
+              <img src="https://wyrdie-storage-bucket.s3.us-east-2.amazonaws.com/4/Charts.png" height="30" width="30">
+            </div>
+            <div class="row">
+              <h4>Figures & Charts</h4>
+            </div>
+            <div class="row">
+              <p style="color: #a5adb3;">View our wide selection of informational charts to learn about the best investment opportunities including historical prices, profit and revenue growth, and company balance sheets.</p>
+            </div>
+          </div>
+          <div class="col-md-4" style="padding: 50px;">
+            <div class="row">
+              <img src="https://wyrdie-storage-bucket.s3.us-east-2.amazonaws.com/4/AIPrediction.png" height="30" width="30">
+            </div>
+            <div class="row">
+              <h4>Artificial Intelligence</h4>
+            </div>
+            <div class="row">
+              <p style="color: #a5adb3;">Our custom Aritificial Intelligence can be a great tool to determine the direction a stock will move. Utilize our stock price prediction, direction prediction, or technical analysis tools to make the best trades.</p>
+            </div>
+          </div>
+          <div class="col-md-4" style="padding: 50px;">
+            <div class="row">
+              <img src="https://wyrdie-storage-bucket.s3.us-east-2.amazonaws.com/4/Sentiment.png" height="30" width="30">
+            </div>
+            <div class="row">
+              <h4>Social Sentiment</h4>
+            </div>
+            <div class="row">
+              <p style="color: #a5adb3;">Have you ever wanted to know what everyone else thinks about a stock? Well viewing our sentiment is a great way to learn how everyone else feels about a company.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endblock %}
