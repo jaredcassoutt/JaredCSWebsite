@@ -63,8 +63,8 @@
           <div class="col">
             <br/>
             <div class="jumbotron d-flex" style="background-color: #283B8B;">
-              <div class="container-fluid">
-                <div class="row">
+              <div class="container" align="left">
+                <div class="row" align="left">
                   <h1 style="color: #FFFFFF;">Hi, I'm Jared Cassoutt.</h1>
                 </div>
                 <div class="row">
@@ -76,95 +76,95 @@
                   </div>
                   <script>
                     // values to keep track of the number of letters typed, which quote to use. etc. Don't change these values.
-var i = 0,
-a = 0,
-isBackspacing = false,
-isParagraph = false;
+                    var i = 0,
+                    a = 0,
+                    isBackspacing = false,
+                    isParagraph = false;
 
-// Typerwrite text content. Use a pipe to indicate the start of the second line "|".  
-var textArray = [
-"An engineer with passion.",
-"An engineer with curiousity.",
-"An engineer driven by passion and curiousity.",
-];
+                    // Typerwrite text content. Use a pipe to indicate the start of the second line "|".  
+                    var textArray = [
+                    "An engineer with passion.",
+                    "An engineer with curiousity.",
+                    "An engineer driven by passion and curiousity.",
+                    ];
 
-// Speed (in milliseconds) of typing.
-var speedForward = 100, //Typing Speed
-speedWait = 1000, // Wait between typing and backspacing
-speedBetweenLines = 1000, //Wait between first and second lines
-speedBackspace = 25; //Backspace Speed
+                    // Speed (in milliseconds) of typing.
+                    var speedForward = 100, //Typing Speed
+                    speedWait = 1000, // Wait between typing and backspacing
+                    speedBetweenLines = 1000, //Wait between first and second lines
+                    speedBackspace = 25; //Backspace Speed
 
-//Run the loop
-typeWriter("output", textArray);
+                    //Run the loop
+                    typeWriter("output", textArray);
 
-function typeWriter(id, ar) {
-var element = $("#" + id),
-  aString = ar[a],
-  eHeader = element.children("h1"), //Header element
-  eParagraph = element.children("p"); //Subheader element
+                    function typeWriter(id, ar) {
+                    var element = $("#" + id),
+                      aString = ar[a],
+                      eHeader = element.children("h1"), //Header element
+                      eParagraph = element.children("p"); //Subheader element
 
-// Determine if animation should be typing or backspacing
-if (!isBackspacing) {
+                    // Determine if animation should be typing or backspacing
+                    if (!isBackspacing) {
 
-// If full string hasn't yet been typed out, continue typing
-if (i < aString.length) {
-  
-  // If character about to be typed is a pipe, switch to second line and continue.
-  if (aString.charAt(i) == "|") {
-    isParagraph = true;
-    eHeader.removeClass("cursor");
-    eParagraph.addClass("cursor");
-    i++;
-    setTimeout(function(){ typeWriter(id, ar); }, speedBetweenLines);
-    
-  // If character isn't a pipe, continue typing.
-  } else {
-    // Type header or subheader depending on whether pipe has been detected
-    if (!isParagraph) {
-      eHeader.text(eHeader.text() + aString.charAt(i));
-    } else {
-      eParagraph.text(eParagraph.text() + aString.charAt(i));
-    }
-    i++;
-    setTimeout(function(){ typeWriter(id, ar); }, speedForward);
-  }
-  
-// If full string has been typed, switch to backspace mode.
-} else if (i == aString.length) {
-  
-  isBackspacing = true;
-  setTimeout(function(){ typeWriter(id, ar); }, speedWait);
-  
-}
+                    // If full string hasn't yet been typed out, continue typing
+                    if (i < aString.length) {
+                      
+                      // If character about to be typed is a pipe, switch to second line and continue.
+                      if (aString.charAt(i) == "|") {
+                        isParagraph = true;
+                        eHeader.removeClass("cursor");
+                        eParagraph.addClass("cursor");
+                        i++;
+                        setTimeout(function(){ typeWriter(id, ar); }, speedBetweenLines);
+                        
+                      // If character isn't a pipe, continue typing.
+                      } else {
+                        // Type header or subheader depending on whether pipe has been detected
+                        if (!isParagraph) {
+                          eHeader.text(eHeader.text() + aString.charAt(i));
+                        } else {
+                          eParagraph.text(eParagraph.text() + aString.charAt(i));
+                        }
+                        i++;
+                        setTimeout(function(){ typeWriter(id, ar); }, speedForward);
+                      }
+                      
+                    // If full string has been typed, switch to backspace mode.
+                    } else if (i == aString.length) {
+                      
+                      isBackspacing = true;
+                      setTimeout(function(){ typeWriter(id, ar); }, speedWait);
+                      
+                    }
 
-// If backspacing is enabled
-} else {
+                    // If backspacing is enabled
+                    } else {
 
-// If either the header or the paragraph still has text, continue backspacing
-if (eHeader.text().length > 0 || eParagraph.text().length > 0) {
-  
-  // If paragraph still has text, continue erasing, otherwise switch to the header.
-  if (eParagraph.text().length > 0) {
-    eParagraph.text(eParagraph.text().substring(0, eParagraph.text().length - 1));
-  } else if (eHeader.text().length > 0) {
-    eParagraph.removeClass("cursor");
-    eHeader.addClass("cursor");
-    eHeader.text(eHeader.text().substring(0, eHeader.text().length - 1));
-  }
-  setTimeout(function(){ typeWriter(id, ar); }, speedBackspace);
+                    // If either the header or the paragraph still has text, continue backspacing
+                    if (eHeader.text().length > 0 || eParagraph.text().length > 0) {
+                      
+                      // If paragraph still has text, continue erasing, otherwise switch to the header.
+                      if (eParagraph.text().length > 0) {
+                        eParagraph.text(eParagraph.text().substring(0, eParagraph.text().length - 1));
+                      } else if (eHeader.text().length > 0) {
+                        eParagraph.removeClass("cursor");
+                        eHeader.addClass("cursor");
+                        eHeader.text(eHeader.text().substring(0, eHeader.text().length - 1));
+                      }
+                      setTimeout(function(){ typeWriter(id, ar); }, speedBackspace);
 
-// If neither head or paragraph still has text, switch to next quote in array and start typing.
-} else { 
-  
-  isBackspacing = false;
-  i = 0;
-  isParagraph = false;
-  a = (a + 1) % ar.length; //Moves to next position in array, always looping back to 0
-  setTimeout(function(){ typeWriter(id, ar); }, 50);
-  
-}
-}
-}
+                    // If neither head or paragraph still has text, switch to next quote in array and start typing.
+                    } else { 
+                      
+                      isBackspacing = false;
+                      i = 0;
+                      isParagraph = false;
+                      a = (a + 1) % ar.length; //Moves to next position in array, always looping back to 0
+                      setTimeout(function(){ typeWriter(id, ar); }, 50);
+                      
+                    }
+                    }
+                    }
                   </script>
                 </div>
                 <br/>
@@ -222,149 +222,5 @@ if (eHeader.text().length > 0 || eParagraph.text().length > 0) {
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
 <!-- End Main View -->
-  </div>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" src="{{ url_for('static', filename='index.js') }}"></script>
-  <script type="text/css" src="{{ url_for('static', filename='styles.css') }}" rel="stylesheet"></script>
-</body>
-<div class="container">
-  
-</div>
-<!-- Footer -->
-<footer class="text-center text-lg-start bg-light text-muted">
-  <!-- Section: Social media -->
-  <div>
-    <section
-    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
-  >
-    <!-- Left -->
-    <div class="me-5 d-none d-lg-block container">
-      <span>Get connected with us on social networks</span>
-    </div>
-    <!-- Left -->
-
-    <!-- Right -->
-    <div class="container" align="right">
-      <a href="https://www.facebook.com/hubbleinvesting" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <span style="display:inline-block; width: 15px;"></span>
-      <a href="https://twitter.com/hubbleinvest" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <span style="display:inline-block; width: 15px;"></span>
-      <a href="https://www.instagram.com/hubbleinvest/" class="me-4 text-reset">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <span style="display:inline-block; width: 15px;"></span>
-      <a href="https://www.linkedin.com/company/hubbleinvesting" class="me-4 text-reset">
-        <i class="fab fa-linkedin"></i>
-      </a>
-    </div>
-    <div class="col-1"></div>
-    <!-- Right -->
-  </section>
-  <!-- Section: Social media -->
-
-  <!-- Section: Links  -->
-  <section class="">
-    <div class="container text-left text-md-start mt-5">
-      <!-- Grid row -->
-      <div class="row mt-3">
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          <!-- Content -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Hubble Investing
-          </h6>
-          <p>
-            Supporting retail investors is what we do best. Each of our products 
-            are designed to make investing simple for people with all levels of experience.
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="/StockAnalysis" class="text-reset">Charts & Figures</a>
-          </p>
-          <p>
-            <a href="/" class="text-reset">Artificial Intelligence</a>
-          </p>
-          <p>
-            <a href="" class="text-reset">Social Sentiment</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
-          </h6>
-          <p>
-            <a href="/" class="text-reset">Home</a>
-          </p>
-          <p>
-            <a href="/PrivacyPolicy" class="text-reset">Privacy Policy</a>
-          </p>
-          <p>
-            <a href="/EULA" class="text-reset">User Agreement</a>
-          </p>
-        </div>
-        <!-- Grid column -->
-
-        <!-- Grid column -->
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Contact
-          </h6>
-          <p>
-            <i class="fas fa-envelope me-3"></i>
-            admin@hubbleinvesting.com
-          </p>
-          <br/>
-          <div align="left" class="align-items-left">
-            <a href="https://apps.apple.com/us/app/styvio/id1568353331"><img align="left" src="https://wyrdie-storage-bucket.s3.us-east-2.amazonaws.com/4/downloadOnAppStore.png" height="45" width="130"></a>
-          </div>
-        </div>
-        <!-- Grid column -->
-      </div>
-      <!-- Grid row -->
-    </div>
-  </section>
-  </div>
-  <!-- Section: Links  -->
-  <!-- Copyright -->
-  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2022 Copyright 
-    <a class="text-reset fw-bold" href="/">HubbleInvesting.com</a>
-  </div>
-  <!-- Copyright -->
-</footer>
-<!-- Footer -->
 </html>
