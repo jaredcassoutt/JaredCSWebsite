@@ -11,13 +11,13 @@ typewriter {
   white-space: nowrap;
   overflow: hidden;    
   font-family: 'Source Code Pro', monospace;  
-  font-size: 20px;
+  font-size: 17px;
   color: rgba(255,255,255,.60);
 }
 
 /* Animation */
 typewriter {
-  animation: animated-text 2s steps(29,end) 1s 1 normal both,
+  animation: animated-text 3s steps(100,end) 1s 1 normal both,
              animated-cursor 600ms steps(29,end) infinite;
 }
 
