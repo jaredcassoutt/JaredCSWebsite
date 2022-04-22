@@ -17,8 +17,8 @@ typewriter {
 
 /* Animation */
 typewriter {
-  animation: animated-text 3s steps(29,end) 1s 1 normal both,
-             animated-cursor 600ms steps(29,end) infinite;
+  animation: animated-text 3s steps(100,end) 1s 1 normal both,
+             animated-cursor 600ms steps(100,end) infinite;
 }
 
 /* text animation */
