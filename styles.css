@@ -7,12 +7,11 @@ body{
 }
 
 typewriter {
-  border-right: solid 3px rgba(0,255,0,.75);
+  border-right: solid 3px rgba(255,255,255,.60);
   white-space: nowrap;
   overflow: hidden;    
-  font-family: 'Source Code Pro', monospace;  
-  font-size: 28px;
-  color: rgba(255,255,255,.70);
+  font-size: 35px;
+  color: rgba(255,255,255,.90);
 }
 
 /* Animation */
