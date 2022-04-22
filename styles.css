@@ -310,47 +310,38 @@ code1 {
     margin-bottom: -5%;
  }
 
-
-
-
- @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
-
-typewritererasebody{ 
-  background: linear-gradient(to left, #ffff00, #fe53cc);
-  margin: 0;
-  padding: 0;
-  color: #a9a9a9;
-  outline: hidden;
-  box-sizing: border-box;
-  font-family: 'Raleway', sans-serif;
+ .cursor::after {
+  content:'';
+  display:inline-block;
+  margin-left:3px;
+  background-color:white;
+  animation-name:blink;
+  animation-duration:0.5s;
+  animation-iteration-count: infinite;
+}
+h1.cursor::after {
+  height:24px;
+  width:13px;
+}
+p.cursor::after {
+  height:13px;
+  width:6px;
 }
 
-typewritererasediv {
-  position: relative;
-  width: 83%;
-  height: 175px;
-  margin: 7% auto;
+@keyframes blink {
+  0% {
+    opacity:1;
+  }
+  49% {
+    opacity:1;
+  }
+  50% {
+    opacity:0;
+  }
+  100% {
+    opacity:0;
+  }
 }
-
-typewritererase {
-  position: absolute;
-  width: 100%;
-  height: 50%;
-  font-size: 45px;
-}
-
-typewritererase:after {
-  position: absolute;
-  content: "";
-  width: 100%;
-  height: 100%;
-  line-height: 48px;
-  left: 30%;
-  top: 50%;
-  animation: abomination1 7.5s linear 1;
-  animation-fill-mode: forwards;
-}
-
 
   @keyframes abomination1 {
   0% {
