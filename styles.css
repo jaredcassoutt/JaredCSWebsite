@@ -6,7 +6,7 @@ body{
   background-color: #121212;  
 }
 
-p {
+typewriter {
   border-right: solid 3px rgba(0,255,0,.75);
   white-space: nowrap;
   overflow: hidden;    
@@ -16,7 +16,7 @@ p {
 }
 
 /* Animation */
-p {
+typewriter {
   animation: animated-text 4s steps(29,end) 1s 1 normal both,
              animated-cursor 600ms steps(29,end) infinite;
 }
