@@ -10,8 +10,9 @@ typewriter {
   border-right: solid 3px rgba(255,255,255,.60);
   white-space: nowrap;
   overflow: hidden;    
-  font-size: 35px;
-  color: rgba(255,255,255,.90);
+  font-family: 'Source Code Pro', monospace;  
+  font-size: 20px;
+  color: rgba(255,255,255,.60);
 }
 
 /* Animation */
