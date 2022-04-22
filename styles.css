@@ -309,3 +309,294 @@ code1 {
     margin-right: 10%;
     margin-bottom: -5%;
  }
+
+
+
+
+ @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+typewritererasebody{ 
+  background: linear-gradient(to left, #ffff00, #fe53cc);
+  margin: 0;
+  padding: 0;
+  color: #a9a9a9;
+  outline: hidden;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+}
+
+typewritererasediv {
+  position: relative;
+  width: 83%;
+  height: 175px;
+  margin: 7% auto;
+}
+
+typewritererase {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  font-size: 45px;
+}
+
+typewritererase:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  line-height: 48px;
+  left: 30%;
+  top: 50%;
+  animation: abomination1 7.5s linear 1;
+  animation-fill-mode: forwards;
+}
+
+
+  @keyframes abomination1 {
+  0% {
+    content: "A";
+  }
+  1% {
+    content: "An";
+  }
+  2% {
+    content: "An e";
+  }
+  3% {
+    content: "An en";
+  }
+  4% {
+    content: "An eng";
+  }
+  5% {
+    content: "An engi";
+  }
+  6% {
+    content: "An engin";
+  }
+  7% {
+    content: "An engine";
+  }
+  8% {
+    content: "An enginee";
+  }
+  9% {
+    content: "An engineer";
+  }
+  10% {
+    content: "An engineer w";
+  }
+  11% {
+    content: "An engineer wi";
+  }
+  12% {
+    content: "An engineer wit";
+  }
+  13% {
+    content: "An engineer with";
+  }
+  14% {
+    content: "An engineer with ";
+  }
+  15% {
+    content: "An engineer with p";
+  }
+  16% {
+    content: "An engineer with pa";
+  }
+  17% {
+    content: "An engineer with pas";
+  }
+  18% {
+    content: "An engineer with pass";
+  }
+  19% {
+    content: "An engineer with passi";
+  }
+  20% {
+    content: "An engineer with passio";
+  }
+  21% {
+    content: "An engineer with passion";
+  }
+  22% {
+    content: "An engineer with passio";
+  }
+  23% {
+    content: "An engineer with passi";
+  }
+  24% {
+    content: "An engineer with pass";
+  }
+  25% {
+    content: "An engineer with pas";
+  }
+  26% {
+    content: "An engineer with pa";
+  }
+  27% {
+    content: "An engineer with p";
+  }
+  28% {
+    content: "An engineer with c";
+  }
+  29% {
+    content: "An engineer with cu";
+  }
+  30% {
+    content: "An engineer with cur";
+  }
+  31% {
+    content: "An engineer with curi";
+  }
+  32% {
+    content: "An engineer with curi";
+  }
+  33% {
+    content: "An engineer with curi";
+  }
+  34% {
+    content: "An engineer with curi";
+  }
+  35% {
+    content: "An engineer with curio";
+  }
+  36% {
+    content: "An engineer with curios";
+  }
+  37% {
+    content: "An engineer with curiosi";
+  }
+  38% {
+    content: "An engineer with curiosit";
+  }
+  39% {
+    content: "An engineer with curiosity";
+  }
+  40% {
+    content: "An engineer with curiosit";
+  }
+  41% {
+    content: "An engineer with curiosi";
+  }
+  42% {
+    content: "An engineer with curios";
+  }
+  43% {
+    content: "An engineer with curio";
+  }
+  44% {
+    content: "An engineer with curi";
+  }
+  45% {
+    content: "An engineer with cur";
+  }
+  46% {
+    content: "An engineer with cu";
+  }
+  47% {
+    content: "An engineer with c";
+  }
+  48% {
+    content: "An engineer with";
+  }
+  49% {
+    content: "An engineer wit";
+  }
+  50% {
+    content: "An engineer wi";
+  }
+  51% {
+    content: "An engineer w";
+  }
+  52% {
+    content: "An engineer ";
+  }
+  53% {
+    content: "An engineer d";
+  }
+  54% {
+    content: "An engineer dr";
+  }
+  55% {
+    content: "An engineer dri";
+  }
+  56% {
+    content: "An engineer driv";
+  }
+  57% {
+    content: "An engineer drive";
+  }
+  58% {
+    content: "An engineer driven";
+  }
+  59% {
+    content: "An engineer driven b";
+  }
+  60% {
+    content: "An engineer driven by";
+  }
+  61% {
+    content: "An engineer driven by p";
+  }
+  62% {
+    content: "An engineer driven by pa";
+  }
+  63% {
+    content: "An engineer driven by pas";
+  }
+  64% {
+    content: "An engineer driven by pass";
+  }
+  65% {
+    content: "An engineer driven by pass";
+  }
+  66% {
+    content: "An engineer driven by passi";
+  }
+  67% {
+    content: "An engineer driven by passio";
+  }
+  68% {
+    content: "An engineer driven by passion";
+  }
+  69% {
+    content: "An engineer driven by passion a";
+  }
+  70% {
+    content: "An engineer driven by passion an";
+  }
+  71% {
+    content: "An engineer driven by passion and";
+  }
+  72% {
+    content: "An engineer driven by passion and c";
+  }
+  73% {
+    content: "An engineer driven by passion and cu";
+  }
+  74% {
+    content: "An engineer driven by passion and cur";
+  }
+  75% {
+    content: "An engineer driven by passion and curi";
+  }
+  76% {
+    content: "An engineer driven by passion and curio";
+  }
+  77% {
+    content: "An engineer driven by passion and curios";
+  }
+  78% {
+    content: "An engineer driven by passion and curiosi";
+  }
+  79% {
+    content: "An engineer driven by passion and curiosit";
+  }
+  80% {
+    content: "An engineer driven by passion and curiosity";
+  }
+  81% {
+    content: "An engineer driven by passion and curiosity.";
+  }
+}
