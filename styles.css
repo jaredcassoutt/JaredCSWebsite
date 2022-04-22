@@ -319,9 +319,9 @@ code1 {
   animation-duration:0.8s;
   animation-iteration-count: infinite;
 }
-h1.cursor::after {
-  height:24px;
-  width:13px;
+h4.cursor::after {
+  height:17px;
+  width:12px;
 }
 p.cursor::after {
   height:13px;
