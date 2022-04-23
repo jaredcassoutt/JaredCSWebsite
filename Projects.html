@@ -53,8 +53,8 @@
 
 
 
-  <div class="container-fluid" style="padding: 10px;" align="center">
-    <div class="spinner-border text-dark" role="status" id="loadingSign">
+  <div class="container-fluid" style="padding: 10px;">
+    <div class="spinner-border text-dark" role="status" id="loadingSign" align="center">
       <span class="visually-hidden"></span>
     </div>
     <div class="row" id="projectList"></div>
@@ -74,21 +74,24 @@
         //myJson.unshift({"name":"Mobile ASL Translator","description":"built an iOS application using CreateML that uses a ML Model for object detection to translate the ASL alphabet","language":"Swift","html_url":"https://www.youtube.com/watch?v=A3WSZFOyvfk&feature=youtu.be"})
         let content = '';
         myJson.forEach(p => {
-          content += `
-            <div id="keyBoard" class="col-md-4 mt-2">
-              <div class="card h-100">
-                <img src="${projectImageDictionary[p["name"]]}" class="card-img-top img-fluid" alt="">
-                <div class="card-body">
-                  <h5 class="card-title" id="itemName">${p["name"]}</h5>
-                  <p class="card-text" id="itemDesc">${p["description"]}</p>
-                  <img src="${p["language"]}Icon.png" height="20" width="20"/>
-                  <a href="${p["html_url"]}" class="stretched-link"></a>
+          if (p["language"] != null) {
+            content += `
+              <div id="keyBoard" class="col-md-4 mt-2">
+                <div class="card h-100">
+                  <img src="${projectImageDictionary[p["name"]]}" class="card-img-top img-fluid" alt="">
+                  <div class="card-body">
+                    <h5 class="card-title" id="itemName" align="center">${p["name"]}</h5>
+                    <p class="card-text" id="itemDesc" align="center">${p["description"]}</p>
+                    <img src="${p["language"]}Icon.png" height="20" width="20"/>
+                    <a href="${p["html_url"]}" class="stretched-link"></a>
+                  </div>
                 </div>
               </div>
-            </div>
-          `
+            `
+          }
           count++
         });
+        loadingSign.style.display = "none";
         document.querySelector("#projectList").innerHTML = content;
       }
     </script>
