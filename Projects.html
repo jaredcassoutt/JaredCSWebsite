@@ -66,17 +66,18 @@
           let content = '';
           myJson.forEach(p => {
             content += `
+            <a href="${p["html_url"]}"> 
               <div id="keyBoard" class="col-md-4 mt-2">
-                  <div class="card h-100">
-                      <img src="${images[count]}" class="card-img-top img-fluid" alt="">
-                      <div class="card-body">
-                          <h5 class="card-title" id="itemName">${p["name"]}</h5>
-                          <p class="card-text" id="itemDesc">${p["description"]}</p>
-                          <img src="${p["language"]}Icon.png" height="25" width="25"/>
-                          <a href="${p["html_url"]}" class="btn btn-primary" id="viewProject">View Project</a>
-                      </div>
-                  </div>
-              </div>
+                <div class="card h-100">
+                    <img src="${images[count]}" class="card-img-top img-fluid" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title" id="itemName">${p["name"]}</h5>
+                        <p class="card-text" id="itemDesc">${p["description"]}</p>
+                        <img src="${p["language"]}Icon.png" height="20" width="20"/>
+                    </div>
+                </div>
+            </div>
+            </a>
             `
             count++
           });
