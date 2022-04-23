@@ -54,6 +54,9 @@
 
 
   <div class="container-fluid" style="padding: 10px;">
+    <div class="spinner-border text-dark" role="status" id="loadingSign">
+      <span class="visually-hidden">Loading...</span>
+    </div>
     <div class="row" id="projectList"></div>
     <script>
       let projectImageDictionary = {"Augmented Reality Graphing App":"","Hubble Investing":"","Wall Bounce":"","Gift Recommendation App":"","Mobile ASL Translator":"","AlgorighmPractice":"","BarcodeScannerSwift":"","JaredCSWebsite":"","LoadingView":"","MessageViewController":"","PythonTextEditor":"","RecipeFromIngredientsSwift":"","RestaurantRoulette":"","SphereView":"","SuggestionSearchBar":"","WallBounceGame":""};
@@ -62,6 +65,9 @@
       request.open('GET', 'https://api.github.com/users/jaredcassoutt/repos');
       request.send();
       request.onload = () => {
+          var loadingSign = document.getElementById("loadingSign");
+          loadingSign.style.display = "block";
+
           let myJson = JSON.parse(request.response)
           myJson.unshift({"name":"Augmented Reality Graphing App","description":"an iOS application that allows users to input data and mathematical equations to create AR bar-charts, pie-graphs, scatterplots, and mesh models.","language":"Swift","html_url":""})
           myJson.unshift({"name":"Hubble Investing","description":"iOS app on Apple App Store built to help young and new investors featuring charts, stock prices, AR chart interactions, AI stock price prediction","language":"Swift","html_url":"https://apps.apple.com/us/app/hubble-stock-screener/id1568353331"})
@@ -100,6 +106,7 @@
             }
             count++
           });
+          loadingSign.style.display = "none";
           document.querySelector("#projectList").innerHTML = content;
       }
     </script>
