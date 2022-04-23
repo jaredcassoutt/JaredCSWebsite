@@ -428,9 +428,9 @@ html, body{
 .container .book {
   position: relative;
   display: block;
-  width: 20%;
-  height: 27.5%;
-  margin: 5% auto;
+  width: 400px;
+  height: 550px;
+  margin: 10% auto;
   border-radius: 2px 4px 4px 2px;
   background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
   font-family: acumin-pro, sans-serif;
