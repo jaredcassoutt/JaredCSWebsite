@@ -311,3 +311,9 @@ code1 {
 .my-card:hover{
   border-color:black;
 }
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
