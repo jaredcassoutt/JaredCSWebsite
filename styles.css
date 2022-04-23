@@ -428,8 +428,8 @@ html, body{
 .container .book {
   position: relative;
   display: block;
-  width: 400px;
-  height: 550px;
+  width: 20%;
+  height: 27.5%;
   margin: 5% auto;
   border-radius: 2px 4px 4px 2px;
   background: linear-gradient(45deg,  #DAD5DC 0%, #f2ebf4 100%);
