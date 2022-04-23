@@ -70,7 +70,7 @@
           myJson.unshift({"name":"Mobile ASL Translator","description":"built an iOS application using CreateML that uses a ML Model for object detection to translate the ASL alphabet","language":"Swift","html_url":"https://www.youtube.com/watch?v=A3WSZFOyvfk&feature=youtu.be"})
           let content = '';
           myJson.forEach(p => {
-            if (p["language"] != null && p["language"] in projectImageDictionary) {
+            if (p["language"] != null && p["name"] in projectImageDictionary) {
               content += `
                 <div id="keyBoard" class="col-md-4 mt-2">
                   <div class="card h-100">
