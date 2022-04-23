@@ -586,3 +586,13 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   font-family: acumin-pro, sans-serif;
 } 
 
+.clear-card {
+  /* create a custom class so you 
+     do not run into specificity issues 
+     against bootstraps styles
+     which tends to work better than using !important 
+     (future you will thank you later)*/
+  
+    background-color: rgba(245, 245, 245, 1);
+    opacity: 0;
+  }
