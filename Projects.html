@@ -54,7 +54,7 @@
 
 
   <div class="container-fluid" style="padding: 10px;">
-    <div class="row" id="shop"></div>
+    <div class="row" id="projectList"></div>
     <script>
       let images = ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""];
       var count = 0;
@@ -63,24 +63,40 @@
       request.send();
       request.onload = () => {
           let myJson = JSON.parse(request.response)
+          myJson.unshift({"name":"","description":"","language":"","html_url":""})
           let content = '';
           myJson.forEach(p => {
-            content += `
-              <div id="keyBoard" class="col-md-4 mt-2">
-                <div class="card h-100">
-                    <img src="${images[count]}" class="card-img-top img-fluid" alt="">
-                    <div class="card-body">
+            if (p["language"] != null) {
+              content += `
+                <div id="keyBoard" class="col-md-4 mt-2">
+                  <div class="card h-100">
+                      <img src="${images[count]}" class="card-img-top img-fluid" alt="">
+                      <div class="card-body">
+                          <h5 class="card-title" id="itemName">${p["name"]}</h5>
+                          <p class="card-text" id="itemDesc">${p["description"]}</p>
+                          <img src="${p["language"]}Icon.png" height="20" width="20"/>
+                          <a href="${p["html_url"]}" class="stretched-link"></a>
+                      </div>
+                  </div>
+              </div>
+            `
+            } else {
+              content += `
+                <div id="keyBoard" class="col-md-4 mt-2">
+                  <div class="card h-100">
+                      <img src="${images[count]}" class="card-img-top img-fluid" alt="">
+                      <div class="card-body">
                         <h5 class="card-title" id="itemName">${p["name"]}</h5>
                         <p class="card-text" id="itemDesc">${p["description"]}</p>
-                        <img src="${p["language"]}Icon.png" height="20" width="20"/>
                         <a href="${p["html_url"]}" class="stretched-link"></a>
+                      </div>
                     </div>
                 </div>
-            </div>
-            `
+              `
+            }
             count++
           });
-          document.querySelector("#shop").innerHTML = content;
+          document.querySelector("#projectList").innerHTML = content;
       }
     </script>
   </div>
