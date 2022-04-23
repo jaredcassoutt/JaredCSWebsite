@@ -53,25 +53,29 @@
 
 
 
-  <div class="container-fluid" style="padding: 10px;">
+  <div class="container-fluid" style="padding: 10px;" align="center">
+    <div class="spinner-border text-dark" role="status" id="loadingSign">
+      <span class="visually-hidden"></span>
+    </div>
     <div class="row" id="projectList"></div>
     <script>
-      let projectImageDictionary = {};
+      var loadingSign = document.getElementById("loadingSign");
+      loadingSign.style.display = "block";
+      let projectImageDictionary = {"Augmented Reality Graphing App":"","Hubble Investing":"","Wall Bounce":"","Gift Recommendation App":"","Mobile ASL Translator":"","AlgorighmPractice":"","BarcodeScannerSwift":"","JaredCSWebsite":"","LoadingView":"","MessageViewController":"","PythonTextEditor":"","RecipeFromIngredientsSwift":"","RestaurantRoulette":"","SphereView":"","SuggestionSearchBar":"","WallBounceGame":""};
       var count = 0;
       var request = new XMLHttpRequest();
       request.open('GET', 'https://api.github.com/users/jaredcassoutt/repos');
       request.send();
       request.onload = () => {
           let myJson = JSON.parse(request.response)
-          myJson.unshift({"name":"Augmented Reality Graphing App","description":"an iOS application that allows users to input data and mathematical equations to create AR bar-charts, pie-graphs, scatterplots, and mesh models.","language":"Swift","html_url":""})
-          myJson.unshift({"name":"Hubble Investing","description":"iOS app on Apple App Store built to help young and new investors featuring charts, stock prices, AR chart interactions, AI stock price prediction","language":"Swift","html_url":"https://apps.apple.com/us/app/hubble-stock-screener/id1568353331"})
-          myJson.unshift({"name":"Wall Bounce","description":"A game available on the Apple App Store built using SpriteKit to strengthen my understanding of Swift topics such as automatic reference counting and protocols.","language":"Swift","html_url":"https://apps.apple.com/us/app/walls-bounce/id1546190134"})
-          myJson.unshift({"name":"Gift Recommendation App","description":"","language":"","html_url":""})
-          myJson.unshift({"name":"","description":"","language":"","html_url":""})
-          myJson.unshift({"name":"","description":"","language":"","html_url":""})
+          //myJson.unshift({"name":"Augmented Reality Graphing App","description":"an iOS application that allows users to input data and mathematical equations to create AR bar-charts, pie-graphs, scatterplots, and mesh models.","language":"Swift","html_url":""})
+          //myJson.unshift({"name":"Hubble Investing","description":"iOS app on Apple App Store built to help young and new investors featuring charts, stock prices, AR chart interactions, AI stock price prediction","language":"Swift","html_url":"https://apps.apple.com/us/app/hubble-stock-screener/id1568353331"})
+          //myJson.unshift({"name":"Wall Bounce","description":"A game available on the Apple App Store built using SpriteKit to strengthen my understanding of Swift topics such as automatic reference counting and protocols.","language":"Swift","html_url":"https://apps.apple.com/us/app/walls-bounce/id1546190134"})
+          //myJson.unshift({"name":"Gift Recommendation App","description":"iOS app that recommends gifts based on popular items and gift recipients interests and characteristics using backend built with Python using a Turicreate recommender algorithm.","language":"Swift","html_url":""})
+          //myJson.unshift({"name":"Mobile ASL Translator","description":"built an iOS application using CreateML that uses a ML Model for object detection to translate the ASL alphabet","language":"Swift","html_url":"https://www.youtube.com/watch?v=A3WSZFOyvfk&feature=youtu.be"})
           let content = '';
           myJson.forEach(p => {
-            if (p["language"] != null && p["language"] in projectImageDictionary) {
+            if (p["language"] != null) {
               content += `
                 <div id="keyBoard" class="col-md-4 mt-2">
                   <div class="card h-100">
