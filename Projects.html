@@ -56,6 +56,8 @@
   <div class="container-fluid" style="padding: 10px;">
     <div class="row" id="shop"></div>
     <script>
+      let images = [""];
+      var count = 0;
       var request = new XMLHttpRequest();
       request.open('GET', 'https://api.github.com/users/jaredcassoutt/repos');
       request.send();
@@ -66,16 +68,17 @@
             content += `
               <div id="keyBoard" class="col-md-4 mt-2">
                   <div class="card" style="width: 18rem;">
-                      <img src="${p["url"]}" class="card-img-top img-fluid" alt="keyboard">
+                      <img src="${images[count]}" class="card-img-top img-fluid" alt="">
                       <div class="card-body">
                           <h5 class="card-title" id="itemName">${p["name"]}</h5>
                           <p class="card-text" id="itemDesc">${p["description"]}</p>
                           <p class="card-text"></p>
-                          <a href="${p["url"]}" class="btn btn-primary" id="viewProject">View Project</a>
+                          <a href="${p["html_url"]}" class="btn btn-primary" id="viewProject">View Project</a>
                       </div>
                   </div>
               </div>
             `
+            count++
           });
           document.querySelector("#shop").innerHTML = content;
       }
