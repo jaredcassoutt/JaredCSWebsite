@@ -303,3 +303,11 @@ code1 {
   background: transparent;
   border-top: 0px;
 }
+
+.my-card{
+  border:1px solid gray;
+}
+
+.my-card:hover{
+  border-color:blue;
+}
