@@ -500,9 +500,6 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   width: 300px;
 }
 
-#eye-right {
-  padding-left: 185px;
-}
 
 .cover .num-up{
   position: absolute;
@@ -528,7 +525,11 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   opacity: .8;
   }
 
-
+.container .front > div {
+  border-radius: 0 3px 3px 0;
+  box-shadow: 
+    inset 4px 0 10px rgba(0, 0, 0, 0.1);
+}
 
 .container .front:after {
   content: '';
