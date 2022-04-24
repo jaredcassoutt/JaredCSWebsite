@@ -534,14 +534,7 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
     inset 4px 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container .front:after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  bottom: 1px;
-  left: -1px;
-  width: 1px;
-}
+
 
 .container .cover:after {
   content: '';
