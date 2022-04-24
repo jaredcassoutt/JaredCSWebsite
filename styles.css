@@ -426,7 +426,6 @@ html, body{
 }
 
 .container .book {
-  position: relative;
   display: block;
   width: 400px;
   height: 550px;
@@ -532,6 +531,26 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   border-radius: 0 3px 3px 0;
   box-shadow: 
     inset 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container .front:after {
+  content: '';
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+  left: -1px;
+  width: 1px;
+}
+
+.container .cover:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10px;
+  bottom: 0;
+  width: 3px;
+  background: rgba(0,0,0,0.1);
+  box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .container h2 {
