@@ -504,6 +504,21 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   padding-left: 185px;
 }
 
+.cover .num-up{
+  position: absolute;
+  top: 64px;
+  left: 47px;
+  letter-spacing: 50px;
+  transform: rotate(-90deg);
+}
+
+.cover .num-down{
+  position: relative;
+  top: 65px;
+  left: -95px;
+  transform: rotate(-90deg);
+}
+
 .author{
   font-family: acumin-pro, sans-serif;
   font-weight: 400;
@@ -517,26 +532,6 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   border-radius: 0 3px 3px 0;
   box-shadow: 
     inset 4px 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.container .front:after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  bottom: 1px;
-  left: -1px;
-  width: 1px;
-}
-
-.container .cover:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 10px;
-  bottom: 0;
-  width: 3px;
-  background: rgba(0,0,0,0.1);
-  box-shadow: 1px 0 3px rgba(255, 255, 255, 0.1);
 }
 
 .container h2 {
