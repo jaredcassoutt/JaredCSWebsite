@@ -422,7 +422,7 @@ html, body{
 
 .container {
   z-index: 1;
-  perspective:1000px;
+  perspective:4000px;
 }
 
 .container .book {
