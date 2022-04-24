@@ -491,16 +491,6 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   transform: rotate3d(0,1,0,-90deg);
 }
 
-.container .top-side{
-  width: 400px;
-  top: -20px;
-  height: 540px;
-  background-color: rgb(127, 38, 186);
-  -webkit-transform: rotate3d(0,1,0,-90deg);
-  -moz-transform: rotate3d(0,1,0,-90deg);
-  transform: rotate3d(0,1,0,-90deg);
-}
-
 .cover svg{
   position: absolute;
   top: 50%;
@@ -511,7 +501,7 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
 }
 
 #eye-right {
-  padding-left: 185px;
+  padding-left: 0px;
 }
 
 .cover .num-up{
