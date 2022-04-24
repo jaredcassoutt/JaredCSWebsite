@@ -421,8 +421,7 @@ html, body{
 }
 
 .container {
-  z-index: 1;
-  perspective:4000px;
+  perspective:3000px;
 }
 
 .container .book {
