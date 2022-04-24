@@ -501,22 +501,7 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
 }
 
 #eye-right {
-  padding-left: 0px;
-}
-
-.cover .num-up{
-  position: absolute;
-  top: 64px;
-  left: 47px;
-  letter-spacing: 50px;
-  transform: rotate(-90deg);
-}
-
-.cover .num-down{
-  position: relative;
-  top: 65px;
-  left: -95px;
-  transform: rotate(-90deg);
+  padding-left: 185px;
 }
 
 .author{
