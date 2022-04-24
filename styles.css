@@ -422,10 +422,11 @@ html, body{
 
 .container {
   z-index: 1;
-  perspective:3000px;
+  perspective:1000px;
 }
 
 .container .book {
+  position: relative;
   display: block;
   width: 400px;
   height: 550px;
