@@ -449,7 +449,7 @@ html, body{
 
 .container .book:hover {
   -webkit-transform: rotate3d(0,1,0,35deg);
-  -moz-transform: rotate3d(1,1,1,35deg);
+  -moz-transform: rotate3d(0,1,0,35deg);
   transform: rotate3d(1,1,1,35deg);
 }
 
