@@ -448,9 +448,9 @@ html, body{
 }
 
 .container .book:hover {
-  -webkit-transform: rotate3d(0,1,0,35deg);
-  -moz-transform: rotate3d(0,1,0,35deg);
-  transform: rotate3d(0,1,0,35deg);
+  -webkit-transform: rotate3d(0,1,0,45deg);
+  -moz-transform: rotate3d(0,1,0,45deg);
+  transform: rotate3d(0,1,0,45deg);
 }
 
 .container .book > div,
