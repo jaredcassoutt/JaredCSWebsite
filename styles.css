@@ -421,6 +421,7 @@ html, body{
 }
 
 .container {
+  z-index: 0;
   perspective:3000px;
 }
 
