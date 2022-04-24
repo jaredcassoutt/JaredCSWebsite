@@ -501,7 +501,7 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
 }
 
 #eye-right {
-  padding-left: 185px;
+  padding-left: 0px;
 }
 
 .cover .num-up{
@@ -566,9 +566,9 @@ box-shadow: 13px 13px 8px 0px rgba(151, 146, 153,0.6);
   -webkit-transform-origin: 0 0;
   -moz-transform-origin: 0 0;
   transform-origin: 0 0;
-  -webkit-transform: rotate(90deg);
-  -moz-transform: rotate(90deg);
-  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg) translateY(-40px);
+  -moz-transform: rotate(90deg) translateY(-40px);
+  transform: rotate(90deg) translateY(-40px);
 }
 
 .cover {
