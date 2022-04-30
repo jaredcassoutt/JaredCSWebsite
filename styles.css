@@ -604,6 +604,6 @@ html, body{
   }
 
   .img-fluid {
-    max-width: 80%;
+    max-width: 40%;
     height: auto
   }
