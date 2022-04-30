@@ -602,3 +602,8 @@ html, body{
     font-weight: bold;
     width: 400px;
   }
+
+  .img-fluid {
+    max-width: 80%;
+    height: auto
+  }
