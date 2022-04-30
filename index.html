@@ -72,6 +72,22 @@
                 </div>
                 <div class="row">
                   <div class="col">
+                    <typewriting></typewriting>
+                    <script>
+                      var content = 'If life is so blue, then select another colour from the rainbow';
+
+                      var ele = '<span>' + content.split('').join('</span><span>') + '</span>';
+
+                      $(ele).hide().appendTo('typewriting').each(function (i) {
+                          $(this).delay(100 * i).css({
+                              display: 'inline',
+                              opacity: 0
+                          }).animate({
+                              opacity: 1
+                          }, 100);
+                      });
+                    </script>
+
                     <div class="typewriter text-wrap">
                       <h4  style="color: rgba(245, 245, 245, 0.8);">An engineer with a passion for learning.</h4>
                     </div>

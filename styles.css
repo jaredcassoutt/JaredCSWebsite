@@ -595,3 +595,10 @@ html, body{
     background-color: rgba(245, 245, 245, 1);
     opacity: 0;
   }
+  
+  typewriting {
+    font-family: 'Source Code Pro', monospace;  
+    font-size: 28px;
+    font-weight: bold;
+    width: 400px;
+  }
