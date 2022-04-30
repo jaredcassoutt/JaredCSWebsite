@@ -596,8 +596,9 @@ html, body{
     opacity: 0;
   }
   
-  typewriting {  
-    font-size: 25px;
+  typewriting {
+    font-family: 'Source Code Pro', monospace;  
+    font-size: 23px;
     font-weight: bold;
     width: 400px;
   }
