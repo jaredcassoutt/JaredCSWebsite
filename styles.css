@@ -604,6 +604,7 @@ html, body{
   }
 
   .img-fluid {
+    padding: 30%;
     max-width: 40%;
     height: auto
   }
