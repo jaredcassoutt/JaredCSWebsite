@@ -106,19 +106,17 @@
                 <div class="h-100 fade-in" style="background-color: #ffffff00;>
                     <div class="card-body" style="background-color: #ffffff00;>
                         <div class="container">
-                            <div class="book">
-                                <div class="front">
-                                    <div class="cover">
-                                        <img src=${p["coverImage"]} height="100%" width="100%"/>
-                                    </div>
-                                </div>
-                                <div class="left-side">
-                                    <h2>
-                                        <span>${p["author"]}</span>
-                                        <span>${p["title"]}</span>
-                                    </h2>
-                                </div>
+                          <div class="book">
+                            <div class="cover">
+                              <img src=${p["coverImage"]} alt="Cover Image">
                             </div>
+                          <div class="inner left"></div>
+                              <div class="inner right">
+                                <h2>${p["title"]}</h2>
+                                <p>${p["coverImage"]}</p>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                     </div>
                 </div>
