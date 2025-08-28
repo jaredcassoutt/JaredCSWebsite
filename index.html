@@ -29,23 +29,26 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #355E3B;">
-    <a class="navbar-brand">
-      <img src="myicon.png" height="50" width="50"/>
+  <!-- Modern Glass Navigation -->
+  <nav class="navbar-haplo">
+    <a class="navbar-brand" href="index.html">
+      <img src="myicon.png" alt="Jared Cassoutt Logo"/>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" id="home" href="index.html">Home</a>
-        <a class="nav-item nav-link" id="projects" href="Projects.html">Projects</a>
-        <a class="nav-item nav-link" id="bookshelf" href="bookshelf.html">Bookshelf</a>
-      </div>
+    
+    <div class="navbar-nav-haplo">
+      <a class="nav-link-haplo active" href="index.html">Home</a>
+      <a class="nav-link-haplo" href="Projects.html">Projects</a>
+      <a class="nav-link-haplo" href="bookshelf.html">Bookshelf</a>
+    </div>
+    
+    <div class="navbar-actions">
+      <a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" class="btn-haplo btn-haplo-primary">
+        <i class="fab fa-linkedin"></i> Connect
+      </a>
     </div>
   </nav>
-  <div class="container-fluid" style="padding: 0px;">
-    <!-- Start Main View -->
+  <!-- Main Content -->
+  <div class="main-content">
 
 
 
@@ -57,108 +60,195 @@
 
 
 
-    <div class="container-fluid" style="background-color: #355E3B; padding: 0px;">
-      <div class="container" height:100%; style="background-color:#355E3B;">
-        <div class="row">
-          <div class="col">
-            <br/>
-            <div class="jumbotron align-items-center" align="left" style="background-color: #355E3B;">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col text-wrap">
-                    <h1 style="color: #FFFFFF;">Hi, I'm Jared Cassoutt.</h1>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col">
-                    <typewriting style="color: rgba(245, 245, 245, 0.8);"></typewriting>
-                    <script>
-                      var content = 'An engineer with a passion for learning.';
-
-                      var ele = '<span>' + content.split('').join('</span><span>') + '</span>';
-
-                      $(ele).hide().appendTo('typewriting').each(function (i) {
-                          $(this).delay(100 * i).css({
-                              display: 'inline',
-                              opacity: 0
-                          }).animate({
-                              opacity: 1
-                          }, 100);
-                      });
-                    </script>
-                  </div>
-                </div>
-                <br/>
-                <br/>
-                <div class="row">
-                  <a href="Projects.html">
-                    <button href="Projects.html" type="button" class="btn btn-light">
-                      View Projects
-                    </button>
-                  </a>
-                  &nbsp;
-                  &nbsp;
-                </div>
-              </div>
-              </div>
-            </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        
+        <h1 class="hero-title">
+          Hi, I'm <span class="gradient-text">Jared Cassoutt</span>
+        </h1>
+        
+        <p class="hero-description">
+          <typewriting class="typewriter-text"></typewriting>
+        </p>
+        
+        <div class="hero-actions">
+          <a href="Projects.html" class="btn-haplo btn-haplo-primary cta-button">
+            <i class="fas fa-rocket"></i> View My Work
+          </a>
+          <a href="#experience" class="btn-haplo btn-haplo-secondary">
+            <i class="fas fa-user"></i> About Me
+          </a>
         </div>
       </div>
-      <br/>
-      <div class="container-fluid" style="background-color: #FFFFFF;">
-        <br/>
-        <div class="row">
-          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-          <h4 style="color: #7e7d7d;">Work History</h4>
+      
+      <!-- Floating Elements -->
+      <div class="floating-shapes">
+        <div class="floating-shape shape-1"></div>
+        <div class="floating-shape shape-2"></div>
+        <div class="floating-shape shape-3"></div>
+      </div>
+    </section>
+    
+    <script>
+      // Enhanced typewriter effect
+      document.addEventListener('DOMContentLoaded', function() {
+        const phrases = [
+          'An engineer with a passion for learning.',
+          'Building innovative solutions with AI.',
+          'Creating impactful mobile applications.',
+          'Turning ideas into reality through code.'
+        ];
+        
+        let currentPhrase = 0;
+        let currentChar = 0;
+        let isDeleting = false;
+        const typewriterElement = document.querySelector('typewriting');
+        
+        function typeWriter() {
+          const current = phrases[currentPhrase];
+          
+          if (isDeleting) {
+            typewriterElement.textContent = current.substring(0, currentChar - 1);
+            currentChar--;
+          } else {
+            typewriterElement.textContent = current.substring(0, currentChar + 1);
+            currentChar++;
+          }
+          
+          let typeSpeed = 100;
+          
+          if (isDeleting) {
+            typeSpeed = 50;
+          }
+          
+          if (!isDeleting && currentChar === current.length) {
+            typeSpeed = 2000;
+            isDeleting = true;
+          } else if (isDeleting && currentChar === 0) {
+            isDeleting = false;
+            currentPhrase = (currentPhrase + 1) % phrases.length;
+            typeSpeed = 500;
+          }
+          
+          setTimeout(typeWriter, typeSpeed);
+        }
+        
+        typeWriter();
+      });
+    </script>
+    <!-- Experience Section -->
+    <section id="experience" class="experience-section">
+      <div class="container-haplo">
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-subtitle">Companies I've had the privilege to work with</p>
+        
+        <div class="experience-grid">
+          <div class="experience-card glass-card">
+            <div class="company-logo">
+              <img src="ebayLogo.png" alt="eBay" class="logo-img"/>
+            </div>
+            <div class="company-info">
+              <h3>eBay</h3>
+              <p>Software Engineer</p>
+              <span class="company-period">Current</span>
+            </div>
+          </div>
+          
+          <div class="experience-card glass-card">
+            <div class="company-logo">
+              <img src="hubbleLogo.png" alt="Haplo" class="logo-img"/>
+            </div>
+            <div class="company-info">
+              <h3>Haplo</h3>
+              <p>Founder & iOS Developer</p>
+              <span class="company-period">2021 - Present</span>
+            </div>
+          </div>
+          
+          <div class="experience-card glass-card">
+            <div class="company-logo">
+              <img src="l3Logo.png" alt="L3 Technologies" class="logo-img"/>
+            </div>
+            <div class="company-info">
+              <h3>L3 Technologies</h3>
+              <p>Software Engineer Intern</p>
+              <span class="company-period">Summer 2022</span>
+            </div>
+          </div>
+          
+          <div class="experience-card glass-card">
+            <div class="company-logo">
+              <img src="huckLogo.png" alt="Huck" class="logo-img"/>
+            </div>
+            <div class="company-info">
+              <h3>Huck</h3>
+              <p>iOS Development Intern</p>
+              <span class="company-period">Summer 2021</span>
+            </div>
+          </div>
         </div>
-        <br/>
-        <div class="row">
-          <div class="col-lg-3 col-md-3 d-flex align-items-center justify-content-center">
-            <div class="fade-in">
-              <img src="ebayLogo.png" class="center img-fluid"/>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 d-flex align-items-center justify-content-center">
-            <div class="fade-in">
-              <img src="hubbleLogo.png" class="center img-fluid"/>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 d-flex align-items-center justify-content-center">
-            <div class="fade-in">
-              <img src="l3Logo.png" class="center img-fluid"/>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-3 d-flex align-items-center justify-content-center">
-            <div class="fade-in">
-              <img src="huckLogo.png" class="center img-fluid"/>
-            </div>
-          </div>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+  </div>
+  <!-- End Main Content -->
+<!-- Modern Footer -->
+<footer class="footer-haplo">
+  <div class="container-haplo">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="myicon.png" alt="Jared Cassoutt" />
         </div>
-        <br/>
+        <p class="footer-description">
+          Building innovative solutions and sharing knowledge through code.
+        </p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/jaredcassoutt/" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/jaredcassoutt" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.instagram.com/jaredcassoutt/" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Projects.html">Projects</a></li>
+          <li><a href="bookshelf.html">Bookshelf</a></li>
+          <li><a href="Resume.pdf" target="_blank">Resume</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h6>Get in Touch</h6>
+        <ul>
+          <li><a href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a></li>
+          <li><a href="https://linkedin.com/in/jaredcassoutt">Connect on LinkedIn</a></li>
+        </ul>
       </div>
     </div>
-
-
-
-
-
-
-
-
-<!-- End Main View -->
-<!-- Footer -->
-<div class="footer-basic" style="background-color: #eaeaea;">
-  <footer>
-    <div class="social"><a href="https://www.linkedin.com/in/jaredcassoutt/"><i class="icon ion-social-linkedin"></i></a><a href="https://github.com/jaredcassoutt"><i class="icon ion-social-github"></i></a><a href="https://www.instagram.com/jaredcassoutt/"><i class="icon ion-social-instagram"></i></a>
-    <br/>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="index.html">Home</a></li>
-      <li class="list-inline-item"><a href="Projects.html">Projects</a></li>
-      <li class="list-inline-item"><a href="bookshelf.html">Bookshelf</a></li>
-    </ul>
-    <p class="copyright">Jared Cassoutt © 2022</p>
-  </footer>
-</div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Jared Cassoutt. All rights reserved.</p>
+      <p>Built with ❤️ and lots of coffee</p>
+    </div>
+  </div>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 <!-- Footer -->

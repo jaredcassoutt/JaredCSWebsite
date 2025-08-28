@@ -29,150 +29,124 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #355E3B;">
-    <a class="navbar-brand">
-      <img src="myicon.png" height="50"
-        width="50" />
+  <!-- Modern Glass Navigation -->
+  <nav class="navbar-haplo">
+    <a class="navbar-brand" href="index.html">
+      <img src="myicon.png" alt="Jared Cassoutt Logo"/>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link" id="home" href="index.html">Home</a>
-        <a class="nav-item nav-link" id="projects" href="Projects.html">Projects</a>
-        <a class="nav-item nav-link" id="bookshelf" href="bookshelf.html">Bookshelf</a>
-      </div>
+    
+    <div class="navbar-nav-haplo">
+      <a class="nav-link-haplo" href="index.html">Home</a>
+      <a class="nav-link-haplo active" href="Projects.html">Projects</a>
+      <a class="nav-link-haplo" href="bookshelf.html">Bookshelf</a>
+    </div>
+    
+    <div class="navbar-actions">
+      <a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" class="btn-haplo btn-haplo-primary">
+        <i class="fab fa-linkedin"></i> Connect
+      </a>
     </div>
   </nav>
 
-<!-- Start Main View -->
+  <!-- Main Content -->
+  <div class="main-content">
 
 
 
 
 
-<div class="container-fluid" style="background-color: #355E3B; padding: 0px;">
-  <div class="container" height:100%; style="background-color:#355E3B;">
-    <div class="row">
-      <div class="col">
-        <br/>
-        <div class="row">
-          <h1 style="color: #FFFFFF;">My Projects</h1>
+    <!-- Hero Section -->
+    <section class="projects-hero">
+      <div class="container-haplo">
+        <div class="hero-content">
+          
+          <h1 class="hero-title">
+            My <span class="gradient-text">Projects</span>
+          </h1>
+          
+          <p class="hero-description">
+            Here are a few of my favorite projects that showcase my passion for creating innovative solutions. 
+            Each project represents a journey of learning, problem-solving, and bringing ideas to life through code.
+          </p>
+          
+          <div class="project-filters">
+            <button class="filter-btn active" data-filter="all">
+              <i class="fas fa-th"></i> All Projects
+            </button>
+            <button class="filter-btn" data-filter="mobile">
+              <i class="fas fa-mobile-alt"></i> Mobile Apps
+            </button>
+            <button class="filter-btn" data-filter="web">
+              <i class="fas fa-globe"></i> Web
+            </button>
+            <button class="filter-btn" data-filter="ai">
+              <i class="fas fa-robot"></i> AI/ML
+            </button>
+          </div>
         </div>
-        <div class="row">
-          <h5  style="color: rgba(245, 245, 245, 0.8);">Here are a few of my favorite projects that are linked to their repositories or app download pages!</h5>
+      </div>
+    </section>
+    <!-- Projects Section -->
+    <section class="projects-section">
+      <div class="container-haplo">
+        <div class="loading-spinner large" id="loadingSign" style="margin: 2rem auto;"></div>
+        <div class="projects-grid" id="projectList"></div>
+      </div>
+    </section>
+  </div>
+  <!-- End Main Content -->
+
+<!-- Modern Footer -->
+<footer class="footer-haplo">
+  <div class="container-haplo">
+    <div class="footer-content">
+      <div class="footer-section">
+        <div class="footer-logo">
+          <img src="myicon.png" alt="Jared Cassoutt" />
         </div>
-        <br/>
+        <p class="footer-description">
+          Building innovative solutions and sharing knowledge through code.
+        </p>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/jaredcassoutt/" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/jaredcassoutt" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+          </a>
+          <a href="https://www.instagram.com/jaredcassoutt/" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </div>
+      </div>
+      
+      <div class="footer-section">
+        <h6>Quick Links</h6>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="Projects.html">Projects</a></li>
+          <li><a href="bookshelf.html">Bookshelf</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-section">
+        <h6>Get in Touch</h6>
+        <ul>
+          <li><a href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a></li>
+          <li><a href="https://linkedin.com/in/jaredcassoutt">Connect on LinkedIn</a></li>
+        </ul>
       </div>
     </div>
-  </div>
-</div>
-<br/>
-<div class="container">
-  <div class="row">
-    <br/>
-    <div class="spinner-border text-dark" role="status" id="loadingSign">
-      <span class="visually-hidden"></span>
-    </div>
-    <br/>
-  </div>
-  <div class="container-fluid" style="padding: 10px;">
-    <div class="row" id="projectList"></div>
-    <script>
-      var loadingSign = document.getElementById("loadingSign");
-      let projectImageDictionary = {"Augmented Reality Graphing App":"","Hubble Investing":"","Wall Bounce":"","Gift Recommendation App":"","Mobile ASL Translator":"","AlgorighmPractice":"","BarcodeScannerSwift":"","JaredCSWebsite":"","LoadingView":"","MessageViewController":"","PythonTextEditor":"","RecipeFromIngredientsSwift":"","RestaurantRoulette":"","SphereView":"","SuggestionSearchBar":"","WallBounceGame":""};
-      var count = 0;
-      var request = new XMLHttpRequest();
-      request.open('GET', 'https://api.github.com/users/jaredcassoutt/repos');
-      request.send();
-      request.onload = () => {
-        let myJson = JSON.parse(request.response)
-        myJson.unshift({"name":"Augmented Reality Graphing App","description":"an iOS application that allows users to input data and mathematical equations to create AR bar-charts, pie-graphs, scatterplots, and mesh models.","language":"Swift","language2":"Python","html_url":""})
-        myJson.unshift({"name":"Hubble Investing","description":"iOS app on Apple App Store built to help young and new investors featuring charts, stock prices, AR chart interactions, AI stock price prediction","language":"Swift","language2":"Python","html_url":"https://apps.apple.com/us/app/hubble-stock-screener/id1568353331"})
-        myJson.unshift({"name":"Wall Bounce","description":"A game available on the Apple App Store built using SpriteKit to strengthen my understanding of Swift topics such as automatic reference counting and protocols.","language":"Swift","html_url":"https://apps.apple.com/us/app/walls-bounce/id1546190134"})
-        myJson.unshift({"name":"Gift Recommendation App","description":"iOS app that recommends gifts based on popular items and gift recipients interests and characteristics using backend built with Python using a Turicreate recommender algorithm.","language":"Swift","language2":"Python","html_url":""})
-        myJson.unshift({"name":"Mobile ASL Translator","description":"built an iOS application using CreateML that uses a ML Model for object detection to translate the ASL alphabet","language":"Swift","html_url":"https://www.youtube.com/watch?v=A3WSZFOyvfk&feature=youtu.be"})
-        let content = '';
-        myJson.forEach(p => {
-          if (p["language"] != null) {
-            if (p["name"] in projectImageDictionary) {
-              if ("language2" in p) {
-                content += `
-                  <div id="keyBoard" class="col-md-4 mt-2">
-                    <div class="card h-100 my-card fade-in">
-                      <img src="${projectImageDictionary[p["name"]]}" class="card-img-top img-fluid" alt="">
-                      <div class="card-body">
-                        <h5 class="card-title" id="itemName" align="center">${p["name"]}</h5>
-                        <p class="card-text" id="itemDesc" align="center">${p["description"]}</p>
-                        <a href="${p["html_url"]}" class="stretched-link"></a>
-                      </div>
-                      <div class="card-footer">
-                        <img src="${p["language"]}Icon.png" height="20" width="20"/>
-                        &nbsp;
-                        &nbsp;
-                        <img src="${p["language2"]}Icon.png" height="20" width="20"/>
-                      </div>
-                    </div>
-                  </div>
-                `
-              } else {
-                content += `
-                  <div id="keyBoard" class="col-md-4 mt-2">
-                    <div class="card h-100 my-card fade-in">
-                      <img src="${projectImageDictionary[p["name"]]}" class="card-img-top img-fluid" alt="">
-                      <div class="card-body">
-                        <h5 class="card-title" id="itemName" align="center">${p["name"]}</h5>
-                        <p class="card-text" id="itemDesc" align="center">${p["description"]}</p>
-                        <a href="${p["html_url"]}" class="stretched-link"></a>
-                      </div>
-                      <div class="card-footer">
-                        <img src="${p["language"]}Icon.png" height="20" width="20"/>
-                      </div>
-                    </div>
-                  </div>
-                `
-              }
-            }
-          }
-          count++
-        });
-        loadingSign.style.display = "none";
-        document.querySelector("#projectList").innerHTML = content;
-      }
-    </script>
-  </div>
-  <div class="row">
-    <div class="col-1">
-    </div>
-    <div class="col-10">
-
-    </div>
-    <div class="col-1">
+    
+    <div class="footer-bottom">
+      <p>&copy; 2024 Jared Cassoutt. All rights reserved.</p>
+      <p>Built with ❤️ and lots of coffee</p>
     </div>
   </div>
-</div>
-
-
-
-
-
-<!-- End Main View -->
-<!-- Footer -->
-<div class="footer-basic">
-  <footer>
-    <div class="social"><a href="https://www.linkedin.com/in/jaredcassoutt/"><i class="icon ion-social-linkedin"></i></a><a href="https://github.com/jaredcassoutt"><i class="icon ion-social-github"></i></a><a href="https://www.instagram.com/jaredcassoutt/"><i class="icon ion-social-instagram"></i></a>
-    <br/>
-    <ul class="list-inline">
-      <li class="list-inline-item"><a href="index.html">Home</a></li>
-      <li class="list-inline-item"><a href="Projects.html">Projects</a></li>
-      <li class="list-inline-item"><a href="bookshelf.html">Bookshelf</a></li>
-    </ul>
-    <p class="copyright">Jared Cassoutt © 2022</p>
-  </footer>
-</div>
+</footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-<!-- Footer -->
+<script src="projects-script.js"></script>
 
+</body>
 </html>

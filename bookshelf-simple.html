@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Bookshelf Test</title>
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <div style="padding: 2rem;">
+    <h1>Bookshelf Debug</h1>
+    <div id="status">Loading...</div>
+    <div id="books" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem; margin-top: 2rem;"></div>
+  </div>
+  
+  <script>
+    console.log('🟢 Script started');
+    
+    // Simple book list without API first
+    const simpleBooks = [
+      {"title": "The Martian", "author": "Andy Weir", "rating": 5},
+      {"title": "Deep Work", "author": "Cal Newport", "rating": 5},
+      {"title": "Atomic Habits", "author": "James Clear", "rating": 5}
+    ];
+    
+    function displaySimpleBooks() {
+      console.log('📚 Displaying simple books');
+      const container = document.getElementById('books');
+      const status = document.getElementById('status');
+      
+      let html = '';
+      simpleBooks.forEach(book => {
+        html += `
+          <div style="border: 1px solid #333; padding: 1rem; border-radius: 8px;">
+            <h3>${book.title}</h3>
+            <p>by ${book.author}</p>
+            <p>Rating: ${'⭐'.repeat(book.rating)}</p>
+          </div>
+        `;
+      });
+      
+      container.innerHTML = html;
+      status.innerHTML = '✅ Basic books loaded successfully';
+      console.log('✅ Simple books displayed');
+    }
+    
+    // Test if basic JavaScript works
+    try {
+      displaySimpleBooks();
+    } catch (error) {
+      console.error('❌ Error displaying simple books:', error);
+      document.getElementById('status').innerHTML = '❌ JavaScript error: ' + error.message;
+    }
+  </script>
+</body>
+</html>

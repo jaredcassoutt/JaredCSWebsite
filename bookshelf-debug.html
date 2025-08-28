@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debug Bookshelf</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <h1>Debug Bookshelf</h1>
+  <div id="debug"></div>
+  <div id="books"></div>
+  
+  <script>
+    // Simple test to see if Google Books API works
+    async function testGoogleBooksAPI() {
+      try {
+        console.log('Testing Google Books API...');
+        const response = await fetch('https://www.googleapis.com/books/v1/volumes?q=intitle:"The Martian"+inauthor:"Andy Weir"&maxResults=1');
+        const data = await response.json();
+        console.log('API Response:', data);
+        
+        if (data.items && data.items.length > 0) {
+          const book = data.items[0];
+          console.log('Book found:', book.volumeInfo.title);
+          console.log('Image links:', book.volumeInfo.imageLinks);
+          
+          document.getElementById('debug').innerHTML = `
+            <p>✅ Google Books API is working!</p>
+            <p>Found: ${book.volumeInfo.title}</p>
+            <p>Cover: ${book.volumeInfo.imageLinks?.thumbnail || 'No cover found'}</p>
+          `;
+          
+          if (book.volumeInfo.imageLinks?.thumbnail) {
+            document.getElementById('books').innerHTML = `
+              <img src="${book.volumeInfo.imageLinks.thumbnail}" alt="Test cover" style="width: 200px;">
+            `;
+          }
+        } else {
+          document.getElementById('debug').innerHTML = '<p>❌ No books found in API response</p>';
+        }
+      } catch (error) {
+        console.error('API Error:', error);
+        document.getElementById('debug').innerHTML = `<p>❌ API Error: ${error.message}</p>`;
+      }
+    }
+    
+    testGoogleBooksAPI();
+  </script>
+</body>
+</html>
