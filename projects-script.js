@@ -152,8 +152,8 @@ function displayProjects(projects) {
           
           ${project.type === 'github' && (project.stars > 0 || project.forks > 0) ? `
             <div class="github-stats">
-              ${project.stars > 0 ? `<span class="stat-item">⭐ ${project.stars}</span>` : ''}
-              ${project.forks > 0 ? `<span class="stat-item">🍴 ${project.forks}</span>` : ''}
+              ${project.stars > 0 ? `<span class="stat-item"><i class="fas fa-star"></i> ${project.stars}</span>` : ''}
+              ${project.forks > 0 ? `<span class="stat-item"><i class="fas fa-code-branch"></i> ${project.forks}</span>` : ''}
             </div>
           ` : ''}
           
