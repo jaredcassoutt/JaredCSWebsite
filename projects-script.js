@@ -131,7 +131,7 @@ function displayProjects(projects) {
            data-category="${project.category}" 
            style="animation-delay: ${index * 0.1}s">
         
-        ${project.featured ? `<div class="featured-badge">${project.type === 'app_store' ? '<i class="fab fa-app-store"></i> App Store' : '<i class="fas fa-star"></i> Featured'}</div>` : ''}
+        ${project.featured ? `<div class="featured-badge">${project.type === 'app_store' ? '<i class="fab fa-app-store"></i> App Store' : '⭐ Featured'}</div>` : ''}
         
         <div class="project-header">
           ${project.image ? `<div class="project-app-icon"><img src="${project.image}" alt="${project.name} icon" /></div>` : `<div class="project-icon">${projectIcon}</div>`}
@@ -144,16 +144,16 @@ function displayProjects(projects) {
           
           ${project.type === 'app_store' && (project.app_rating > 0 || project.review_count > 0) ? `
             <div class="app-store-stats">
-              ${project.app_rating > 0 ? `<span class="stat-item"><i class="fas fa-star"></i> ${project.app_rating.toFixed(1)}</span>` : ''}
-              ${project.review_count > 0 ? `<span class="stat-item"><i class="fas fa-users"></i> ${project.review_count} reviews</span>` : ''}
-              ${project.price ? `<span class="stat-item price"><i class="fas fa-tag"></i> ${project.price}</span>` : ''}
+              ${project.app_rating > 0 ? `<span class="stat-item">⭐ ${project.app_rating.toFixed(1)}</span>` : ''}
+              ${project.review_count > 0 ? `<span class="stat-item">👥 ${project.review_count} reviews</span>` : ''}
+              ${project.price ? `<span class="stat-item price">🏷️ ${project.price}</span>` : ''}
             </div>
           ` : ''}
           
           ${project.type === 'github' && (project.stars > 0 || project.forks > 0) ? `
             <div class="github-stats">
-              ${project.stars > 0 ? `<span class="stat-item"><i class="fas fa-star"></i> ${project.stars}</span>` : ''}
-              ${project.forks > 0 ? `<span class="stat-item"><i class="fas fa-code-branch"></i> ${project.forks}</span>` : ''}
+              ${project.stars > 0 ? `<span class="stat-item">⭐ ${project.stars}</span>` : ''}
+              ${project.forks > 0 ? `<span class="stat-item">🍴 ${project.forks}</span>` : ''}
             </div>
           ` : ''}
           
@@ -168,7 +168,7 @@ function displayProjects(projects) {
         
         <div class="project-footer">
           <div class="project-links">
-            ${project.url ? getProjectLink(project) : '<span class="private-label"><i class="fas fa-lock"></i> Private</span>'}
+            ${project.url ? getProjectLink(project) : '<span class="private-label">🔒 Private</span>'}
           </div>
         </div>
       </div>
@@ -197,9 +197,9 @@ function getProjectIcon(type) {
     'app_store': '<i class="fab fa-app-store"></i>',
     'github': '<i class="fab fa-github"></i>',
     'video': '<i class="fab fa-youtube"></i>',
-    'private': '<i class="fas fa-code"></i>'
+    'private': '💻'
   };
-  return icons[type] || '<i class="fas fa-code"></i>';
+  return icons[type] || '💻';
 }
 
 function getStatusClass(status) {
@@ -211,13 +211,13 @@ function getStatusClass(status) {
 
 function getProjectLink(project) {
   const linkText = {
-    'app_store': '<i class="fas fa-download"></i> Download',
+    'app_store': '⬇️ Download',
     'github': '<i class="fab fa-github"></i> View Code',
-    'video': '<i class="fas fa-play"></i> Watch Demo'
+    'video': '▶️ Watch Demo'
   };
   
   return `<a href="${project.url}" target="_blank" class="project-link btn-haplo btn-haplo-primary">
-            ${linkText[project.type] || '<i class="fas fa-external-link-alt"></i> View'}
+            ${linkText[project.type] || '🔗 View'}
           </a>`;
 }
 

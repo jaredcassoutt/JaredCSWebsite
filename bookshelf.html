@@ -145,14 +145,15 @@
             }
         }
 
+        // Sort books by rating (highest to lowest)
+        books.sort((a, b) => b.rating - a.rating);
+        
         // Display books immediately with placeholders
         function displayBooks() {
             const container = document.getElementById('books');
             let html = '';
             
             books.forEach((book, index) => {
-                const stars = '⭐'.repeat(book.rating) + '☆'.repeat(5 - book.rating);
-                
                 html += `
                     <div class="book-card glass-card animate-book" style="animation-delay: ${index * 0.1}s">
                         <div class="book-cover">
@@ -161,7 +162,6 @@
                                 <div class="book-placeholder-text">${book.title}</div>
                             </div>
                             <div class="book-overlay">
-                                <div class="book-rating">${stars}</div>
                                 <div class="book-category">${book.category}</div>
                             </div>
                         </div>
@@ -170,7 +170,6 @@
                             <p class="book-author">by ${book.author}</p>
                             <p class="book-description">${book.description}</p>
                             <div class="book-meta">
-                                <span class="book-rating-text">${book.rating}/5 stars</span>
                                 <span class="book-category-badge">${book.category}</span>
                             </div>
                         </div>
