@@ -65,9 +65,10 @@
           </h1>
           
           <p class="hero-description">
-            When I'm not programming, I spend a lot of time reading. To me, learning is a journey that I never want to end. 
-            I enjoy building upon my perspective and acquiring new skills! Here are some of my favorite books that I highly 
-            recommend to anyone and everyone.
+            When I’m not programming, I’m usually reading. I see learning as an ongoing adventure rather than a finish line, 
+            and books are one of my favorite ways to expand how I think and what I can do. I gravitate toward stories and ideas 
+            that shift my perspective, spark curiosity, and add to the skills I bring back into my work. Here are a few of the 
+            books that have stuck with me—and ones I think are worth anyone’s time.
           </p>
           
           <div class="stats-grid">
@@ -97,32 +98,32 @@
     <script>
         // Enhanced book data with ratings and descriptions - sorted by rating (highest to lowest)
         let books = [
-            {"title":"Cracking the Coding Interview","author":"Gayle Laakmann McDowell", "rating": 5, "category": "Tech", "description": "Essential guide for technical interviews with 189 programming questions."},
-            {"title":"Originals","author":"Adam Grant", "rating": 5, "category": "Psychology", "description": "How non-conformists move the world and drive innovation."},
-            {"title":"Hidden Potential","author":"Adam Grant", "rating": 5, "category": "Psychology", "description": "A groundbreaking look at how anyone can rise to achieve greater things."},
-            {"title":"How to Win Friends and Influence People","author":"Dale Carnegie", "rating": 5, "category": "Self-Help", "description": "Timeless principles for building meaningful relationships."},
-            {"title":"Shoe Dog","author":"Phil Knight", "rating": 5, "category": "Biography", "description": "The remarkable story behind Nike's founding and growth."},
-            {"title":"Deep Work","author":"Cal Newport", "rating": 5, "category": "Productivity", "description": "Rules for focused success in a distracted world."},
-            {"title":"The Psychology of Money","author":"Morgan Housel", "rating": 5, "category": "Finance", "description": "Timeless lessons on wealth, greed, and happiness."},
-            {"title":"Hooked","author":"Nir Eyal", "rating": 5, "category": "Business", "description": "How to build habit-forming products that customers love."},
-            {"title":"Creativity, Inc.","author":"Ed Catmull", "rating": 5, "category": "Business", "description": "Overcoming unseen forces that stand in the way of true inspiration."},
-            {"title":"Think Again","author":"Adam Grant", "rating": 5, "category": "Psychology", "description": "The power of knowing what you don't know and rethinking assumptions."},
-            {"title":"The Hobbit","author":"J.R.R. Tolkien", "rating": 5, "category": "Fantasy", "description": "An unexpected journey that changed fantasy forever."},
-            {"title":"To Kill a Mockingbird","author":"Harper Lee", "rating": 5, "category": "Classic", "description": "A timeless exploration of racial injustice and moral growth."},
-            {"title":"Mastery","author":"Robert Greene", "rating": 5, "category": "Self-Help", "description": "The secret to achieving greatness in any field."},
-            {"title":"The Martian","author":"Andy Weir", "rating": 5, "category": "Sci-Fi", "description": "A gripping tale of survival and ingenuity on Mars."},
-            {"title":"The Molecule of More","author":"Daniel Z. Lieberman", "rating": 4, "category": "Science", "description": "How dopamine drives human nature and shapes our desires."},
-            {"title":"The Tao of Pooh","author":"Benjamin Hoff", "rating": 4, "category": "Philosophy", "description": "Ancient Taoist wisdom explained through Winnie-the-Pooh stories."},
-            {"title":"The Things We Make","author":"Bill Hammack", "rating": 4, "category": "Engineering", "description": "Insights into engineering and how technology shapes our world."},
-            {"title":"Million Dollar Weekend","author":"Noah Kagan", "rating": 4, "category": "Business", "description": "How to launch a successful business in just a weekend."},
-            {"title":"Breath","author":"James Nestor", "rating": 4, "category": "Health", "description": "The new science of a lost art and how proper breathing can transform health."},
-            {"title":"The Kite Runner","author":"Khaled Hosseini", "rating": 4, "category": "Fiction", "description": "A powerful story of friendship, betrayal, and redemption."},
-            {"title":"The Help","author":"Kathryn Stockett", "rating": 4, "category": "Fiction", "description": "A moving tale of courage in 1960s Mississippi."},
-            {"title":"The Art of War","author":"Sun Tzu", "rating": 4, "category": "Strategy", "description": "Ancient wisdom on strategy and leadership."},
-            {"title":"The Four","author":"Scott Galloway", "rating": 4, "category": "Business", "description": "The hidden DNA of Amazon, Apple, Facebook, and Google."},
-            {"title":"Frankenstein","author":"Mary Shelley", "rating": 4, "category": "Classic", "description": "The original science fiction masterpiece."},
-            {"title":"Lord of the Flies","author":"William Golding", "rating": 4, "category": "Classic", "description": "A haunting allegory of civilization and human nature."},
-            {"title":"Fahrenheit 451","author":"Ray Bradbury", "rating": 4, "category": "Sci-Fi", "description": "A dystopian warning about censorship and conformity."}
+            {"title":"Cracking the Coding Interview","author":"Gayle Laakmann McDowell", "rating": 4.5, "category": "Tech", "description": "Essential guide for technical interviews with 189 programming questions."},
+            {"title":"Originals","author":"Adam Grant", "rating": 4.6, "category": "Psychology", "description": "How non-conformists move the world and drive innovation."},
+            {"title":"Hidden Potential","author":"Adam Grant", "rating": 4.6, "category": "Psychology", "description": "A groundbreaking look at how anyone can rise to achieve greater things."},
+            {"title":"How to Win Friends and Influence People","author":"Dale Carnegie", "rating": 5.0, "category": "Self-Help", "description": "Timeless principles for building meaningful relationships."},
+            {"title":"Shoe Dog","author":"Phil Knight", "rating": 4.5, "category": "Biography", "description": "The remarkable story behind Nike's founding and growth."},
+            {"title":"Deep Work","author":"Cal Newport", "rating": 4.0, "category": "Productivity", "description": "Rules for focused success in a distracted world."},
+            {"title":"The Psychology of Money","author":"Morgan Housel", "rating": 4.1, "category": "Finance", "description": "Timeless lessons on wealth, greed, and happiness."},
+            {"title":"Hooked","author":"Nir Eyal", "rating": 4.2, "category": "Business", "description": "How to build habit-forming products that customers love."},
+            {"title":"Creativity, Inc.","author":"Ed Catmull", "rating": 4.4, "category": "Business", "description": "Overcoming unseen forces that stand in the way of true inspiration."},
+            {"title":"Think Again","author":"Adam Grant", "rating": 5.0, "category": "Psychology", "description": "The power of knowing what you don't know and rethinking assumptions."},
+            {"title":"The Hobbit","author":"J.R.R. Tolkien", "rating": 4.8, "category": "Fantasy", "description": "An unexpected journey that changed fantasy forever."},
+            {"title":"To Kill a Mockingbird","author":"Harper Lee", "rating": 4.3, "category": "Classic", "description": "A timeless exploration of racial injustice and moral growth."},
+            {"title":"Mastery","author":"Robert Greene", "rating": 4.3, "category": "Self-Help", "description": "The secret to achieving greatness in any field."},
+            {"title":"The Martian","author":"Andy Weir", "rating": 4.8, "category": "Sci-Fi", "description": "A gripping tale of survival and ingenuity on Mars."},
+            {"title":"The Molecule of More","author":"Daniel Z. Lieberman", "rating": 5.0, "category": "Science", "description": "How dopamine drives human nature and shapes our desires."},
+            {"title":"The Tao of Pooh","author":"Benjamin Hoff", "rating": 4.0, "category": "Philosophy", "description": "Ancient Taoist wisdom explained through Winnie-the-Pooh stories."},
+            {"title":"The Things We Make","author":"Bill Hammack", "rating": 3.9, "category": "Engineering", "description": "Insights into engineering and how technology shapes our world."},
+            {"title":"Million Dollar Weekend","author":"Noah Kagan", "rating": 3.8, "category": "Business", "description": "How to launch a successful business in just a weekend."},
+            {"title":"Breath","author":"James Nestor", "rating": 4.4, "category": "Health", "description": "The new science of a lost art and how proper breathing can transform health."},
+            {"title":"The Kite Runner","author":"Khaled Hosseini", "rating": 4.8, "category": "Fiction", "description": "A powerful story of friendship, betrayal, and redemption."},
+            {"title":"The Help","author":"Kathryn Stockett", "rating": 4.6, "category": "Fiction", "description": "A moving tale of courage in 1960s Mississippi."},
+            {"title":"The Art of War","author":"Sun Tzu", "rating": 4.1, "category": "Strategy", "description": "Ancient wisdom on strategy and leadership."},
+            {"title":"The Four","author":"Scott Galloway", "rating": 4.3, "category": "Business", "description": "The hidden DNA of Amazon, Apple, Facebook, and Google."},
+            {"title":"Frankenstein","author":"Mary Shelley", "rating": 4.6, "category": "Classic", "description": "The original science fiction masterpiece."},
+            {"title":"Lord of the Flies","author":"William Golding", "rating": 4.3, "category": "Classic", "description": "A haunting allegory of civilization and human nature."},
+            {"title":"Fahrenheit 451","author":"Ray Bradbury", "rating": 4.1, "category": "Sci-Fi", "description": "A dystopian warning about censorship and conformity."}
         ];
         
         // Non-blocking book cover fetching
