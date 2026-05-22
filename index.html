@@ -340,13 +340,14 @@
       }).join('')}</div>`;
     }
 
-    // X's public syndication endpoint only exposes likes and replies.
-    // We only render stats that have real numbers — no fake zeros.
+    // X's public syndication endpoint only exposes likes (favorite_count)
+    // and replies (conversation_count). Retweets + views are manually set
+    // in tweets.json — edit those fields directly to keep them accurate.
     function statHTML(t) {
       const parts = [];
-      if (t.replies > 0) parts.push(`<span class="tweet-stat replies"><span class="ic">${ICONS.reply}</span>${t.replies}</span>`);
-      if (t.retweets > 0) parts.push(`<span class="tweet-stat retweets"><span class="ic">${ICONS.retweet}</span>${t.retweets}</span>`);
-      if (t.likes > 0)   parts.push(`<span class="tweet-stat likes"><span class="ic">${ICONS.like}</span>${t.likes}</span>`);
+      parts.push(`<span class="tweet-stat replies"><span class="ic">${ICONS.reply}</span>${t.replies || 0}</span>`);
+      parts.push(`<span class="tweet-stat retweets"><span class="ic">${ICONS.retweet}</span>${t.retweets || 0}</span>`);
+      parts.push(`<span class="tweet-stat likes"><span class="ic">${ICONS.like}</span>${t.likes || 0}</span>`);
       if (t.views && t.views !== '·' && t.views !== '0') {
         parts.push(`<span class="tweet-stat views"><span class="ic">${ICONS.views}</span>${esc(String(t.views))}</span>`);
       }
