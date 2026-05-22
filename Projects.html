@@ -1,152 +1,171 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jared Cassoutt</title>
-  <meta name="description" content="An online version of my portfolio and resume for computer science and software engineering">
-  <meta name="keywords" content="Jared Cassoutt, CS, Coding, Resume, iOS, iOS Development, Software Engineer, AI, Machine Learning, Artificial Intelligence, Baylor University, Software Developer">
-  <meta name="author" content="Jared Cassoutt">
-  <link rel="icon" href="myicon.png">
   <meta charset="utf-8" />
-  <meta property="og:logo" content="myicon.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
-    crossorigin="anonymous">
-  </script>
-  <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+  <title>Work — Jared Cassoutt</title>
+  <meta name="description" content="Projects by Jared Cassoutt: iOS apps shipped under Haplo, LLC, open-source on-device AI tooling, and personal Swift / Python work.">
+  <link rel="icon" href="myicon.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- Modern Glass Navigation -->
-  <nav class="navbar-haplo">
-    <a class="navbar-brand" href="index.html">
-      <img src="myicon.png" alt="Jared Cassoutt Logo"/>
-    </a>
-    
-    <div class="navbar-nav-haplo">
-      <a class="nav-link-haplo" href="index.html">Home</a>
-      <a class="nav-link-haplo active" href="Projects.html">Projects</a>
-      <a class="nav-link-haplo" href="bookshelf.html">Bookshelf</a>
-    </div>
-    
-    <div class="navbar-actions">
-      <a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" class="btn-haplo btn-haplo-primary">
-        <i class="fab fa-linkedin"></i> Connect
-      </a>
-    </div>
-  </nav>
 
-  <!-- Main Content -->
-  <div class="main-content">
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="live"></span>
+    Jared Cassoutt
+    <span class="tag">/ engineer</span>
+  </a>
+  <div class="nav-pill">
+    <a href="index.html">Home</a>
+    <a href="Projects.html" class="current">Work</a>
+    <a href="bookshelf.html">Reading</a>
+  </div>
+  <a class="nav-cta" href="mailto:jaredcassoutt@gmail.com">Say hi <span class="arrow">→</span></a>
+</nav>
 
+<main>
 
+  <!-- ============== HERO ============== -->
+  <div style="position: relative;">
+    <div class="aurora"></div>
+    <div class="grid-bg"></div>
 
+    <section class="hero center container">
+      <div class="chip"><span class="dot"></span> iOS · macOS · open source</div>
+      <h1 data-words>Things I've made.</h1>
+      <p class="lede">
+        A handful of iOS apps on the App Store, open-source for running models on-device, and a small pile of personal repos.
+      </p>
 
-
-    <!-- Hero Section -->
-    <section class="projects-hero">
-      <div class="container-haplo">
-        <div class="hero-content">
-          
-          <h1 class="hero-title">
-            My <span class="gradient-text">Projects</span>
-          </h1>
-          
-          <p class="hero-description">
-            Here are a few of my favorite projects that showcase my passion for creating innovative solutions. 
-            Each project represents a journey of learning, problem-solving, and bringing ideas to life through code.
-          </p>
-          
-          <div class="project-filters">
-            <button class="filter-btn active" data-filter="all">
-              📋 All Projects
-            </button>
-            <button class="filter-btn" data-filter="mobile">
-              📱 Mobile Apps
-            </button>
-            <button class="filter-btn" data-filter="web">
-              🌐 Web
-            </button>
-            <button class="filter-btn" data-filter="ai">
-              🤖 AI/ML
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- Projects Section -->
-    <section class="projects-section">
-      <div class="container-haplo">
-        <div class="loading-spinner large" id="loadingSign" style="margin: 2rem auto;"></div>
-        <div class="projects-grid" id="projectList"></div>
+      <div class="filter-row">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="spotlight">Spotlight</button>
+        <button class="filter-btn" data-filter="apps">App Store <span class="count" id="count-apps">·</span></button>
+        <button class="filter-btn" data-filter="haplo">Haplo OSS <span class="count" id="count-haplo">·</span></button>
+        <button class="filter-btn" data-filter="personal">Personal OSS <span class="count" id="count-personal">·</span></button>
+        <button class="filter-btn" data-filter="models">Models <span class="count" id="count-models">·</span></button>
+        <button class="filter-btn" data-filter="notable">Notable <span class="count" id="count-notable">·</span></button>
       </div>
     </section>
   </div>
-  <!-- End Main Content -->
 
-<!-- Modern Footer -->
-<footer class="footer-haplo">
-  <div class="container-haplo">
-    <div class="footer-content">
-      <div class="footer-section">
-        <div class="footer-logo">
-          <img src="myicon.png" alt="Jared Cassoutt" />
-        </div>
-        <p class="footer-description">
-          Building innovative solutions and sharing knowledge through code.
-        </p>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/jaredcassoutt/" aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/jaredcassoutt" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.instagram.com/jaredcassoutt/" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
+  <!-- ============== SPOTLIGHT ============== -->
+  <section class="section" id="section-spotlight">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 01 currently main thing</span></div>
+      <h2 class="reveal-words">The project I keep <span class="accent">opening first</span>.</h2>
+      <p class="lede reveal">Pulled live from GitHub.</p>
+      <div id="spotlight-mount">
+        <div class="loading"><span class="spinner"></span> Loading spotlight…</div>
       </div>
-      
-      <div class="footer-section">
-        <h6>Quick Links</h6>
+    </div>
+  </section>
+
+  <!-- ============== FEATURED TOOLS ============== -->
+  <section class="section" id="section-tools" style="padding-top: 32px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 02 more from the workshop</span></div>
+      <h2 class="reveal-words">Three more tools for <span class="accent">on-device AI</span>.</h2>
+      <p class="lede reveal">Each tries to make one tricky part of running models locally a little easier.</p>
+      <div id="tools-mount"></div>
+    </div>
+  </section>
+
+  <!-- ============== APP STORE ============== -->
+  <section class="section" id="section-apps" style="padding-top: 32px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 03 on the app store</span></div>
+      <h2 class="reveal-words">Apps shipped under <span class="accent">Haplo</span>.</h2>
+      <p class="lede reveal">Scroll for the rest — pulled live from the App Store.</p>
+      <div id="apps-mount">
+        <div class="loading"><span class="spinner"></span> Loading from iTunes…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== HAPLO OSS ============== -->
+  <section class="section" id="section-haplo" style="padding-top: 32px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 04 haplo open source</span></div>
+      <h2 class="reveal-words">Open-source for <span class="accent">on-device AI</span> on Apple platforms.</h2>
+      <p class="lede reveal">A growing set of small libraries for running, fine-tuning, and debugging local models on iOS and macOS.</p>
+      <div id="haplo-mount">
+        <div class="loading"><span class="spinner"></span> Fetching repos…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== PERSONAL OSS ============== -->
+  <section class="section" id="section-personal" style="padding-top: 32px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 05 personal open source</span></div>
+      <h2 class="reveal-words">Smaller things on my <span class="accent">personal GitHub</span>.</h2>
+      <p class="lede reveal">Mostly Swift games, view helpers, and odd experiments under <code style="font-family: var(--mono); color: var(--fg-dim); padding: 1px 6px; background: rgba(255,255,255,0.04); border-radius: 4px;">jaredcassoutt</code>.</p>
+      <div id="personal-mount">
+        <div class="loading"><span class="spinner"></span> Fetching repos…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== HUGGINGFACE MODELS ============== -->
+  <section class="section" id="section-models" style="padding-top: 32px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 06 models on huggingface</span></div>
+      <h2 class="reveal-words">Quantizing and shipping open models for <span class="accent">on-device</span>.</h2>
+      <p class="lede reveal">GGUF quantizations of Qwen, Llama, Gemma, Phi, and DeepSeek; Core ML conversions of Stable Diffusion; a few small original models. All optimized to run inside an iOS or macOS app.</p>
+      <div id="models-mount">
+        <div class="loading"><span class="spinner"></span> Loading models from HuggingFace…</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== NOTABLE ============== -->
+  <section class="section" id="section-notable" style="padding-top: 32px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// 07 a few others</span></div>
+      <h2 class="reveal-words">A handful that <span class="accent">never made it to a store</span>.</h2>
+      <p class="lede reveal">Older projects and one-off experiments worth keeping a note of.</p>
+      <div id="notable-mount"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+      <div class="brand-block">
+        <div class="label">// the engineer</div>
+        <h3>Jared Cassoutt</h3>
+        <p>iOS engineer at eBay. Runs Haplo on the side. Likes good coffee and unreasonable books.</p>
+      </div>
+      <div class="col">
+        <h6>Site</h6>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="bookshelf.html">Bookshelf</a></li>
+          <li><a href="Projects.html">Work</a></li>
+          <li><a href="bookshelf.html">Reading</a></li>
         </ul>
       </div>
-      
-      <div class="footer-section">
-        <h6>Get in Touch</h6>
+      <div class="col">
+        <h6>Elsewhere</h6>
         <ul>
-          <li><a href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/jaredcassoutt">Connect on LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/jaredcassoutt" target="_blank" rel="noopener">GitHub (personal)</a></li>
+          <li><a href="https://github.com/HaploLLC" target="_blank" rel="noopener">GitHub (Haplo)</a></li>
+          <li><a href="mailto:jaredcassoutt@gmail.com">Email</a></li>
         </ul>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Jared Cassoutt. All rights reserved.</p>
-      <p>Built with ❤️ and lots of coffee</p>
+    <div class="bottom">
+      <span class="live">Portland, OR</span>
+      <span>&copy; 2026 Jared Cassoutt</span>
     </div>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-<script src="projects-script.js"></script>
 
+<script src="site.js"></script>
+<script src="projects-script.js"></script>
 </body>
 </html>

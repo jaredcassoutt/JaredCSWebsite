@@ -1,300 +1,274 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jared Cassoutt</title>
-  <meta name="description" content="An online version of my portfolio and resume for computer science and software engineering">
-  <meta name="keywords" content="Jared Cassoutt, CS, Coding, Resume, iOS, iOS Development, Software Engineer, AI, Machine Learning, Artificial Intelligence, Baylor University, Software Developer">
-  <meta name="author" content="Jared Cassoutt">
-  <link rel="icon" href="myicon.png">
   <meta charset="utf-8" />
-  <meta property="og:logo" content="myicon.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
-    crossorigin="anonymous">
-  </script>
-  <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+  <title>Reading — Jared Cassoutt</title>
+  <meta name="description" content="What Jared Cassoutt has been reading lately, with covers and notes pulled from Google Books.">
+  <link rel="icon" href="myicon.png">
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- Modern Glass Navigation -->
-  <nav class="navbar-haplo">
-    <a class="navbar-brand" href="index.html">
-      <img src="myicon.png" alt="Jared Cassoutt Logo"/>
-    </a>
-    
-    <div class="navbar-nav-haplo">
-      <a class="nav-link-haplo" href="index.html">Home</a>
-      <a class="nav-link-haplo" href="Projects.html">Projects</a>
-      <a class="nav-link-haplo active" href="bookshelf.html">Bookshelf</a>
-    </div>
-    
-    <div class="navbar-actions">
-      <a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" class="btn-haplo btn-haplo-primary">
-        <i class="fab fa-linkedin"></i> Connect
-      </a>
-    </div>
-  </nav>
 
-  <!-- Main Content -->
-  <div class="main-content">
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="live"></span>
+    Jared Cassoutt
+    <span class="tag">/ engineer</span>
+  </a>
+  <div class="nav-pill">
+    <a href="index.html">Home</a>
+    <a href="Projects.html">Work</a>
+    <a href="bookshelf.html" class="current">Reading</a>
+  </div>
+  <a class="nav-cta" href="mailto:jaredcassoutt@gmail.com">Say hi <span class="arrow">→</span></a>
+</nav>
 
+<main>
 
+  <!-- ============== HERO ============== -->
+  <div style="position: relative;">
+    <div class="aurora"></div>
+    <div class="grid-bg"></div>
 
-
-
-    <!-- Hero Section -->
-    <section class="bookshelf-hero">
-      <div class="container-haplo">
-        <div class="hero-content">
-          
-          <h1 class="hero-title">
-            My <span class="gradient-text">Bookshelf</span>
-          </h1>
-          
-          <p class="hero-description">
-            When I’m not programming, I’m usually reading. I see learning as an ongoing adventure rather than a finish line, 
-            and books are one of my favorite ways to expand how I think and what I can do. I gravitate toward stories and ideas 
-            that shift my perspective, spark curiosity, and add to the skills I bring back into my work. Here are a few of the 
-            books that have stuck with me—and ones I think are worth anyone’s time.
-          </p>
-          
-          <div class="stats-grid">
-            <div class="stat-card glass-card">
-              <div class="stat-number">26</div>
-              <div class="stat-label">📚 Books Read</div>
-            </div>
-            <div class="stat-card glass-card">
-              <div class="stat-number">8</div>
-              <div class="stat-label">🎭 Genres</div>
-            </div>
-            <div class="stat-card glass-card">
-              <div class="stat-number">∞</div>
-              <div class="stat-label">🧠 Learning</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <section class="hero center container">
+      <div class="chip"><span class="dot"></span> 26 books · 4 shelves · always one more open</div>
+      <h1 data-words>What I've been reading.</h1>
+      <p class="lede">
+        Grouped into four loose shelves. Each one has a favorite up front with a note about it, then the rest of the shelf to scroll.
+      </p>
     </section>
-    <!-- Books Section -->
-    <section class="books-section">
-      <div class="container-haplo">
-        <div class="loading-spinner large" id="loadingSign" style="margin: 2rem auto;"></div>
-        <div class="books-grid" id="books"></div>
+  </div>
+
+  <!-- ============== SHELVES ============== -->
+  <section class="section" style="padding-top: 40px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// the shelves</span></div>
+      <h2 class="reveal-words">Four shelves, roughly by what <span class="accent">kind of thing</span> it is.</h2>
+      <p class="lede reveal">Covers and notes pulled live from Google Books.</p>
+      <div id="shelves-mount">
+        <div class="loading"><span class="spinner"></span> Loading shelves…</div>
       </div>
-    </section>
-    <script>
-        // Enhanced book data with ratings and descriptions - sorted by rating (highest to lowest)
-        let books = [
-            {"title":"Cracking the Coding Interview","author":"Gayle Laakmann McDowell", "rating": 4.5, "category": "Tech", "description": "Essential guide for technical interviews with 189 programming questions."},
-            {"title":"Originals","author":"Adam Grant", "rating": 4.6, "category": "Psychology", "description": "How non-conformists move the world and drive innovation."},
-            {"title":"Hidden Potential","author":"Adam Grant", "rating": 4.6, "category": "Psychology", "description": "A groundbreaking look at how anyone can rise to achieve greater things."},
-            {"title":"How to Win Friends and Influence People","author":"Dale Carnegie", "rating": 5.0, "category": "Self-Help", "description": "Timeless principles for building meaningful relationships."},
-            {"title":"Shoe Dog","author":"Phil Knight", "rating": 4.5, "category": "Biography", "description": "The remarkable story behind Nike's founding and growth."},
-            {"title":"Deep Work","author":"Cal Newport", "rating": 4.0, "category": "Productivity", "description": "Rules for focused success in a distracted world."},
-            {"title":"The Psychology of Money","author":"Morgan Housel", "rating": 4.1, "category": "Finance", "description": "Timeless lessons on wealth, greed, and happiness."},
-            {"title":"Hooked","author":"Nir Eyal", "rating": 4.2, "category": "Business", "description": "How to build habit-forming products that customers love."},
-            {"title":"Creativity, Inc.","author":"Ed Catmull", "rating": 4.4, "category": "Business", "description": "Overcoming unseen forces that stand in the way of true inspiration."},
-            {"title":"Think Again","author":"Adam Grant", "rating": 5.0, "category": "Psychology", "description": "The power of knowing what you don't know and rethinking assumptions."},
-            {"title":"The Hobbit","author":"J.R.R. Tolkien", "rating": 4.8, "category": "Fantasy", "description": "An unexpected journey that changed fantasy forever."},
-            {"title":"To Kill a Mockingbird","author":"Harper Lee", "rating": 4.3, "category": "Classic", "description": "A timeless exploration of racial injustice and moral growth."},
-            {"title":"Mastery","author":"Robert Greene", "rating": 4.3, "category": "Self-Help", "description": "The secret to achieving greatness in any field."},
-            {"title":"The Martian","author":"Andy Weir", "rating": 4.8, "category": "Sci-Fi", "description": "A gripping tale of survival and ingenuity on Mars."},
-            {"title":"The Molecule of More","author":"Daniel Z. Lieberman", "rating": 5.0, "category": "Science", "description": "How dopamine drives human nature and shapes our desires."},
-            {"title":"The Tao of Pooh","author":"Benjamin Hoff", "rating": 4.0, "category": "Philosophy", "description": "Ancient Taoist wisdom explained through Winnie-the-Pooh stories."},
-            {"title":"The Things We Make","author":"Bill Hammack", "rating": 3.9, "category": "Engineering", "description": "Insights into engineering and how technology shapes our world."},
-            {"title":"Million Dollar Weekend","author":"Noah Kagan", "rating": 3.8, "category": "Business", "description": "How to launch a successful business in just a weekend."},
-            {"title":"Breath","author":"James Nestor", "rating": 4.4, "category": "Health", "description": "The new science of a lost art and how proper breathing can transform health."},
-            {"title":"The Kite Runner","author":"Khaled Hosseini", "rating": 4.8, "category": "Fiction", "description": "A powerful story of friendship, betrayal, and redemption."},
-            {"title":"The Help","author":"Kathryn Stockett", "rating": 4.6, "category": "Fiction", "description": "A moving tale of courage in 1960s Mississippi."},
-            {"title":"The Art of War","author":"Sun Tzu", "rating": 4.1, "category": "Strategy", "description": "Ancient wisdom on strategy and leadership."},
-            {"title":"The Four","author":"Scott Galloway", "rating": 4.3, "category": "Business", "description": "The hidden DNA of Amazon, Apple, Facebook, and Google."},
-            {"title":"Frankenstein","author":"Mary Shelley", "rating": 4.6, "category": "Classic", "description": "The original science fiction masterpiece."},
-            {"title":"Lord of the Flies","author":"William Golding", "rating": 4.3, "category": "Classic", "description": "A haunting allegory of civilization and human nature."},
-            {"title":"Fahrenheit 451","author":"Ray Bradbury", "rating": 4.1, "category": "Sci-Fi", "description": "A dystopian warning about censorship and conformity."}
-        ];
-        
-        // Non-blocking book cover fetching
-        async function fetchBookCover(title, author) {
-            try {
-                const query = encodeURIComponent(`${title} ${author}`);
-                const url = `https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=1`;
-                
-                const response = await fetch(url);
-                const data = await response.json();
-                
-                if (data.items && data.items[0] && data.items[0].volumeInfo.imageLinks) {
-                    const imageLinks = data.items[0].volumeInfo.imageLinks;
-                    return imageLinks.large || imageLinks.medium || imageLinks.small || imageLinks.thumbnail;
-                }
-                return null;
-            } catch (error) {
-                return null;
-            }
-        }
-
-        // Sort books by rating (highest to lowest)
-        books.sort((a, b) => b.rating - a.rating);
-        
-        // Display books immediately with placeholders
-        function displayBooks() {
-            const container = document.getElementById('books');
-            let html = '';
-            
-            books.forEach((book, index) => {
-                html += `
-                    <div class="book-card glass-card animate-book" style="animation-delay: ${index * 0.1}s">
-                        <div class="book-cover">
-                            <div class="book-placeholder" data-book-index="${index}">
-                                <div class="book-icon">📚</div>
-                                <div class="book-placeholder-text">${book.title}</div>
-                            </div>
-                            <div class="book-overlay">
-                                <div class="book-category">${book.category}</div>
-                            </div>
-                        </div>
-                        <div class="book-info">
-                            <h3 class="book-title">${book.title}</h3>
-                            <p class="book-author">by ${book.author}</p>
-                            <p class="book-description">${book.description}</p>
-                            <div class="book-meta">
-                                <span class="book-category-badge">${book.category}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            container.innerHTML = html;
-            
-            // Hide loading spinner
-            const loadingSign = document.getElementById("loadingSign");
-            if (loadingSign) {
-                loadingSign.style.display = "none";
-            }
-            
-            // Add scroll animations
-            setTimeout(() => {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.style.opacity = '1';
-                            entry.target.style.transform = 'translateY(0) rotateY(0)';
-                        }
-                    });
-                }, { threshold: 0.1 });
-                
-                document.querySelectorAll('.animate-book').forEach(el => {
-                    observer.observe(el);
-                });
-            }, 100);
-            
-            // Start loading covers one at a time in background
-            loadCoversProgressively();
-        }
-        
-        // Load covers one by one without blocking
-        async function loadCoversProgressively() {
-            for (let i = 0; i < books.length; i++) {
-                const book = books[i];
-                
-                // Add delay between requests to avoid rate limiting
-                setTimeout(async () => {
-                    const coverUrl = await fetchBookCover(book.title, book.author);
-                    if (coverUrl) {
-                        const placeholder = document.querySelector(`[data-book-index="${i}"]`);
-                        if (placeholder) {
-                            // Replace placeholder with actual image
-                            placeholder.innerHTML = `<img src="${coverUrl}" alt="${book.title} cover" class="cover-image" style="width: 100%; height: 100%; object-fit: cover; border-radius: var(--border-radius);">`;
-                        }
-                    }
-                }, i * 500); // 500ms delay between each request
-            }
-        }
-        
-        // Initialize when page loads
-        displayBooks();
-    </script>
-  </div>
-  <div class="row">
-    <div class="col-1">
     </div>
-    <div class="col-10">
+  </section>
 
-    </div>
-    <div class="col-1">
-    </div>
-  </div>
-</div>
+</main>
 
-
-
-
-
-  </div>
-  <!-- End Main Content -->
-<!-- Modern Footer -->
-<footer class="footer-haplo">
-  <div class="container-haplo">
-    <div class="footer-content">
-      <div class="footer-section">
-        <div class="footer-logo">
-          <img src="myicon.png" alt="Jared Cassoutt" />
-        </div>
-        <p class="footer-description">
-          Building innovative solutions and sharing knowledge through code.
-        </p>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/jaredcassoutt/" aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/jaredcassoutt" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.instagram.com/jaredcassoutt/" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
-        </div>
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+      <div class="brand-block">
+        <div class="label">// the engineer</div>
+        <h3>Jared Cassoutt</h3>
+        <p>iOS engineer at eBay. Runs Haplo on the side. Likes good coffee and unreasonable books.</p>
       </div>
-      
-      <div class="footer-section">
-        <h6>Quick Links</h6>
+      <div class="col">
+        <h6>Site</h6>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="bookshelf.html">Bookshelf</a></li>
+          <li><a href="Projects.html">Work</a></li>
+          <li><a href="bookshelf.html">Reading</a></li>
         </ul>
       </div>
-      
-      <div class="footer-section">
-        <h6>Get in Touch</h6>
+      <div class="col">
+        <h6>Elsewhere</h6>
         <ul>
-          <li><a href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/jaredcassoutt">Connect on LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/jaredcassoutt" target="_blank" rel="noopener">GitHub (personal)</a></li>
+          <li><a href="https://github.com/HaploLLC" target="_blank" rel="noopener">GitHub (Haplo)</a></li>
+          <li><a href="mailto:jaredcassoutt@gmail.com">Email</a></li>
         </ul>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Jared Cassoutt. All rights reserved.</p>
-      <p>Built with ❤️ and lots of coffee</p>
+    <div class="bottom">
+      <span class="live">Portland, OR</span>
+      <span>&copy; 2026 Jared Cassoutt</span>
     </div>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-<!-- Footer -->
 
+<script src="site.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // Source list (rating + author kept for sorting / display).
+  // Each book is mapped into one of four meta-groups.
+  const books = [
+    {title:"How to Win Friends and Influence People", author:"Dale Carnegie", rating:5.0, group:"mind"},
+    {title:"Think Again", author:"Adam Grant", rating:5.0, group:"mind"},
+    {title:"Originals", author:"Adam Grant", rating:4.6, group:"mind"},
+    {title:"Hidden Potential", author:"Adam Grant", rating:4.6, group:"mind"},
+    {title:"Mastery", author:"Robert Greene", rating:4.3, group:"mind"},
+    {title:"The Tao of Pooh", author:"Benjamin Hoff", rating:4.0, group:"mind"},
+
+    {title:"Creativity, Inc.", author:"Ed Catmull", rating:4.4, group:"build"},
+    {title:"The Four", author:"Scott Galloway", rating:4.3, group:"build"},
+    {title:"Hooked", author:"Nir Eyal", rating:4.2, group:"build"},
+    {title:"The Psychology of Money", author:"Morgan Housel", rating:4.1, group:"build"},
+    {title:"The Art of War", author:"Sun Tzu", rating:4.1, group:"build"},
+    {title:"Deep Work", author:"Cal Newport", rating:4.0, group:"build"},
+    {title:"Million Dollar Weekend", author:"Noah Kagan", rating:3.8, group:"build"},
+
+    {title:"The Molecule of More", author:"Daniel Z. Lieberman", rating:5.0, group:"craft"},
+    {title:"Cracking the Coding Interview", author:"Gayle Laakmann McDowell", rating:4.5, group:"craft"},
+    {title:"Breath", author:"James Nestor", rating:4.4, group:"craft"},
+    {title:"The Things We Make", author:"Bill Hammack", rating:3.9, group:"craft"},
+
+    {title:"The Hobbit", author:"J.R.R. Tolkien", rating:4.8, group:"story"},
+    {title:"The Martian", author:"Andy Weir", rating:4.8, group:"story"},
+    {title:"The Kite Runner", author:"Khaled Hosseini", rating:4.8, group:"story"},
+    {title:"The Help", author:"Kathryn Stockett", rating:4.6, group:"story"},
+    {title:"Frankenstein", author:"Mary Shelley", rating:4.6, group:"story"},
+    {title:"Shoe Dog", author:"Phil Knight", rating:4.5, group:"story"},
+    {title:"To Kill a Mockingbird", author:"Harper Lee", rating:4.3, group:"story"},
+    {title:"Lord of the Flies", author:"William Golding", rating:4.3, group:"story"},
+    {title:"Fahrenheit 451", author:"Ray Bradbury", rating:4.1, group:"story"}
+  ];
+
+  const groups = [
+    { id: 'mind',  label: 'Mind & Behavior',  kicker: 'How we think.' },
+    { id: 'build', label: 'Building Things',   kicker: 'How things get made.' },
+    { id: 'craft', label: 'Craft & Science',   kicker: 'How the world works.' },
+    { id: 'story', label: 'Stories',           kicker: 'Worlds worth visiting.' }
+  ];
+
+  function esc(s) {
+    return (s || '').replace(/[&<>"']/g, c => ({
+      '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+    }[c]));
+  }
+
+  // Covers: served locally from /book-covers/, mapped via manifest.json (instant load, no API call).
+  // Descriptions: lazy-fetched from Open Library Works endpoint and cached in localStorage.
+  let coverManifest = {};
+  const DESC_CACHE_KEY = 'books:desc:v1';
+  const descCache = (() => {
+    try { return JSON.parse(localStorage.getItem(DESC_CACHE_KEY) || '{}'); } catch (_) { return {}; }
+  })();
+  const saveDescCache = () => {
+    try { localStorage.setItem(DESC_CACHE_KEY, JSON.stringify(descCache)); } catch (_) {}
+  };
+
+  async function loadManifest() {
+    try {
+      const r = await fetch('book-covers/manifest.json', { cache: 'no-cache' });
+      if (r.ok) coverManifest = await r.json();
+    } catch (_) { /* manifest optional */ }
+  }
+
+  function coverFor(title, author) {
+    return coverManifest[`${title}|${author}`] || null;
+  }
+
+  async function fetchDescription(title, author) {
+    const key = `${title}|${author}`;
+    if (descCache[key] !== undefined) return descCache[key];
+    try {
+      const q = `title=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&limit=1&fields=key`;
+      const r = await fetch(`https://openlibrary.org/search.json?${q}`);
+      const d = await r.json();
+      const workKey = d.docs && d.docs[0] && d.docs[0].key;
+      if (!workKey) { descCache[key] = ''; saveDescCache(); return ''; }
+      const wr = await fetch(`https://openlibrary.org${workKey}.json`);
+      const wd = await wr.json();
+      let desc = wd.description;
+      desc = typeof desc === 'string' ? desc : (desc && desc.value) || '';
+      desc = desc.replace(/\(\[source\][\s\S]*$/i, '').replace(/----\s*$/, '').trim();
+      descCache[key] = desc;
+      saveDescCache();
+      return desc;
+    } catch (_) {
+      return '';
+    }
+  }
+
+  function coverImgFor(book) {
+    const path = coverFor(book.title, book.author);
+    if (path) return `<img src="${esc(path)}" alt="${esc(book.title)} cover" loading="lazy" />`;
+    return `<div class="placeholder">${esc(book.title)}</div>`;
+  }
+
+  function buildShelves() {
+    const WIDE_THRESHOLD = 5; // when others > this, wrap into a grid below the feature
+
+    const html = groups.map(g => {
+      const list = books.filter(b => b.group === g.id).sort((a, b) => b.rating - a.rating);
+      if (!list.length) return '';
+      const [feat, ...others] = list;
+      const featId = `${g.id}-feat`;
+      const isWide = others.length > WIDE_THRESHOLD;
+
+      return `
+      <div class="book-group reveal ${isWide ? 'wide' : ''}" data-group="${esc(g.id)}">
+        <div class="book-group-head">
+          <h3>${esc(g.label)}</h3>
+          <span class="count">${list.length} books</span>
+        </div>
+
+        <div class="book-feature" id="${featId}">
+          <div class="feat-cover">${coverImgFor(feat)}</div>
+          <div class="feat-meta">
+            <div class="feat-kicker">// ${esc(g.kicker)}</div>
+            <div class="feat-title">${esc(feat.title)}</div>
+            <div class="feat-author">by ${esc(feat.author)}</div>
+            <div class="feat-rating">★ ${feat.rating.toFixed(1)}</div>
+            <div class="feat-desc" data-desc>Loading note…</div>
+          </div>
+        </div>
+
+        <div class="book-others-wrap">
+          <div class="book-others">
+            ${others.map(b => `
+              <div class="book">
+                <div class="cover">
+                  ${coverImgFor(b)}
+                  ${b.rating >= 4.5 ? `<div class="rating-badge">★ ${b.rating.toFixed(1)}</div>` : ''}
+                </div>
+                <div class="title">${esc(b.title)}</div>
+                <div class="author">${esc(b.author)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('shelves-mount').innerHTML = html;
+  }
+
+  async function loadDescriptions() {
+    for (const g of groups) {
+      const list = books.filter(b => b.group === g.id).sort((a, b) => b.rating - a.rating);
+      if (!list.length) continue;
+      const feat = list[0];
+      const card = document.getElementById(`${g.id}-feat`);
+      if (!card) continue;
+      const descEl = card.querySelector('[data-desc]');
+      if (!descEl) continue;
+      const desc = await fetchDescription(feat.title, feat.author);
+      const clean = (desc || '').replace(/<[^>]+>/g, '');
+      descEl.textContent = clean || 'No note available — but worth a read.';
+      await new Promise(r => setTimeout(r, 80));
+    }
+  }
+
+  // Boot
+  (async function () {
+    await loadManifest();
+    buildShelves();
+
+    const els = document.querySelectorAll('#shelves-mount .reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(el => io.observe(el));
+
+    loadDescriptions();
+  })();
+})();
+</script>
+</body>
 </html>

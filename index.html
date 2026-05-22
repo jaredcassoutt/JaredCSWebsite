@@ -1,254 +1,380 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Jared Cassoutt</title>
-  <meta name="description" content="An online version of my portfolio and resume for computer science and software engineering">
-  <meta name="keywords" content="Jared Cassoutt, CS, Coding, Resume, iOS, iOS Development, Software Engineer, AI, Machine Learning, Artificial Intelligence, Baylor University, Software Developer">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jared Cassoutt — iOS engineer</title>
+  <meta name="description" content="Jared Cassoutt — iOS engineer at eBay, runs Haplo on the side. Writes open-source for on-device AI on Apple platforms.">
+  <meta name="keywords" content="Jared Cassoutt, iOS, AI, Haplo, eBay, Swift, on-device LLM, SwiftUI">
   <meta name="author" content="Jared Cassoutt">
   <link rel="icon" href="myicon.png">
-  <meta charset="utf-8" />
-  <meta property="og:logo" content="myicon.png"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link href="styles.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ"
-    crossorigin="anonymous">
-  </script>
-  <link rel="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.2.2/Chart.min.js"></script>
+  <meta property="og:title" content="Jared Cassoutt — iOS engineer"/>
+  <meta property="og:description" content="iOS engineer at eBay. Runs Haplo on the side."/>
+  <meta property="og:image" content="myicon.png"/>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- Modern Glass Navigation -->
-  <nav class="navbar-haplo">
-    <a class="navbar-brand" href="index.html">
-      <img src="myicon.png" alt="Jared Cassoutt Logo"/>
-    </a>
-    
-    <div class="navbar-nav-haplo">
-      <a class="nav-link-haplo active" href="index.html">Home</a>
-      <a class="nav-link-haplo" href="Projects.html">Projects</a>
-      <a class="nav-link-haplo" href="bookshelf.html">Bookshelf</a>
-    </div>
-    
-    <div class="navbar-actions">
-      <a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" class="btn-haplo btn-haplo-primary">
-        <i class="fab fa-linkedin"></i> Connect
-      </a>
-    </div>
-  </nav>
-  <!-- Main Content -->
-  <div class="main-content">
 
-
-
-
-
-
-
-
-
-
-
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="hero-content">
-        
-        <h1 class="hero-title">
-          Hi, I'm <span class="gradient-text">Jared Cassoutt</span>
-        </h1>
-        
-        <p class="hero-description">
-          <typewriting class="typewriter-text"></typewriting>
-        </p>
-        
-        <div class="hero-actions">
-          <a href="Projects.html" class="btn-haplo btn-haplo-primary cta-button">
-            🚀 View My Work
-          </a>
-          <a href="#experience" class="btn-haplo btn-haplo-secondary">
-            👤 About Me
-          </a>
-        </div>
-      </div>
-      
-      <!-- Floating Elements -->
-      <div class="floating-shapes">
-        <div class="floating-shape shape-1"></div>
-        <div class="floating-shape shape-2"></div>
-        <div class="floating-shape shape-3"></div>
-      </div>
-    </section>
-    
-    <script>
-      // Enhanced typewriter effect
-      document.addEventListener('DOMContentLoaded', function() {
-        const phrases = [
-          'An engineer with a passion for learning.',
-          'Building innovative solutions with AI.',
-          'Creating impactful mobile applications.',
-          'Turning ideas into reality through code.'
-        ];
-        
-        let currentPhrase = 0;
-        let currentChar = 0;
-        let isDeleting = false;
-        const typewriterElement = document.querySelector('typewriting');
-        
-        function typeWriter() {
-          const current = phrases[currentPhrase];
-          
-          if (isDeleting) {
-            typewriterElement.textContent = current.substring(0, currentChar - 1);
-            currentChar--;
-          } else {
-            typewriterElement.textContent = current.substring(0, currentChar + 1);
-            currentChar++;
-          }
-          
-          let typeSpeed = 100;
-          
-          if (isDeleting) {
-            typeSpeed = 50;
-          }
-          
-          if (!isDeleting && currentChar === current.length) {
-            typeSpeed = 2000;
-            isDeleting = true;
-          } else if (isDeleting && currentChar === 0) {
-            isDeleting = false;
-            currentPhrase = (currentPhrase + 1) % phrases.length;
-            typeSpeed = 500;
-          }
-          
-          setTimeout(typeWriter, typeSpeed);
-        }
-        
-        typeWriter();
-      });
-    </script>
-    <!-- Experience Section -->
-    <section id="experience" class="experience-section">
-      <div class="container-haplo">
-        <h2 class="section-title">Professional Experience</h2>
-        <p class="section-subtitle">Companies I've had the privilege to work with</p>
-        
-        <div class="experience-grid">
-          <div class="experience-card glass-card">
-            <div class="company-logo">
-              <img src="ebayLogo.png" alt="eBay" class="logo-img"/>
-            </div>
-            <div class="company-info">
-              <h3>eBay</h3>
-              <p>Software Engineer</p>
-              <span class="company-period">2021 - Present</span>
-            </div>
-          </div>
-          
-          <div class="experience-card glass-card">
-            <div class="company-logo">
-              <img src="haploLogo.png" alt="Haplo" class="logo-img"/>
-            </div>
-            <div class="company-info">
-              <h3>Haplo</h3>
-              <p>Founder & Software Engineer</p>
-              <span class="company-period">2021 - Present</span>
-            </div>
-          </div>
-          
-          <div class="experience-card glass-card">
-            <div class="company-logo">
-              <img src="l3Logo.png" alt="L3 Technologies" class="logo-img"/>
-            </div>
-            <div class="company-info">
-              <h3>L3 Technologies</h3>
-              <p>Software Engineer Lead</p>
-              <span class="company-period">Fall 2020</span>
-            </div>
-          </div>
-          
-          <div class="experience-card glass-card">
-            <div class="company-logo">
-              <img src="huckLogo.png" alt="Huck" class="logo-img"/>
-            </div>
-            <div class="company-info">
-              <h3>Huck</h3>
-              <p>iOS Development Intern</p>
-              <span class="company-period">Summer 2021</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-
-
-
-
-
-
+<nav class="nav">
+  <a class="brand" href="index.html">
+    <span class="live"></span>
+    Jared Cassoutt
+    <span class="tag">/ engineer</span>
+  </a>
+  <div class="nav-pill">
+    <a href="index.html" class="current">Home</a>
+    <a href="Projects.html">Work</a>
+    <a href="bookshelf.html">Reading</a>
   </div>
-  <!-- End Main Content -->
-<!-- Modern Footer -->
-<footer class="footer-haplo">
-  <div class="container-haplo">
-    <div class="footer-content">
-      <div class="footer-section">
-        <div class="footer-logo">
-          <img src="myicon.png" alt="Jared Cassoutt" />
-        </div>
-        <p class="footer-description">
-          Building innovative solutions and sharing knowledge through code.
-        </p>
-        <div class="social-links">
-          <a href="https://www.linkedin.com/in/jaredcassoutt/" aria-label="LinkedIn">
-            <i class="fab fa-linkedin"></i>
-          </a>
-          <a href="https://github.com/jaredcassoutt" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.instagram.com/jaredcassoutt/" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
+  <a class="nav-cta" href="mailto:jaredcassoutt@gmail.com">Say hi <span class="arrow">→</span></a>
+</nav>
+
+<main>
+
+  <!-- ============== HERO ============== -->
+  <div style="position: relative;">
+    <div class="aurora"></div>
+    <div class="grid-bg"></div>
+
+    <section class="hero center container">
+      <h1 data-words>Hi, I'm Jared. I build iOS apps and bring AI models on-device.</h1>
+      <p class="lede">
+        By day I work on iOS at eBay. By night I run Haplo — shipping indie apps, writing open-source for on-device LLMs and diffusion, and publishing iOS-ready quantizations of open models on HuggingFace.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="Projects.html">See what I've made <span class="arrow">→</span></a>
+        <a class="btn ghost" href="bookshelf.html">What I'm reading</a>
+      </div>
+      <a class="scroll-cue" href="#record" aria-label="Scroll down">
+        <span>scroll</span>
+        <span class="arrow-down">↓</span>
+      </a>
+    </section>
+
+    <div class="container">
+      <div class="ticker">
+        <div class="ticker-inner">
+          <span><span class="live-dot"></span>Currently shipping at eBay</span><span class="sep">/</span>
+          <span>Eight Haplo apps on the App Store</span><span class="sep">/</span>
+          <span>11 OSS repos under HaploLLC</span><span class="sep">/</span>
+          <span>34 model releases on HuggingFace</span><span class="sep">/</span>
+          <span>iOS · macOS · Swift · on-device AI</span><span class="sep">/</span>
+          <span>Always reading</span><span class="sep">/</span>
+          <span><span class="live-dot"></span>Currently shipping at eBay</span><span class="sep">/</span>
+          <span>Eight Haplo apps on the App Store</span><span class="sep">/</span>
+          <span>11 OSS repos under HaploLLC</span><span class="sep">/</span>
+          <span>34 model releases on HuggingFace</span><span class="sep">/</span>
+          <span>iOS · macOS · Swift · on-device AI</span><span class="sep">/</span>
+          <span>Always reading</span><span class="sep">/</span>
         </div>
       </div>
-      
-      <div class="footer-section">
-        <h6>Quick Links</h6>
+    </div>
+  </div>
+
+  <!-- ============== EXPERIENCE ============== -->
+  <section class="section" id="record">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// where i've worked</span></div>
+      <h2 class="reveal-words">Five-ish years on iOS, give or <span class="accent">take</span>.</h2>
+      <p class="lede reveal">Most of it on Apple platforms. Some of it on things that fly.</p>
+
+      <div class="roster stagger">
+        <a class="roster-row" href="https://www.ebay.com" target="_blank" rel="noopener">
+          <div class="idx">[01]</div>
+          <div class="co">eBay</div>
+          <div class="role">Senior iOS Engineer. On-device AI integrations, Visual Intelligence App Intents, and a patent-pending dynamic UI framework.</div>
+          <div class="yr live">2021 — now</div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="roster-row" href="https://haploapp.com" target="_blank" rel="noopener">
+          <div class="idx">[02]</div>
+          <div class="co">Haplo, LLC</div>
+          <div class="role">Founder &amp; engineer. Indie iOS apps, open-source for on-device AI, and 30+ iOS-ready model quantizations on HuggingFace.</div>
+          <div class="yr live">2021 — now</div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="roster-row" href="https://www.l3harris.com" target="_blank" rel="noopener">
+          <div class="idx">[03]</div>
+          <div class="co">L3 Technologies</div>
+          <div class="role">Software engineering lead on defense systems firmware.</div>
+          <div class="yr">Fall 2020</div>
+          <span class="arrow">→</span>
+        </a>
+        <a class="roster-row" href="https://huckadventures.com" target="_blank" rel="noopener">
+          <div class="idx">[04]</div>
+          <div class="co">Huck Adventures</div>
+          <div class="role">iOS development intern.</div>
+          <div class="yr">Summer 2021</div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <div class="edu reveal">
+        <span class="edu-label">// also</span>
+        <span class="edu-line">B.S. Mechanical Engineering, minor Mathematics · Baylor University · 2021</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== RECOGNITION ============== -->
+  <section class="section" style="padding-top: 24px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// a few things i'm proud of</span></div>
+      <h2 class="reveal-words">Recognition from the <span class="accent">day job</span>.</h2>
+      <p class="lede reveal">Small wins worth keeping a note of.</p>
+
+      <div class="award-grid stagger">
+        <div class="award">
+          <div class="award-year">2025</div>
+          <div class="award-name">eBay AI Award</div>
+          <div class="award-desc">For implementing Apple's Visual Intelligence App Intent APIs in the eBay app.</div>
+        </div>
+        <div class="award">
+          <div class="award-year">2025</div>
+          <div class="award-name">Patent Pending</div>
+          <div class="award-desc">Inventor of a dynamic, section-based UI system that generates layouts from JSON.</div>
+        </div>
+        <div class="award">
+          <div class="award-year">2025</div>
+          <div class="award-name">Apple Foundation Model Workshop</div>
+          <div class="award-desc">Selected to attend a workshop at Apple HQ on foundation models and feature prototyping.</div>
+        </div>
+        <div class="award">
+          <div class="award-year">2023</div>
+          <div class="award-name">Oregon Innovation Challenge</div>
+          <div class="award-desc">Winner — grant for an AR platform for creating and sharing interactive presentations.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== STACK ============== -->
+  <section class="section" style="padding-top: 24px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// stack</span></div>
+      <h2 class="reveal-words">Tools I reach for <span class="accent">most days</span>.</h2>
+      <p class="lede reveal">Mostly Apple-platform stuff, with a fair amount of Python on the side.</p>
+
+      <div class="chip-row reveal">
+        <span class="skill-chip">Swift</span>
+        <span class="skill-chip">SwiftUI</span>
+        <span class="skill-chip">UIKit</span>
+        <span class="skill-chip">Objective-C</span>
+        <span class="skill-chip">Xcode</span>
+        <span class="skill-chip">SwiftData</span>
+        <span class="skill-chip">Foundation Models</span>
+        <span class="skill-chip">Core ML</span>
+        <span class="skill-chip">Core Animation</span>
+        <span class="skill-chip">Metal</span>
+        <span class="skill-chip">ARKit</span>
+        <span class="skill-chip">Python</span>
+        <span class="skill-chip">TensorFlow</span>
+        <span class="skill-chip">llama.cpp</span>
+        <span class="skill-chip">GGUF</span>
+        <span class="skill-chip">Quantization</span>
+        <span class="skill-chip">HuggingFace</span>
+        <span class="skill-chip">GraphQL</span>
+        <span class="skill-chip">Firebase</span>
+        <span class="skill-chip">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== TWEETS / BUILD IN PUBLIC ============== -->
+  <section class="section tweets-section" id="tweets" style="padding-top: 24px;">
+    <div class="container">
+      <div class="section-tag reveal"><span class="label">// building in public</span></div>
+      <h2 class="reveal-words">A few recent <span class="accent">tweets</span>.</h2>
+      <p class="lede reveal">Five highlights from <a href="https://x.com/JC_builds" target="_blank" rel="noopener" style="color:var(--acc);border-bottom:1px solid rgba(136,168,255,0.3);padding-bottom:1px;">@JC_builds</a>. Scroll →</p>
+    </div>
+
+    <!-- Marquee is intentionally outside .container so it bleeds edge-to-edge -->
+    <div class="tweets-marquee">
+      <div class="tweets-track" id="tweets-track">
+        <!-- Cards injected by JS so we can duplicate them for seamless loop -->
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="grid">
+      <div class="brand-block">
+        <div class="label">// the engineer</div>
+        <h3>Jared Cassoutt</h3>
+        <p>iOS engineer at eBay. Runs Haplo on the side. Likes good coffee and unreasonable books.</p>
+      </div>
+      <div class="col">
+        <h6>Site</h6>
         <ul>
           <li><a href="index.html">Home</a></li>
-          <li><a href="Projects.html">Projects</a></li>
-          <li><a href="bookshelf.html">Bookshelf</a></li>
+          <li><a href="Projects.html">Work</a></li>
+          <li><a href="bookshelf.html">Reading</a></li>
         </ul>
       </div>
-      
-      <div class="footer-section">
-        <h6>Get in Touch</h6>
+      <div class="col">
+        <h6>Elsewhere</h6>
         <ul>
-          <li><a href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a></li>
-          <li><a href="https://linkedin.com/in/jaredcassoutt">Connect on LinkedIn</a></li>
+          <li><a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/jaredcassoutt" target="_blank" rel="noopener">GitHub (personal)</a></li>
+          <li><a href="https://github.com/HaploLLC" target="_blank" rel="noopener">GitHub (Haplo)</a></li>
+          <li><a href="mailto:jaredcassoutt@gmail.com">Email</a></li>
         </ul>
       </div>
     </div>
-    
-    <div class="footer-bottom">
-      <p>&copy; 2025 Jared Cassoutt. All rights reserved.</p>
-      <p>Built with ❤️ and lots of coffee</p>
+    <div class="bottom">
+      <span class="live">Portland, OR</span>
+      <span>&copy; 2026 Jared Cassoutt</span>
     </div>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
-<!-- Footer -->
+
+<script src="site.js"></script>
+<script>
+  // === Your highlight tweets ===
+  // Paste tweet URLs (or just IDs) here from x.com/JC_builds/highlights.
+  // The page fetches real text, media, and engagement counts from X's public syndication endpoint.
+  // If a fetch fails, the manual `tweets` fallback below renders instead.
+  const tweetIDs = [
+    "https://x.com/JC_builds/status/2057275260446355542",
+    "https://x.com/JC_builds/status/2052182069443494172",
+    "https://x.com/JC_builds/status/2050638222150303978",
+    "https://x.com/JC_builds/status/2034796531724038631",
+    "https://x.com/JC_builds/status/2031515091636728287"
+  ];
+
+  // Manual fallback (used until you add IDs above OR if the API fails).
+  // Each tweet can optionally include `media: [{url: 'image.jpg'}]` or `media: [{video: 'clip.mp4'}]`.
+  const tweets = [
+    {
+      body: "shipped: an on-device Qwen3.5 9B VLM running inside an iOS app over the weekend. 4-bit GGUF, ~7s/token on iPhone 17 Pro. wild times.",
+      date: "Apr 12",
+      url: "https://x.com/JC_builds",
+      replies: 12, retweets: 28, likes: 142, views: "4.2k"
+    },
+    {
+      body: "spent the weekend making Gepetto drive a real browser from an on-device LLM. it bought paper towels for me. not entirely sure how to feel.",
+      date: "Mar 28",
+      url: "https://x.com/JC_builds",
+      replies: 24, retweets: 41, likes: 218, views: "6.7k"
+    },
+    {
+      body: "every iOS dev should try shipping a quantized model in their app. it changes how you think about what's possible on a phone.",
+      date: "Mar 14",
+      url: "https://x.com/JC_builds",
+      replies: 6, retweets: 14, likes: 78, views: "1.9k"
+    },
+    {
+      body: "new haplo OSS: Mirage. a one-stop on-device diffusion engine for iOS, macOS, and visionOS. text-to-image, no cloud.",
+      date: "Feb 22",
+      url: "https://x.com/JC_builds",
+      replies: 15, retweets: 33, likes: 167, views: "5.1k"
+    },
+    {
+      body: "building an indie app on the side teaches you more in 3 months than a year of working in a big codebase. surface area is just so much smaller.",
+      date: "Feb 09",
+      url: "https://x.com/JC_builds",
+      replies: 9, retweets: 22, likes: 124, views: "3.4k"
+    }
+  ];
+
+  (async function () {
+    const track = document.getElementById('tweets-track');
+    const marquee = document.querySelector('.tweets-marquee');
+    if (!track) return;
+    const esc = (s) => (s || '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+    // Extract a tweet ID from either a full URL or a bare ID string
+    function extractID(input) {
+      if (!input) return null;
+      const m = String(input).match(/status\/(\d+)/);
+      if (m) return m[1];
+      if (/^\d{5,25}$/.test(input)) return input;
+      return null;
+    }
+
+    function fmtDate(iso) {
+      try {
+        const d = new Date(iso);
+        return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      } catch (_) { return ''; }
+    }
+
+    // Tweet data is pre-fetched server-side into tweets.json (the syndication
+    // endpoint only allows Origin: https://platform.twitter.com, so a browser
+    // fetch is blocked by CORS). Media files are pre-downloaded to /tweet-media/.
+    // To refresh: re-run the fetch script in the repo.
+    async function loadCachedTweets() {
+      try {
+        const r = await fetch('tweets.json', { cache: 'no-cache' });
+        if (!r.ok) return null;
+        return await r.json();
+      } catch (_) {
+        return null;
+      }
+    }
+
+    // X-style inline SVG icons
+    const ICONS = {
+      reply:  '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>',
+      retweet:'<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"/></svg>',
+      like:   '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>',
+      views:  '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8.75 21V3h2v18h-2zM18 21V8.5h2V21h-2zM4 21l.004-10h2L6 21H4zm9.248 0v-7h2v7h-2z"/></svg>',
+      x:      '<svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+      // Real X verified badge — fluted-circle path from X's design system
+      verified: '<svg viewBox="0 0 22 22" width="16" height="16" fill="#1d9bf0" aria-label="verified"><path d="M20.396 11c-.018-.646-.215-1.275-.57-1.816-.354-.54-.852-.972-1.438-1.246.223-.607.27-1.264.14-1.897-.131-.634-.437-1.218-.882-1.687-.47-.445-1.053-.75-1.687-.882-.633-.13-1.29-.083-1.897.14-.273-.587-.704-1.086-1.245-1.44S11.647 1.62 11 1.604c-.646.017-1.273.213-1.813.568s-.969.854-1.24 1.44c-.608-.223-1.267-.272-1.902-.14-.635.13-1.22.436-1.69.882-.445.47-.749 1.055-.878 1.688-.13.633-.08 1.29.144 1.896-.587.274-1.087.705-1.443 1.245-.356.54-.555 1.17-.574 1.817.02.647.218 1.276.574 1.817.356.54.856.972 1.443 1.245-.224.606-.274 1.263-.144 1.896.13.634.433 1.218.877 1.688.47.443 1.054.747 1.687.878.633.132 1.29.084 1.897-.136.274.586.705 1.084 1.246 1.439.54.354 1.17.551 1.816.569.647-.016 1.276-.213 1.817-.567s.972-.854 1.245-1.44c.604.239 1.266.296 1.903.164.636-.132 1.22-.447 1.68-.907.46-.46.776-1.044.908-1.681s.075-1.299-.165-1.903c.586-.274 1.084-.705 1.439-1.246.354-.54.551-1.17.569-1.816zM9.662 14.85l-3.429-3.428 1.293-1.302 2.072 2.072 4.4-4.794 1.347 1.246z"/></svg>'
+    };
+
+    function renderMedia(media) {
+      if (!media || !media.length) return '';
+      const items = media.slice(0, 4);
+      const cls = items.length > 1 ? 'grid' : '';
+      return `<div class="tweet-media ${cls}">${items.map(m => {
+        if (m.video) {
+          const poster = m.poster ? ` poster="${esc(m.poster)}"` : '';
+          return `<video src="${esc(m.video)}"${poster} muted loop autoplay playsinline preload="metadata"></video>`;
+        }
+        return `<img src="${esc(m.url)}" alt="" loading="lazy" />`;
+      }).join('')}</div>`;
+    }
+
+    // X's public syndication endpoint only exposes likes and replies.
+    // We only render stats that have real numbers — no fake zeros.
+    function statHTML(t) {
+      const parts = [];
+      if (t.replies > 0) parts.push(`<span class="tweet-stat replies"><span class="ic">${ICONS.reply}</span>${t.replies}</span>`);
+      if (t.retweets > 0) parts.push(`<span class="tweet-stat retweets"><span class="ic">${ICONS.retweet}</span>${t.retweets}</span>`);
+      if (t.likes > 0)   parts.push(`<span class="tweet-stat likes"><span class="ic">${ICONS.like}</span>${t.likes}</span>`);
+      if (t.views && t.views !== '·' && t.views !== '0') {
+        parts.push(`<span class="tweet-stat views"><span class="ic">${ICONS.views}</span>${esc(String(t.views))}</span>`);
+      }
+      return parts.join('');
+    }
+
+    const card = (t) => `
+      <a class="tweet-card" href="${esc(t.url)}" target="_blank" rel="noopener">
+        <div class="tweet-head">
+          <div class="tweet-avatar"><img src="jc-builds-avatar.jpg" alt="JC Builds" /></div>
+          <div class="tweet-meta">
+            <div class="name-row">JC Builds <span class="verified">${ICONS.verified}</span></div>
+            <div class="handle-row">@JC_builds <span class="sep">·</span> ${esc(t.date)}</div>
+          </div>
+          <span class="tweet-xicon">${ICONS.x}</span>
+        </div>
+        <div class="tweet-body">${esc(t.body)}</div>
+        ${renderMedia(t.media)}
+        <div class="tweet-stats">${statHTML(t)}</div>
+      </a>`;
+
+    // Load pre-fetched real tweets from local JSON. Falls back to the manual array if missing.
+    const real = await loadCachedTweets();
+    const items = (real && real.length) ? real : tweets;
+
+    // Plain horizontal scroll — no auto-advance, no loop. Just these tweets.
+    track.innerHTML = items.map(card).join('');
+  })();
+</script>
+</body>
 </html>

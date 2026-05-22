@@ -1,0 +1,88 @@
+[
+  {
+    "id": "2057275260446355542",
+    "body": "Most \u201cAI image apps\u201d are just screenshots traveling to a server.\n\nI wanted:\n \u2022 weights on device\n \u2022 generation on device\n \u2022 images never leaving the phone\n\nSo I spent the last week turning sd.cpp into an actual iOS developer experience.\n\nSwiftPM install. One simple generate() https://t.co/26Zpjd0XsH",
+    "date": "May 21",
+    "url": "https://x.com/JC_builds/status/2057275260446355542",
+    "replies": 7,
+    "retweets": 0,
+    "likes": 47,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2057275260446355542-0-poster.jpg",
+        "poster": "tweet-media/2057275260446355542-0-poster.jpg",
+        "video": "tweet-media/2057275260446355542-0.mp4"
+      }
+    ]
+  },
+  {
+    "id": "2052182069443494172",
+    "body": "Just finished building an AI browser agent that runs entirely on your iPhone.\n\nYou can:\n\u2022 tell it what you need in plain English\n\u2022 watch it tap, scroll, and read pages for you\n\u2022 run unlimited tasks for $0\n\nNo cloud. No API keys. All on an iPhone. https://t.co/zaV9V4kYPq",
+    "date": "May 07",
+    "url": "https://x.com/JC_builds/status/2052182069443494172",
+    "replies": 12,
+    "retweets": 0,
+    "likes": 72,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2052182069443494172-0-poster.jpg",
+        "poster": "tweet-media/2052182069443494172-0-poster.jpg",
+        "video": "tweet-media/2052182069443494172-0.mp4"
+      }
+    ]
+  },
+  {
+    "id": "2050638222150303978",
+    "body": "I built a SwiftUI compiler that runs entirely on-device and is only a 6mb package\n\nYou can:\n\u2022 write SwiftUI code\n\u2022 have AI generate views locally\n\u2022 hit run and see it instantly\n\nNo Mac. No Xcode. All on an iPhone. https://t.co/ImXlkW1eum",
+    "date": "May 02",
+    "url": "https://x.com/JC_builds/status/2050638222150303978",
+    "replies": 21,
+    "retweets": 0,
+    "likes": 265,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2050638222150303978-0-poster.jpg",
+        "poster": "tweet-media/2050638222150303978-0-poster.jpg",
+        "video": "tweet-media/2050638222150303978-0.mp4"
+      }
+    ]
+  },
+  {
+    "id": "2034796531724038631",
+    "body": "I trained a model to guess calories from food pics.\n\nIt beats GPT-4o, Claude, and Gemini. Runs locally with only 2GB RAM\n\nAverage error under 51 calories. Here's what I learned \ud83d\udc47 https://t.co/2fIfak6z3C",
+    "date": "Mar 20",
+    "url": "https://x.com/JC_builds/status/2034796531724038631",
+    "replies": 15,
+    "retweets": 0,
+    "likes": 165,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "photo",
+        "url": "tweet-media/2034796531724038631-0.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2031515091636728287",
+    "body": "I jailbroke my Mac's Neural Engine.\n\nNot the GPU. Not the CPU. The AI chip Apple hides behind Siri and photo blur.\n\n15 trillion operations per second. Sitting idle on every MacBook sold since 2020.\n\nI made it run a full LLM. Here's how \ud83e\uddf5 https://t.co/BVSCGEqPjN",
+    "date": "Mar 10",
+    "url": "https://x.com/JC_builds/status/2031515091636728287",
+    "replies": 10,
+    "retweets": 0,
+    "likes": 170,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "photo",
+        "url": "tweet-media/2031515091636728287-0.jpg"
+      }
+    ]
+  }
+]
