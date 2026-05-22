@@ -1284,14 +1284,15 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 .tweets-marquee::-webkit-scrollbar-thumb { background: var(--line-strong); border-radius: 3px; }
 .tweets-track {
   display: flex; gap: 16px; width: max-content;
-  /* Align first card with .container text edge regardless of viewport width */
+  /* Align first card with .container text edge regardless of viewport width.
+     Trailing padding is small so users can't scroll past the last tweet. */
   padding-left:  max(32px, calc((100vw - var(--container)) / 2 + 32px));
-  padding-right: max(32px, calc((100vw - var(--container)) / 2 + 32px));
+  padding-right: 24px;
 }
 @media (max-width: 900px) {
   .tweets-track {
     padding-left: 20px;
-    padding-right: 20px;
+    padding-right: 16px;
   }
 }
 .tweet-card {
