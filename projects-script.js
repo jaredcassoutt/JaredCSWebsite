@@ -241,7 +241,7 @@
     return `
     <div class="spotlight reveal">
       <div class="body">
-        <div class="kicker">// open source · ${escapeHTML(repo.owner)}</div>
+        <div class="kicker">// open source · ${escapeHTML(repo.owner === 'HaploLLC' ? 'Haplo, LLC' : repo.owner)}</div>
         <h2>${escapeHTML(repo.name)}</h2>
         <p class="desc">${isGepetto ? desc : desc}</p>
         <div class="stats">
@@ -252,23 +252,162 @@
         <div class="tech">${tech.map(t => `<span>${escapeHTML(t)}</span>`).join('')}</div>
         <div class="actions">
           <a class="btn" href="${repo.url}" target="_blank" rel="noopener">View on GitHub <span class="arrow">→</span></a>
-          <a class="btn ghost" href="https://github.com/${repo.owner}" target="_blank" rel="noopener">More from ${repo.owner}</a>
+          <a class="btn ghost" href="https://github.com/${repo.owner}" target="_blank" rel="noopener">More from ${repo.owner === 'HaploLLC' ? 'Haplo, LLC' : repo.owner}</a>
         </div>
       </div>
       <div class="visual">${visual}</div>
     </div>`;
   }
 
+  // Match by name substring — App Store names sometimes have suffixes like ": Screen Time For Focus"
+  function matchApp(apps, needle) {
+    const n = needle.toLowerCase();
+    return apps.find(a => (a.name || '').toLowerCase().includes(n));
+  }
+
+  function renderAppVisual(slug) {
+    if (slug === 'barrier') {
+      // Real social-app SVG logos inside ice — TikTok, X, Reddit, all frozen
+      return `
+      <div class="viz-barrier">
+        <div class="frozen-row">
+          <div class="frozen-app tiktok">
+            <div class="logo">
+              <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V8.27a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.05z"/>
+              </svg>
+            </div>
+            <div class="frost"></div>
+            <div class="shine"></div>
+          </div>
+          <div class="frozen-app x">
+            <div class="logo">
+              <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <div class="frost"></div>
+            <div class="shine"></div>
+          </div>
+          <div class="frozen-app reddit">
+            <div class="logo">
+              <svg viewBox="0 0 24 24" fill="#fff" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm5.83 11.62c.04.21.06.43.06.65 0 2.27-2.65 4.11-5.92 4.11s-5.92-1.84-5.92-4.11c0-.22.02-.44.06-.65a1.42 1.42 0 1 1 1.46-2.4c1.05-.7 2.45-1.14 4-1.21l.85-3.98c.02-.07.06-.13.12-.16.06-.04.13-.05.2-.04l2.81.56a1 1 0 1 1-.05 1.06l-2.52-.5-.75 3.52c1.51.08 2.88.52 3.91 1.21a1.42 1.42 0 1 1 1.7 2.04zM9 13.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-1.42 3.27c.16.16.16.42 0 .59-.64.63-1.85.69-2.21.69h-.01c-.36 0-1.57-.06-2.21-.69a.418.418 0 1 1 .59-.59c.41.4 1.27.55 1.62.55s1.22-.14 1.62-.55c.16-.17.43-.17.6 0z"/>
+              </svg>
+            </div>
+            <div class="frost"></div>
+            <div class="shine"></div>
+          </div>
+        </div>
+        <div class="status">
+          <span class="lock"></span>
+          <span>FROZEN · UNBLOCKS IN 30s</span>
+        </div>
+      </div>`;
+    }
+    if (slug === 'haploai') {
+      // Rotating 3D wireframe mesh — represents on-device 3D generation
+      return `
+      <div class="viz-haploai">
+        <div class="mesh-stage">
+          <div class="mesh-cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
+          </div>
+        </div>
+        <div class="mesh-label">
+          <span class="dot"></span>
+          <span>GENERATING · 4.2K POLYS</span>
+        </div>
+      </div>`;
+    }
+    if (slug === 'stockai') {
+      return `
+      <div class="viz-stock">
+        <svg viewBox="0 0 220 100" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="stockFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#88a8ff" stop-opacity="0.4"/>
+              <stop offset="100%" stop-color="#88a8ff" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <line class="grid-line" x1="0" y1="25" x2="220" y2="25" />
+          <line class="grid-line" x1="0" y1="50" x2="220" y2="50" />
+          <line class="grid-line" x1="0" y1="75" x2="220" y2="75" />
+          <!-- actual history line -->
+          <polyline class="actual" points="10,75 30,62 50,68 70,55 90,60 110,48 130,40 145,45" />
+          <!-- predicted future -->
+          <polyline class="predicted" points="145,45 165,35 185,28 205,18" />
+          <!-- area fill under actual -->
+          <path class="area" d="M 10,75 L 30,62 L 50,68 L 70,55 L 90,60 L 110,48 L 130,40 L 145,45 L 145,100 L 10,100 Z" />
+          <!-- end-of-prediction dot -->
+          <circle class="dot" cx="205" cy="18" r="4" />
+          <text class="label" x="205" y="10" text-anchor="end">+27%</text>
+        </svg>
+      </div>`;
+    }
+    return '';
+  }
+
+  function renderFeaturedApp(app, slug) {
+    if (!app) return '';
+    return `
+    <a class="featured-app" href="${app.url}" target="_blank" rel="noopener">
+      <div class="fa-visual">${renderAppVisual(slug)}</div>
+      <div class="fa-body">
+        <div class="fa-head">
+          <div class="fa-icon"><img src="${app.icon}" alt="${escapeHTML(app.name)}" loading="lazy" /></div>
+          <div>
+            <div class="fa-kicker">${escapeHTML(app.genre || '')} · ${escapeHTML(app.platform || 'iOS')}</div>
+          </div>
+        </div>
+        <h3>${escapeHTML(app.name)}</h3>
+        <div class="fa-desc">${escapeHTML(featuredCopy[slug] || '')}</div>
+        <div class="fa-foot">
+          ${app.rating > 0
+            ? `<span><span class="stars">★ ${app.rating.toFixed(1)}</span> · ${app.ratingCount || 0}</span>`
+            : `<span>App Store</span>`}
+          <span>${escapeHTML(app.price)}</span>
+        </div>
+      </div>
+    </a>`;
+  }
+
+  // Custom descriptions for the featured apps (App Store ones are too long/marketing-y)
+  const featuredCopy = {
+    barrier:  "Blocks Twitter, Reddit, TikTok, and friends. Adds a 30-second wall before every open so doom-scrolling becomes a real decision, not a reflex.",
+    haploai:  "Run local LLMs, generate images with Stable Diffusion, and build 3D models — all on-device, fully offline. No API keys, no cloud.",
+    stockai:  "Predicts directional trends for 2,500+ tickers using a trained model. Live signals, daily updates, no subscription."
+  };
+
   function renderAppGrid(apps) {
     if (!apps.length) return renderEmpty('App Store data unavailable.');
-    // Sort: iOS first, then by rating count desc
-    const sorted = [...apps].sort((a, b) => {
+
+    const barrier = matchApp(apps, 'barrier');
+    const haploAI = matchApp(apps, 'haplo ai');
+    const stockAI = matchApp(apps, 'stock market');
+    const featuredIDs = new Set([barrier, haploAI, stockAI].filter(Boolean).map(a => a.name));
+
+    // Rest = non-featured apps, sorted iOS-first then by ratings
+    const rest = apps.filter(a => !featuredIDs.has(a.name)).sort((a, b) => {
       if (a.platform !== b.platform) return a.platform === 'iOS' ? -1 : 1;
       return (b.ratingCount || 0) - (a.ratingCount || 0);
     });
-    return `
-    <div class="app-grid stagger">
-      ${sorted.map(a => `
+
+    const featuredHTML = `
+    <div class="featured-apps stagger">
+      ${renderFeaturedApp(barrier, 'barrier')}
+      ${renderFeaturedApp(haploAI, 'haploai')}
+      ${renderFeaturedApp(stockAI, 'stockai')}
+    </div>`;
+
+    const restHTML = rest.length ? `
+    <div class="app-grid stagger" style="margin-top: 32px;">
+      ${rest.map(a => `
         <a class="app-tile glass" href="${a.url}" target="_blank" rel="noopener">
           <div class="app-icon">
             <img src="${a.icon}" alt="${escapeHTML(a.name)}" loading="lazy" />
@@ -282,7 +421,9 @@
           </div>
         </a>
       `).join('')}
-    </div>`;
+    </div>` : '';
+
+    return featuredHTML + restHTML;
   }
 
   // Custom visuals for featured tools — purposeful animations representing what each one does
@@ -509,7 +650,7 @@
     const toolsMount = document.getElementById('tools-mount');
     if (toolsMount) toolsMount.innerHTML = renderTools(haploRepos);
     document.getElementById('apps-mount').innerHTML      = renderAppGrid(apps);
-    document.getElementById('haplo-mount').innerHTML     = renderBento(topHaplo, 'HaploLLC');
+    document.getElementById('haplo-mount').innerHTML     = renderBento(topHaplo, 'Haplo, LLC');
     document.getElementById('personal-mount').innerHTML  = renderBento(topPersonal, 'jaredcassoutt');
     const modelsMount = document.getElementById('models-mount');
     if (modelsMount) modelsMount.innerHTML = renderModels(models);

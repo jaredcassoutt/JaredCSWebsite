@@ -964,6 +964,299 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 .app-card .rating .stars { color: var(--warn); }
 .app-card .price { color: var(--fg-mute); }
 
+/* ===========================================================
+   FEATURED APPS — same pattern as featured-tools (Mirage/Forge/Mesh)
+   used for Barrier, Haplo AI, Haplo Stock AI
+   =========================================================== */
+.featured-apps {
+  margin-top: 32px;
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+}
+.featured-app {
+  display: flex; flex-direction: column;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none; color: inherit;
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.featured-app:hover {
+  transform: translateY(-3px);
+  border-color: rgba(136,168,255,0.28);
+  box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6);
+}
+.featured-app .fa-visual {
+  height: 180px;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(136,168,255,0.18), transparent 60%),
+    linear-gradient(180deg, #14141b, #0e0e14);
+  border-bottom: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: center;
+  padding: 18px; position: relative; overflow: hidden;
+}
+.featured-app .fa-body {
+  padding: 20px; min-height: 180px;
+  display: flex; flex-direction: column; gap: 8px;
+  flex: 1;
+}
+.featured-app .fa-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 4px;
+}
+.featured-app .fa-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px; overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 14px -4px rgba(0,0,0,0.5);
+  flex-shrink: 0;
+}
+.featured-app .fa-icon img { width: 100%; height: 100%; object-fit: cover; }
+.featured-app .fa-kicker {
+  font-family: var(--mono); font-size: 10px; color: var(--acc);
+  letter-spacing: 0.08em;
+  /* no uppercase — preserves "iOS" / "macOS" casing */
+}
+.featured-app h3 {
+  font-size: 19px; font-weight: 600; letter-spacing: -0.015em;
+}
+.featured-app .fa-desc {
+  font-size: 13.5px; color: var(--fg-dim); line-height: 1.5;
+  overflow: hidden; text-overflow: ellipsis;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+}
+.featured-app .fa-foot {
+  margin-top: auto; padding-top: 10px;
+  border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--mono); font-size: 11px; color: var(--fg-mute);
+}
+.featured-app .fa-foot .stars { color: var(--warn); }
+
+/* === BARRIER VISUAL ===
+   Real social-app SVG logos frozen in ice. Each has a frost overlay
+   with a periwinkle shimmer sweeping across like light catching ice. */
+.viz-barrier {
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  width: 100%;
+}
+.viz-barrier .frozen-row {
+  display: flex; gap: 12px;
+  align-items: center;
+}
+.frozen-app {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.5);
+}
+.frozen-app.tiktok { background: #000; }
+.frozen-app.x { background: #000; }
+.frozen-app.reddit { background: #FF4500; }
+.frozen-app .logo {
+  position: relative; z-index: 1;
+  width: 60%; height: 60%;
+  display: flex; align-items: center; justify-content: center;
+}
+.frozen-app .logo svg { width: 100%; height: 100%; }
+/* Frost layer: pale icy gradient + tiny crystals */
+.frozen-app .frost {
+  position: absolute; inset: 0; z-index: 2;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255,255,255,0.85) 0.6px, transparent 1.4px),
+    radial-gradient(circle at 75% 55%, rgba(255,255,255,0.85) 0.5px, transparent 1.3px),
+    radial-gradient(circle at 40% 78%, rgba(255,255,255,0.85) 0.5px, transparent 1.3px),
+    radial-gradient(circle at 85% 18%, rgba(255,255,255,0.85) 0.4px, transparent 1.2px),
+    radial-gradient(circle at 55% 40%, rgba(255,255,255,0.85) 0.4px, transparent 1.2px),
+    linear-gradient(135deg, rgba(200,220,255,0.45) 0%, rgba(255,255,255,0.35) 50%, rgba(180,210,255,0.4) 100%);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-radius: 12px;
+  backdrop-filter: blur(1px);
+  -webkit-backdrop-filter: blur(1px);
+}
+/* Shimmer = moving light bar across the ice */
+.frozen-app .shine {
+  position: absolute; inset: 0; z-index: 3;
+  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.65) 50%, transparent 70%);
+  transform: translateX(-100%);
+  animation: iceShine 4s ease-in-out infinite;
+  pointer-events: none;
+}
+.frozen-app.tiktok .shine { animation-delay: 0s; }
+.frozen-app.x .shine { animation-delay: 1.3s; }
+.frozen-app.reddit .shine { animation-delay: 2.6s; }
+@keyframes iceShine {
+  0%   { transform: translateX(-100%); }
+  40%  { transform: translateX(110%); }
+  100% { transform: translateX(110%); }
+}
+/* Small frost spike at the top of each icon (crystallized look) */
+.frozen-app::before {
+  content: '';
+  position: absolute; top: -3px; left: 50%; transform: translateX(-50%);
+  width: 70%; height: 7px;
+  z-index: 4;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.95), rgba(200,220,255,0.4) 70%, transparent);
+  clip-path: polygon(0% 100%, 12% 60%, 24% 100%, 36% 50%, 48% 90%, 60% 40%, 72% 90%, 84% 60%, 100% 100%);
+}
+
+.viz-barrier .status {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 10px;
+  background: var(--acc-dim);
+  border: 1px solid rgba(136,168,255,0.25);
+  border-radius: 999px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--acc); letter-spacing: 0.08em;
+}
+.viz-barrier .status .lock {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--acc);
+  animation: pulse-acc 2s infinite;
+}
+
+/* === HAPLO AI VISUAL ===
+   Rotating 3D wireframe mesh — represents on-device 3D model generation.
+   Pure CSS 3D transforms, grid lines on each face, periwinkle glow. */
+.viz-haploai {
+  display: flex; flex-direction: column; align-items: center; gap: 12px;
+  width: 100%;
+}
+.mesh-stage {
+  perspective: 600px;
+  width: 110px; height: 110px;
+}
+.mesh-cube {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  animation: meshSpin 12s linear infinite;
+  transform: rotateX(-18deg) rotateY(0deg);
+}
+.mesh-cube .face {
+  position: absolute;
+  width: 110px; height: 110px;
+  border: 1px solid rgba(136,168,255,0.5);
+  background-image:
+    linear-gradient(rgba(136,168,255,0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(136,168,255,0.18) 1px, transparent 1px);
+  background-size: 22px 22px;
+  background-color: rgba(136,168,255,0.04);
+  box-shadow:
+    inset 0 0 30px rgba(136,168,255,0.15),
+    0 0 20px rgba(136,168,255,0.15);
+}
+.mesh-cube .face.front  { transform: translateZ(55px); }
+.mesh-cube .face.back   { transform: rotateY(180deg) translateZ(55px); }
+.mesh-cube .face.right  { transform: rotateY(90deg)  translateZ(55px); }
+.mesh-cube .face.left   { transform: rotateY(-90deg) translateZ(55px); }
+.mesh-cube .face.top    { transform: rotateX(90deg)  translateZ(55px); }
+.mesh-cube .face.bottom { transform: rotateX(-90deg) translateZ(55px); }
+@keyframes meshSpin {
+  0%   { transform: rotateX(-18deg) rotateY(0deg); }
+  100% { transform: rotateX(-18deg) rotateY(360deg); }
+}
+.viz-haploai .mesh-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 4px 10px;
+  background: var(--acc-dim);
+  border: 1px solid rgba(136,168,255,0.25);
+  border-radius: 999px;
+  font-family: var(--mono); font-size: 10px;
+  color: var(--acc); letter-spacing: 0.08em;
+}
+.viz-haploai .mesh-label .dot {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--acc);
+  animation: pulse-acc 2s infinite;
+}
+
+/* === STOCK AI VISUAL ===
+   Candlestick / line chart drawing itself with a periwinkle
+   "prediction" segment dashed forward. */
+.viz-stock {
+  width: 100%; height: 100%;
+  max-width: 220px;
+  position: relative;
+  display: flex; align-items: center; justify-content: center;
+}
+.viz-stock svg {
+  width: 100%; height: 100%;
+  overflow: visible;
+}
+.viz-stock .grid-line {
+  stroke: rgba(255,255,255,0.06);
+  stroke-width: 1;
+  stroke-dasharray: 2,3;
+}
+.viz-stock .actual {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: stockDraw 4s ease-out infinite;
+}
+.viz-stock .predicted {
+  fill: none;
+  stroke: var(--acc);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-dasharray: 3,4;
+  opacity: 0;
+  animation: stockPredict 4s ease-out infinite;
+}
+.viz-stock .area {
+  fill: url(#stockFill);
+  opacity: 0;
+  animation: stockArea 4s ease-out infinite;
+}
+.viz-stock .dot {
+  fill: var(--acc);
+  opacity: 0;
+  animation: stockDot 4s ease-out infinite;
+}
+.viz-stock .label {
+  font-family: var(--mono); font-size: 9px;
+  fill: var(--acc); opacity: 0;
+  animation: stockLabel 4s ease-out infinite;
+  letter-spacing: 0.06em;
+}
+@keyframes stockDraw {
+  0%   { stroke-dashoffset: 200; }
+  50%  { stroke-dashoffset: 0; }
+  90%  { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 200; }
+}
+@keyframes stockPredict {
+  0%, 50%  { opacity: 0; transform: translateX(-4px); }
+  60%      { opacity: 0; transform: translateX(-4px); }
+  75%      { opacity: 1; transform: translateX(0); }
+  92%      { opacity: 1; transform: translateX(0); }
+  100%     { opacity: 0; }
+}
+@keyframes stockArea {
+  0%, 50% { opacity: 0; }
+  70%, 95% { opacity: 0.35; }
+  100% { opacity: 0; }
+}
+@keyframes stockDot {
+  0%, 70% { opacity: 0; transform: scale(0.6); }
+  78%     { opacity: 1; transform: scale(1.2); }
+  90%     { opacity: 1; transform: scale(1); }
+  100%    { opacity: 0; }
+}
+@keyframes stockLabel {
+  0%, 78% { opacity: 0; transform: translateY(2px); }
+  88%     { opacity: 1; transform: translateY(0); }
+  95%     { opacity: 1; }
+  100%    { opacity: 0; }
+}
+
 /* APP GRID — iOS-home-screen style, 4×2 on desktop, responsive */
 .app-grid {
   margin-top: 32px;
@@ -1154,7 +1447,8 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 .repo .foot .stars::before { content: '★'; color: var(--warn); }
 .repo .foot .org {
   font-size: 10px; padding: 3px 8px; border: 1px solid var(--line);
-  border-radius: 4px; letter-spacing: 0.06em; text-transform: uppercase;
+  border-radius: 4px; letter-spacing: 0.06em;
+  /* no uppercase — preserves "Haplo, LLC" casing */
 }
 
 /* span variations for bento */
@@ -1843,6 +2137,9 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
   .hf-stats { grid-template-columns: 1fr 1fr; }
   .tweet-card { flex: 0 0 300px; }
   .app-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .featured-apps { grid-template-columns: 1fr; }
+  .viz-barrier { width: 120px; height: 120px; }
+  .viz-haploai { max-width: 160px; }
   .app-tile .app-icon { width: 72px; height: 72px; border-radius: 18px; }
   .nav { margin: 8px 8px 0; padding: 12px 18px; }
   .roster-row { grid-template-columns: 40px 1fr 90px 16px; }
