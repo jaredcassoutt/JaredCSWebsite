@@ -1034,130 +1034,66 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 .featured-app .fa-foot .stars { color: var(--warn); }
 
 /* === BARRIER VISUAL ===
-   Real 3D ice cubes with the 2D logo suspended in the center.
-   All 6 faces are translucent ice — you see THROUGH the cube to the
-   logo frozen inside. Gentle wobble rotation reveals the depth. */
+   Real social-app SVG logos in flat frosted ice squares.
+   Each freezes in on a stagger, holds with a shimmer sweep, then melts. */
 .viz-barrier {
-  display: flex; flex-direction: column; align-items: center; gap: 18px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
   width: 100%;
-  perspective: 600px;
 }
 .viz-barrier .frozen-row {
-  display: flex; gap: 28px;  /* wide enough for 3D cubes to wobble without colliding */
+  display: flex; gap: 12px;
   align-items: center;
-  transform-style: preserve-3d;
 }
 .frozen-app {
-  --size: 56px;
-  --half: 28px;
-  width: var(--size); height: var(--size);
-  position: relative;
-  transform-style: preserve-3d;
-  animation: cubeWobble 8s ease-in-out infinite;
-  animation-delay: var(--freeze-delay, 0s);
-  filter: drop-shadow(0 16px 16px rgba(0,0,0,0.45));
-}
-@keyframes cubeWobble {
-  0%, 100% { transform: rotateX(-12deg) rotateY(-22deg); }
-  50%      { transform: rotateX(-8deg)  rotateY(22deg); }
-}
-
-/* The 2D logo, frozen on a plane in the middle of the cube */
-.frozen-app .logo-plane {
-  position: absolute; inset: 8px;
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  position: relative; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  transform: translateZ(0);  /* dead-center of the cube */
-  z-index: 1;
+  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.5);
 }
-.frozen-app .logo-plane .logo-bg {
-  position: absolute; inset: 0;
-  border-radius: 7px;
-}
-.frozen-app.tiktok .logo-plane .logo-bg { background: #000; }
-.frozen-app.x      .logo-plane .logo-bg { background: #000; }
-.frozen-app.reddit .logo-plane .logo-bg { background: #FF4500; }
-.frozen-app .logo-plane .logo-svg {
+.frozen-app.tiktok { background: #000; }
+.frozen-app.x      { background: #000; }
+.frozen-app.reddit { background: #FF4500; }
+.frozen-app .logo {
   position: relative; z-index: 1;
   width: 60%; height: 60%;
   display: flex; align-items: center; justify-content: center;
 }
-.frozen-app .logo-plane .logo-svg svg { width: 100%; height: 100%; }
+.frozen-app .logo svg { width: 100%; height: 100%; }
 
-/* The 6 ice faces — each translucent so the logo shows through */
-.frozen-app .face {
-  position: absolute;
-  width: var(--size); height: var(--size);
-  border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.5);
-  opacity: 0;
-  animation: freezeIn 6.5s ease-in-out infinite;
-  animation-delay: var(--freeze-delay, 0s);
-}
-@keyframes freezeIn {
-  0%, 14%  { opacity: 0; }
-  35%      { opacity: var(--max-opacity, 1); }
-  86%      { opacity: var(--max-opacity, 1); }
-  100%     { opacity: 0; }
-}
-
-/* Face positions (each at ±half-size from center) */
-.frozen-app .face.front  { transform: translateZ(var(--half)); }
-.frozen-app .face.back   { transform: translateZ(calc(-1 * var(--half))) rotateY(180deg); }
-.frozen-app .face.right  { transform: rotateY(90deg)  translateZ(var(--half)); }
-.frozen-app .face.left   { transform: rotateY(-90deg) translateZ(var(--half)); }
-.frozen-app .face.top    { transform: rotateX(90deg)  translateZ(var(--half)); }
-.frozen-app .face.bottom { transform: rotateX(-90deg) translateZ(var(--half)); }
-
-/* Surface treatment — translucent ice with specular highlight + frost specks.
-   Top face is brightest (lit from above), bottom is darkest. */
-.frozen-app .face.front,
-.frozen-app .face.back,
-.frozen-app .face.left,
-.frozen-app .face.right {
-  --max-opacity: 0.7;
+/* Frost layer: pale icy gradient + tiny crystals. Freezes in on a 6.5s loop. */
+.frozen-app .frost {
+  position: absolute; inset: 0; z-index: 2;
   background:
-    radial-gradient(circle at 25% 20%, rgba(255,255,255,0.7) 0.5px, transparent 1.4px),
-    radial-gradient(circle at 70% 55%, rgba(255,255,255,0.7) 0.5px, transparent 1.3px),
-    radial-gradient(circle at 45% 80%, rgba(255,255,255,0.7) 0.4px, transparent 1.2px),
-    radial-gradient(circle at 85% 75%, rgba(255,255,255,0.7) 0.4px, transparent 1.2px),
-    radial-gradient(circle at 80% 20%, rgba(255,255,255,0.85), transparent 55%),
-    linear-gradient(135deg, rgba(210,230,250,0.6), rgba(160,200,240,0.55));
+    radial-gradient(circle at 20% 25%, rgba(255,255,255,0.85) 0.6px, transparent 1.4px),
+    radial-gradient(circle at 75% 55%, rgba(255,255,255,0.85) 0.5px, transparent 1.3px),
+    radial-gradient(circle at 40% 78%, rgba(255,255,255,0.85) 0.5px, transparent 1.3px),
+    radial-gradient(circle at 85% 18%, rgba(255,255,255,0.85) 0.4px, transparent 1.2px),
+    radial-gradient(circle at 55% 40%, rgba(255,255,255,0.85) 0.4px, transparent 1.2px),
+    linear-gradient(135deg, rgba(200,220,255,0.45) 0%, rgba(255,255,255,0.35) 50%, rgba(180,210,255,0.4) 100%);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 12px;
   backdrop-filter: blur(1px);
   -webkit-backdrop-filter: blur(1px);
+  opacity: 0;
+  animation: freezeFrost 6.5s ease-in-out infinite;
+  animation-delay: var(--freeze-delay, 0s);
 }
-.frozen-app .face.top {
-  --max-opacity: 0.85;
-  background:
-    radial-gradient(ellipse at 50% 20%, rgba(255,255,255,0.95), rgba(210,230,250,0.7));
-}
-.frozen-app .face.top::after {
-  /* Crystallized spike pattern along the leading edge */
-  content: ''; position: absolute;
-  top: -3px; left: 6%; right: 6%; height: 5px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.95), transparent);
-  clip-path: polygon(0% 100%, 10% 40%, 20% 100%, 30% 30%, 42% 100%, 54% 50%, 66% 100%, 78% 40%, 90% 100%, 100% 60%);
-}
-.frozen-app .face.bottom {
-  --max-opacity: 0.55;
-  background: linear-gradient(180deg, rgba(140,180,220,0.6), rgba(100,140,190,0.5));
+@keyframes freezeFrost {
+  0%, 18%  { opacity: 0; transform: scale(0.7); filter: blur(4px); }
+  38%      { opacity: 1; transform: scale(1);   filter: blur(0); }
+  88%      { opacity: 1; transform: scale(1);   filter: blur(0); }
+  100%     { opacity: 0; transform: scale(0.92); filter: blur(2px); }
 }
 
-/* Shimmer light bar — sweeps across the FRONT face once frozen */
+/* Shimmer = moving light bar across the ice once frozen */
 .frozen-app .shine {
-  position: absolute;
-  width: var(--size); height: var(--size);
-  border-radius: 8px;
-  overflow: hidden;
-  z-index: 2;
-  pointer-events: none;
-  transform: translateZ(calc(var(--half) + 0.5px));
-}
-.frozen-app .shine::before {
-  content: ''; position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 3;
   background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.65) 50%, transparent 70%);
   transform: translateX(-100%);
   animation: iceShine 6.5s ease-in-out infinite;
   animation-delay: var(--freeze-delay, 0s);
+  pointer-events: none;
 }
 @keyframes iceShine {
   0%, 38%  { transform: translateX(-100%); }
@@ -1165,7 +1101,26 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
   100%     { transform: translateX(120%); }
 }
 
-/* Per-app freeze stagger */
+/* Small frost spike at the top of each icon (crystallized look) */
+.frozen-app::before {
+  content: '';
+  position: absolute; top: -3px; left: 50%; transform: translateX(-50%);
+  width: 70%; height: 7px;
+  z-index: 4;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(200,220,255,0.4) 70%, transparent);
+  clip-path: polygon(0% 100%, 12% 60%, 24% 100%, 36% 50%, 48% 90%, 60% 40%, 72% 90%, 84% 60%, 100% 100%);
+  transform-origin: bottom;
+  animation: freezeSpike 6.5s ease-in-out infinite;
+  animation-delay: var(--freeze-delay, 0s);
+}
+@keyframes freezeSpike {
+  0%, 18%  { transform: translateX(-50%) scaleY(0); opacity: 0; }
+  38%      { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  88%      { transform: translateX(-50%) scaleY(1); opacity: 1; }
+  100%     { transform: translateX(-50%) scaleY(0); opacity: 0; }
+}
+
+/* Per-app freeze-in stagger */
 .frozen-app.tiktok { --freeze-delay: 0s; }
 .frozen-app.x      { --freeze-delay: 0.5s; }
 .frozen-app.reddit { --freeze-delay: 1.0s; }
@@ -1186,72 +1141,45 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 }
 
 /* === HAPLO AI VISUAL ===
-   Spline-style smooth 3D surface — morphing organic blob with soft
-   specular highlight, rotates and warps. Reads like Spline's signature
-   look (iridescent gradient surface, no hard edges). */
+   Rotating 3D wireframe cube — represents on-device 3D model generation.
+   Pure CSS 3D transforms, grid lines on each face, periwinkle glow. */
 .viz-haploai {
   display: flex; flex-direction: column; align-items: center; gap: 12px;
   width: 100%;
 }
 .mesh-stage {
-  perspective: 800px;
-  width: 140px; height: 140px;
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-}
-
-/* Outer wrapper rotates in 3D space for parallax-like motion */
-.spline-blob {
-  position: relative;
+  perspective: 600px;
   width: 110px; height: 110px;
-  transform-style: preserve-3d;
-  animation: splineSpin 14s ease-in-out infinite;
 }
-@keyframes splineSpin {
-  0%, 100% { transform: rotateX(-8deg) rotateY(-25deg) rotateZ(0deg); }
-  50%      { transform: rotateX(8deg)  rotateY(25deg)  rotateZ(8deg); }
-}
-
-/* Inner shape morphs its silhouette via asymmetric border-radius */
-.spline-blob .surface {
-  width: 100%; height: 100%;
+.mesh-cube {
   position: relative;
-  border-radius: 58% 42% 55% 45% / 50% 58% 42% 50%;
-  background:
-    /* specular highlight (top-left light source) */
-    radial-gradient(circle at 28% 22%, rgba(255,255,255,0.85), rgba(255,255,255,0) 38%),
-    /* secondary highlight (rim light) */
-    radial-gradient(circle at 78% 72%, rgba(216,178,255,0.65), rgba(216,178,255,0) 50%),
-    /* base color: deep periwinkle → violet gradient */
-    linear-gradient(135deg, #88a8ff 0%, #6b6aff 45%, #9a6bff 80%, #c08bff 100%);
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  animation: meshSpin 12s linear infinite;
+  transform: rotateX(-18deg) rotateY(0deg);
+}
+.mesh-cube .face {
+  position: absolute;
+  width: 110px; height: 110px;
+  border: 1px solid rgba(136,168,255,0.5);
+  background-image:
+    linear-gradient(rgba(136,168,255,0.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(136,168,255,0.18) 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-color: rgba(136,168,255,0.05);
   box-shadow:
-    inset -8px -14px 30px rgba(40,30,80,0.35),
-    inset 8px 8px 20px rgba(255,255,255,0.18),
-    0 14px 30px -8px rgba(136,168,255,0.45),
-    0 20px 50px -16px rgba(180,130,255,0.35);
-  animation: splineMorph 9s ease-in-out infinite;
+    inset 0 0 30px rgba(136,168,255,0.15),
+    0 0 20px rgba(136,168,255,0.15);
 }
-@keyframes splineMorph {
-  0%, 100% { border-radius: 58% 42% 55% 45% / 50% 58% 42% 50%; }
-  25%      { border-radius: 45% 55% 48% 52% / 60% 42% 58% 40%; }
-  50%      { border-radius: 52% 48% 60% 40% / 45% 55% 50% 50%; }
-  75%      { border-radius: 60% 40% 45% 55% / 55% 50% 60% 40%; }
-}
-
-/* Subtle inner contour line (looks like a control curve on a NURBS surface) */
-.spline-blob .surface::before {
-  content: '';
-  position: absolute; inset: 14%;
-  border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
-  border: 1px solid rgba(255,255,255,0.18);
-  animation: splineMorph 9s ease-in-out infinite reverse;
-}
-.spline-blob .surface::after {
-  content: '';
-  position: absolute; inset: 32%;
-  border-radius: 50% 50% 55% 45% / 50% 50% 45% 55%;
-  border: 1px solid rgba(255,255,255,0.12);
-  animation: splineMorph 9s ease-in-out infinite;
+.mesh-cube .face.front  { transform: translateZ(55px); }
+.mesh-cube .face.back   { transform: rotateY(180deg) translateZ(55px); }
+.mesh-cube .face.right  { transform: rotateY(90deg)  translateZ(55px); }
+.mesh-cube .face.left   { transform: rotateY(-90deg) translateZ(55px); }
+.mesh-cube .face.top    { transform: rotateX(90deg)  translateZ(55px); }
+.mesh-cube .face.bottom { transform: rotateX(-90deg) translateZ(55px); }
+@keyframes meshSpin {
+  0%   { transform: rotateX(-18deg) rotateY(0deg); }
+  100% { transform: rotateX(-18deg) rotateY(360deg); }
 }
 
 /* Point-cloud dots scattered around the cube — implies mesh being computed */

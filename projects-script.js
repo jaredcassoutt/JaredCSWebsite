@@ -273,16 +273,8 @@
       const logoReddit = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm5.83 11.62c.04.21.06.43.06.65 0 2.27-2.65 4.11-5.92 4.11s-5.92-1.84-5.92-4.11c0-.22.02-.44.06-.65a1.42 1.42 0 1 1 1.46-2.4c1.05-.7 2.45-1.14 4-1.21l.85-3.98c.02-.07.06-.13.12-.16.06-.04.13-.05.2-.04l2.81.56a1 1 0 1 1-.05 1.06l-2.52-.5-.75 3.52c1.51.08 2.88.52 3.91 1.21a1.42 1.42 0 1 1 1.7 2.04zM9 13.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-1.42 3.27c.16.16.16.42 0 .59-.64.63-1.85.69-2.21.69h-.01c-.36 0-1.57-.06-2.21-.69a.418.418 0 1 1 .59-.59c.41.4 1.27.55 1.62.55s1.22-.14 1.62-.55c.16-.17.43-.17.6 0z"/></svg>`;
       const cube = (cls, svg) => `
         <div class="frozen-app ${cls}">
-          <div class="face back"></div>
-          <div class="face left"></div>
-          <div class="face right"></div>
-          <div class="face bottom"></div>
-          <div class="logo-plane">
-            <div class="logo-bg"></div>
-            <div class="logo-svg">${svg}</div>
-          </div>
-          <div class="face top"></div>
-          <div class="face front"></div>
+          <div class="logo">${svg}</div>
+          <div class="frost"></div>
           <div class="shine"></div>
         </div>`;
       return `
@@ -299,27 +291,22 @@
       </div>`;
     }
     if (slug === 'haploai') {
-      // Rotating rounded 3D mesh + scan beam + point-cloud dots populating
-      const pointSeeds = [
-        [8, 18], [92, 12], [4, 48], [96, 56], [12, 88], [88, 92],
-        [50, 4], [50, 96], [22, 30], [78, 26], [18, 70], [82, 78],
-        [38, 12], [62, 14], [30, 90], [70, 88]
-      ];
-      const points = pointSeeds.map(([x, y], i) =>
-        `<span style="--x:${x}%; --y:${y}%; --d:${(i * 0.17).toFixed(2)}s"></span>`
-      ).join('');
+      // Rotating 3D wireframe cube — represents on-device 3D model generation
       return `
       <div class="viz-haploai">
         <div class="mesh-stage">
-          <div class="mesh-points">${points}</div>
-          <div class="mesh-scan"></div>
-          <div class="spline-blob">
-            <div class="surface"></div>
+          <div class="mesh-cube">
+            <div class="face front"></div>
+            <div class="face back"></div>
+            <div class="face right"></div>
+            <div class="face left"></div>
+            <div class="face top"></div>
+            <div class="face bottom"></div>
           </div>
         </div>
         <div class="mesh-label">
           <span class="dot"></span>
-          <span>GENERATING · SPLINE SURFACE</span>
+          <span>GENERATING · 4.2K POLYS</span>
         </div>
       </div>`;
     }
