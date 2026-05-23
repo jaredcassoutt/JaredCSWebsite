@@ -1,5 +1,23 @@
 [
   {
+    "id": "2057998001768149210",
+    "body": "Spent a few hours rebuilding my app's onboarding from a stack of forms into a narrated video flow.\n\nThe goal is to make the onboarding process fun for the user!",
+    "date": "May 23",
+    "url": "https://x.com/JC_builds/status/2057998001768149210",
+    "replies": 5,
+    "retweets": 4,
+    "likes": 18,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2057998001768149210-0-poster.jpg",
+        "video": "tweet-media/2057998001768149210-0.mp4",
+        "poster": "tweet-media/2057998001768149210-0-poster.jpg"
+      }
+    ]
+  },
+  {
     "id": "2057275260446355542",
     "body": "Most \u201cAI image apps\u201d are just screenshots traveling to a server.\n\nI wanted:\n \u2022 weights on device\n \u2022 generation on device\n \u2022 images never leaving the phone\n\nSo I spent the last week turning sd.cpp into an actual iOS developer experience.\n\nSwiftPM install. One simple generate()",
     "date": "May 21",
