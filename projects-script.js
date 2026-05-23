@@ -273,9 +273,16 @@
       const logoReddit = `<svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 5.52 4.48 10 10 10s10-4.48 10-10c0-5.52-4.48-10-10-10zm5.83 11.62c.04.21.06.43.06.65 0 2.27-2.65 4.11-5.92 4.11s-5.92-1.84-5.92-4.11c0-.22.02-.44.06-.65a1.42 1.42 0 1 1 1.46-2.4c1.05-.7 2.45-1.14 4-1.21l.85-3.98c.02-.07.06-.13.12-.16.06-.04.13-.05.2-.04l2.81.56a1 1 0 1 1-.05 1.06l-2.52-.5-.75 3.52c1.51.08 2.88.52 3.91 1.21a1.42 1.42 0 1 1 1.7 2.04zM9 13.5c0 .55-.45 1-1 1s-1-.45-1-1 .45-1 1-1 1 .45 1 1zm7-1c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-1.42 3.27c.16.16.16.42 0 .59-.64.63-1.85.69-2.21.69h-.01c-.36 0-1.57-.06-2.21-.69a.418.418 0 1 1 .59-.59c.41.4 1.27.55 1.62.55s1.22-.14 1.62-.55c.16-.17.43-.17.6 0z"/></svg>`;
       const cube = (cls, svg) => `
         <div class="frozen-app ${cls}">
-          <div class="logo">${svg}</div>
-          <div class="frost"></div>
-          <div class="shine"></div>
+          <div class="ice-cube">
+            <div class="ice-logo front">${svg}</div>
+            <div class="ice-logo back">${svg}</div>
+            <div class="ice-face front"></div>
+            <div class="ice-face back"></div>
+            <div class="ice-face right"></div>
+            <div class="ice-face left"></div>
+            <div class="ice-face top"></div>
+            <div class="ice-face bottom"></div>
+          </div>
         </div>`;
       return `
       <div class="viz-barrier">

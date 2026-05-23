@@ -1034,90 +1034,99 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 .featured-app .fa-foot .stars { color: var(--warn); }
 
 /* === BARRIER VISUAL ===
-   Real social-app SVG logos in flat frosted ice squares.
-   Each freezes in on a stagger, holds with a shimmer sweep, then melts. */
+   Real 3D ice cubes — same 6-face CSS 3D cube structure as the
+   Haplo AI rotating cube, but with translucent ice faces and a 2D
+   logo plane suspended in the middle of the cube. Each cube spins
+   continuously on Y, with each app staggered so they're out of phase. */
 .viz-barrier {
-  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  display: flex; flex-direction: column; align-items: center; gap: 18px;
   width: 100%;
 }
 .viz-barrier .frozen-row {
-  display: flex; gap: 12px;
+  display: flex; gap: 28px;
   align-items: center;
+  perspective: 600px;
 }
 .frozen-app {
-  width: 48px; height: 48px;
-  border-radius: 12px;
-  position: relative; overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 20px -6px rgba(0,0,0,0.5);
+  --size: 52px;
+  --half: 26px;
+  width: var(--size); height: var(--size);
+  position: relative;
+  perspective: 500px;
+  filter: drop-shadow(0 14px 14px rgba(0,0,0,0.4));
 }
-.frozen-app.tiktok { background: #000; }
-.frozen-app.x      { background: #000; }
-.frozen-app.reddit { background: #FF4500; }
-.frozen-app .logo {
-  position: relative; z-index: 1;
-  width: 60%; height: 60%;
-  display: flex; align-items: center; justify-content: center;
+.frozen-app .ice-cube {
+  position: relative;
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  animation: iceSpin 14s linear infinite;
+  transform: rotateX(-18deg) rotateY(0deg);
 }
-.frozen-app .logo svg { width: 100%; height: 100%; }
+@keyframes iceSpin {
+  0%   { transform: rotateX(-18deg) rotateY(0deg); }
+  100% { transform: rotateX(-18deg) rotateY(360deg); }
+}
+/* Stagger each cube's rotation by 1/3 cycle so they're out of phase */
+.frozen-app.tiktok .ice-cube { animation-delay: 0s; }
+.frozen-app.x      .ice-cube { animation-delay: -4.6s; }
+.frozen-app.reddit .ice-cube { animation-delay: -9.3s; }
 
-/* Frost layer: pale icy gradient + tiny crystals. Freezes in on a 6.5s loop. */
-.frozen-app .frost {
-  position: absolute; inset: 0; z-index: 2;
+/* 6 translucent ice faces — each at ±half-size from cube center */
+.frozen-app .ice-face {
+  position: absolute;
+  width: var(--size); height: var(--size);
+  border: 1px solid rgba(255,255,255,0.55);
+  border-radius: 6px;
   background:
-    radial-gradient(circle at 20% 25%, rgba(255,255,255,0.85) 0.6px, transparent 1.4px),
-    radial-gradient(circle at 75% 55%, rgba(255,255,255,0.85) 0.5px, transparent 1.3px),
-    radial-gradient(circle at 40% 78%, rgba(255,255,255,0.85) 0.5px, transparent 1.3px),
-    radial-gradient(circle at 85% 18%, rgba(255,255,255,0.85) 0.4px, transparent 1.2px),
-    radial-gradient(circle at 55% 40%, rgba(255,255,255,0.85) 0.4px, transparent 1.2px),
-    linear-gradient(135deg, rgba(200,220,255,0.45) 0%, rgba(255,255,255,0.35) 50%, rgba(180,210,255,0.4) 100%);
-  border: 1px solid rgba(255,255,255,0.4);
-  border-radius: 12px;
-  backdrop-filter: blur(1px);
-  -webkit-backdrop-filter: blur(1px);
+    /* specular highlight from upper-left light source */
+    radial-gradient(circle at 25% 18%, rgba(255,255,255,0.85), transparent 50%),
+    /* secondary cool reflection */
+    radial-gradient(circle at 75% 65%, rgba(255,255,255,0.35), transparent 60%),
+    /* frost crystal specks */
+    radial-gradient(circle at 32% 42%, rgba(255,255,255,0.7) 0.5px, transparent 1.4px),
+    radial-gradient(circle at 68% 30%, rgba(255,255,255,0.7) 0.5px, transparent 1.3px),
+    radial-gradient(circle at 55% 78%, rgba(255,255,255,0.7) 0.4px, transparent 1.3px),
+    radial-gradient(circle at 15% 70%, rgba(255,255,255,0.7) 0.4px, transparent 1.2px),
+    /* base translucent ice tint */
+    linear-gradient(135deg, rgba(200,225,250,0.6), rgba(150,190,235,0.5));
+  box-shadow:
+    inset 0 0 12px rgba(255,255,255,0.25),
+    0 0 14px rgba(180,210,240,0.25);
   opacity: 0;
-  animation: freezeFrost 6.5s ease-in-out infinite;
+  animation: freezeIn 6.5s ease-in-out infinite;
   animation-delay: var(--freeze-delay, 0s);
 }
-@keyframes freezeFrost {
-  0%, 18%  { opacity: 0; transform: scale(0.7); filter: blur(4px); }
-  38%      { opacity: 1; transform: scale(1);   filter: blur(0); }
-  88%      { opacity: 1; transform: scale(1);   filter: blur(0); }
-  100%     { opacity: 0; transform: scale(0.92); filter: blur(2px); }
+@keyframes freezeIn {
+  0%, 18%  { opacity: 0; }
+  38%      { opacity: 0.85; }
+  88%      { opacity: 0.85; }
+  100%     { opacity: 0; }
 }
+.frozen-app .ice-face.front  { transform: translateZ(var(--half)); }
+.frozen-app .ice-face.back   { transform: translateZ(calc(-1 * var(--half))) rotateY(180deg); }
+.frozen-app .ice-face.right  { transform: rotateY(90deg)  translateZ(var(--half)); }
+.frozen-app .ice-face.left   { transform: rotateY(-90deg) translateZ(var(--half)); }
+.frozen-app .ice-face.top    { transform: rotateX(90deg)  translateZ(var(--half)); }
+.frozen-app .ice-face.bottom { transform: rotateX(-90deg) translateZ(var(--half)); }
 
-/* Shimmer = moving light bar across the ice once frozen */
-.frozen-app .shine {
-  position: absolute; inset: 0; z-index: 3;
-  background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.65) 50%, transparent 70%);
-  transform: translateX(-100%);
-  animation: iceShine 6.5s ease-in-out infinite;
-  animation-delay: var(--freeze-delay, 0s);
-  pointer-events: none;
+/* 2D logo plane in the middle of the cube — uses two planes
+   (front-facing + back-facing) with backface-visibility so the logo
+   reads correctly from either side as the cube rotates. */
+.frozen-app .ice-logo {
+  position: absolute; inset: 6px;
+  border-radius: 5px;
+  display: flex; align-items: center; justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
 }
-@keyframes iceShine {
-  0%, 38%  { transform: translateX(-100%); }
-  60%      { transform: translateX(120%); }
-  100%     { transform: translateX(120%); }
-}
-
-/* Small frost spike at the top of each icon (crystallized look) */
-.frozen-app::before {
-  content: '';
-  position: absolute; top: -3px; left: 50%; transform: translateX(-50%);
-  width: 70%; height: 7px;
-  z-index: 4;
-  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(200,220,255,0.4) 70%, transparent);
-  clip-path: polygon(0% 100%, 12% 60%, 24% 100%, 36% 50%, 48% 90%, 60% 40%, 72% 90%, 84% 60%, 100% 100%);
-  transform-origin: bottom;
-  animation: freezeSpike 6.5s ease-in-out infinite;
-  animation-delay: var(--freeze-delay, 0s);
-}
-@keyframes freezeSpike {
-  0%, 18%  { transform: translateX(-50%) scaleY(0); opacity: 0; }
-  38%      { transform: translateX(-50%) scaleY(1); opacity: 1; }
-  88%      { transform: translateX(-50%) scaleY(1); opacity: 1; }
-  100%     { transform: translateX(-50%) scaleY(0); opacity: 0; }
+.frozen-app .ice-logo.front { transform: translateZ(0.1px); }
+.frozen-app .ice-logo.back  { transform: rotateY(180deg) translateZ(0.1px); }
+.frozen-app.tiktok .ice-logo { background: #000; }
+.frozen-app.x      .ice-logo { background: #000; }
+.frozen-app.reddit .ice-logo { background: #FF4500; }
+.frozen-app .ice-logo svg {
+  width: 60%; height: 60%;
 }
 
 /* Per-app freeze-in stagger */
