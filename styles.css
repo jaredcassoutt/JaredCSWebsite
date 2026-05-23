@@ -2182,45 +2182,188 @@ h1.reveal-words.in .word, h2.in .word, .reveal-words.in .word {
 /* ============================================================
    Responsive
    ============================================================ */
+/* ============================================================
+   MOBILE — comprehensive pass (≤ 900px)
+   ============================================================ */
 @media (max-width: 900px) {
-  .nav { padding: 14px 20px; }
-  .nav-pill { display: none; }
+  /* Nav: wrap so the pill gets its own centered row */
+  .nav {
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    gap: 10px;
+    margin: 0;
+  }
+  .nav .brand { gap: 8px; font-size: 14px; }
   .nav .brand .tag { display: none; }
-  .container { padding: 0 20px; }
-  .section { padding: 64px 0; }
-  .hero { padding: 70px 0 50px; }
-  .footer .grid { grid-template-columns: 1fr; gap: 32px; }
-  .footer .bottom { flex-direction: column; gap: 10px; }
+  .nav-pill {
+    display: flex;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .nav-pill a { padding: 6px 14px; font-size: 12px; }
+  .nav-cta { padding: 8px 14px; font-size: 12px; }
+  .nav-cta .arrow { font-size: 11px; }
+
+  /* Layout primitives */
+  .container { padding: 0 16px; }
+  .section { padding: 56px 0; }
+  .hero { padding: 44px 0 36px; }
+  .hero .cta-row { flex-direction: column; align-items: stretch; gap: 8px; }
+  .hero .cta-row .btn { justify-content: center; }
+  .hero.center .cta-row .btn { width: 100%; }
+  .scroll-cue { margin-top: 40px; }
+  .lede { font-size: 16px; }
+
+  /* Filters */
+  .filter-row {
+    gap: 6px;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding-bottom: 8px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    justify-content: flex-start !important;
+  }
+  .filter-row::-webkit-scrollbar { display: none; }
+  .filter-btn { padding: 7px 13px; font-size: 11px; white-space: nowrap; flex-shrink: 0; }
+
+  /* Spotlight — show visual on mobile (stacked below body) but slimmer */
   .spotlight { grid-template-columns: 1fr; }
-  .spotlight .body { padding: 28px; }
-  .spotlight .visual { display: none; }
-  .bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .repo.span-2, .repo.span-2-tall, .repo.tall { grid-column: span 1; grid-row: span 1; }
-  .notable-grid { grid-template-columns: 1fr; }
-  .stat-row { grid-template-columns: 1fr 1fr; }
-  .roster-row { grid-template-columns: 40px 1fr 90px; }
-  .roster-row .role { display: none; }
-  .book { flex: 0 0 130px; }
-  .book .cover { width: 130px; height: 195px; }
-  .book-group { grid-template-columns: 1fr; gap: 20px; }
-  .book-feature { grid-template-columns: 110px 1fr; padding: 18px; }
-  .book-feature .feat-cover { width: 110px; height: 165px; }
-  .book-feature .feat-meta .feat-desc { -webkit-line-clamp: 5; }
-  .award-grid { grid-template-columns: 1fr; }
-  .edu { flex-direction: column; gap: 4px; }
-  .hf-grid { grid-template-columns: repeat(2, 1fr); }
-  .hf-stats { grid-template-columns: 1fr 1fr; }
-  .tweet-card { flex: 0 0 300px; }
-  .app-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .spotlight .body { padding: 24px; gap: 14px; }
+  .spotlight .body h2 { font-size: 32px; }
+  .spotlight .body .stats { gap: 16px; padding: 12px 0; flex-wrap: wrap; }
+  .spotlight .body .actions { flex-direction: column; align-items: stretch; }
+  .spotlight .body .actions .btn { justify-content: center; }
+  .spotlight .visual { padding: 24px; min-height: 280px; }
+  .gepetto-scene { max-width: 220px; gap: 14px; }
+  .gep-phone { width: 90px; height: 130px; padding: 10px 8px 8px; }
+  .gep-phone .gep-prompt { font-size: 9px; }
+  .gep-browser .gep-body { min-height: 64px; font-size: 9px; padding: 10px; }
+
+  /* Featured tools (workshop) */
+  .featured-tools { grid-template-columns: 1fr; }
+  .tool-visual { height: 140px; }
+
+  /* Featured apps */
   .featured-apps { grid-template-columns: 1fr; }
-  .viz-barrier { width: 120px; height: 120px; }
-  .viz-haploai { max-width: 160px; }
-  .app-tile .app-icon { width: 72px; height: 72px; border-radius: 18px; }
-  .nav { margin: 8px 8px 0; padding: 12px 18px; }
-  .roster-row { grid-template-columns: 40px 1fr 90px 16px; }
+  .featured-app .fa-visual { height: 160px; }
+  .viz-barrier .frozen-row { gap: 22px; }
+  .frozen-app { --size: 44px; --half: 22px; }
+  .mesh-stage, .mesh-cube { width: 100px; height: 100px; }
+  .mesh-cube .face { width: 100px; height: 100px; }
+  .mesh-cube .face.front  { transform: translateZ(50px); }
+  .mesh-cube .face.back   { transform: rotateY(180deg) translateZ(50px); }
+  .mesh-cube .face.right  { transform: rotateY(90deg)  translateZ(50px); }
+  .mesh-cube .face.left   { transform: rotateY(-90deg) translateZ(50px); }
+  .mesh-cube .face.top    { transform: rotateX(90deg)  translateZ(50px); }
+  .mesh-cube .face.bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+  /* App grid (non-featured) */
+  .app-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .app-tile { padding: 18px 16px 16px; }
+  .app-tile .app-icon { width: 68px; height: 68px; border-radius: 18px; }
+  .app-tile .app-name { font-size: 14px; }
+  .app-tile .app-genre, .app-tile .app-rating { font-size: 11px; }
+
+  /* Bento (repos) */
+  .bento { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 10px; }
+  .repo.span-2, .repo.span-2-tall, .repo.tall { grid-column: span 1; grid-row: span 1; }
+  .repo { padding: 18px; }
+  .repo .desc { -webkit-line-clamp: 4; }
+
+  /* Notable */
+  .notable-grid { grid-template-columns: 1fr; }
+  .notable-card { padding: 22px; }
+
+  /* HuggingFace */
+  .hf-grid { grid-template-columns: 1fr 1fr; }
+  .hf-stats { grid-template-columns: 1fr 1fr; }
+  .hf-stats > div { padding: 14px 16px; }
+  .hf-stats .v { font-size: 18px; }
+  .hf-card { padding: 14px; }
+
+  /* Roster */
+  .roster-row { grid-template-columns: 36px 1fr 90px 14px; padding: 16px 8px; gap: 14px; }
+  .roster-row .role { display: none; }
+  .roster-row .co { font-size: 18px; }
+  .roster-row .yr { font-size: 11px; }
+
+  /* Stats / awards */
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .stat-row .cell { padding: 18px 20px; }
+  .stat-row .v { font-size: 24px; }
+  .award-grid { grid-template-columns: 1fr; }
+  .award { padding: 22px 24px; }
+
+  /* Edu line */
+  .edu { flex-direction: column; gap: 4px; align-items: flex-start; }
+
+  /* Bookshelf */
+  .book { flex: 0 0 120px; }
+  .book .cover { width: 120px; height: 180px; }
+  .book-group { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+  .book-feature { grid-template-columns: 96px 1fr; padding: 16px; gap: 14px; }
+  .book-feature .feat-cover { width: 96px; height: 144px; }
+  .book-feature .feat-title { font-size: 15px; }
+  .book-feature .feat-desc { -webkit-line-clamp: 4; font-size: 12px; }
+
+  /* App page (Barrier-style hero) */
+  .app-stat-row { grid-template-columns: 1fr 1fr; }
+
+  /* Tweets */
+  .tweet-card { flex: 0 0 290px; height: 470px; padding: 18px; }
+  .tweet-body { font-size: 13.5px; }
+  .tweet-stats { font-size: 11px; gap: 14px; }
+  .tweets-marquee { padding: 20px 0 24px; }
+  .tweets-track { gap: 12px; padding-left: 16px; padding-right: 16px; }
+
+  /* Skills strip */
+  .chip-row { gap: 6px; }
+  .skill-chip { padding: 6px 12px; font-size: 11px; }
+
+  /* Footer */
+  .footer { margin-top: 40px; padding: 44px 0 24px; }
+  .footer .grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 28px; }
+  .footer .bottom { flex-direction: column; gap: 8px; padding-top: 20px; text-align: center; }
+  .footer .brand-block p { max-width: none; }
+
+  /* Loading / empty state */
+  .loading { padding: 36px 16px; font-size: 11px; }
+  .empty-state { padding: 36px 20px; }
+
+  /* Ticker */
+  .ticker { font-size: 11px; padding: 12px 0; }
+  .ticker-inner span { margin: 0 20px; }
 }
+
+/* Tablet — between mobile and desktop */
 @media (min-width: 901px) and (max-width: 1100px) {
   .app-grid { grid-template-columns: repeat(3, 1fr); }
+  .hf-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+/* Very small screens — extra tightening */
+@media (max-width: 480px) {
+  .container { padding: 0 14px; }
+  .nav { padding: 10px 12px; }
+  .nav .brand { font-size: 13px; }
+  .hero { padding: 30px 0 28px; }
+  .section { padding: 44px 0; }
+  h1 { font-size: 36px; }
+  h2 { font-size: 26px; }
+  .lede { font-size: 15px; }
+  .stat-row { grid-template-columns: 1fr; }
+  .stat-row .cell { padding: 14px 18px; }
+  .hf-grid, .hf-stats { grid-template-columns: 1fr; }
+  .award-grid { grid-template-columns: 1fr; }
+  .app-grid { grid-template-columns: 1fr; }
+  .book-feature { grid-template-columns: 1fr; text-align: center; gap: 14px; }
+  .book-feature .feat-cover { width: 110px; height: 165px; margin: 0 auto; }
+  .book-feature .feat-meta { text-align: left; }
+  .tweet-card { flex: 0 0 270px; height: 460px; padding: 16px; }
+  .footer .grid { gap: 24px; }
 }
 
 /* ============================================================
