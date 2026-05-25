@@ -1,5 +1,39 @@
 [
   {
+    "id": "2058972712811495808",
+    "body": "I built on-device 3d gen for iphone\n\nthe part that surprised me wasn't the speed (>100s) or the package size (~7mb + runtime model download)\n\nit was that ram drops from ~4gb to 1.9gb after model load\n\nleaving plenty of headroom for the rest of the app",
+    "date": "May 25",
+    "url": "https://x.com/JC_builds/status/2058972712811495808",
+    "replies": 4,
+    "retweets": 2,
+    "likes": 22,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2058972712811495808-0-poster.jpg",
+        "video": "tweet-media/2058972712811495808-0.mp4",
+        "poster": "tweet-media/2058972712811495808-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2058937258590523496",
+    "body": "Finally got the redesign released \ud83c\udf89",
+    "date": "May 25",
+    "url": "https://x.com/JC_builds/status/2058937258590523496",
+    "replies": 3,
+    "retweets": 1,
+    "likes": 29,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "photo",
+        "url": "tweet-media/2058937258590523496-0.jpg"
+      }
+    ]
+  },
+  {
     "id": "2058284197262090635",
     "body": "Been seeing everyone hype up app mascots and animations on here.   \n\nSooo...  \n\nLet me introduce you to Greg. Our new mascot for Goblin Mode\ud83d\udc79",
     "date": "May 23",
