@@ -1,12 +1,41 @@
 [
   {
+    "id": "2058284197262090635",
+    "body": "Been seeing everyone hype up app mascots and animations on here.   \n\nSooo...  \n\nLet me introduce you to Greg. Our new mascot for Goblin Mode\ud83d\udc79",
+    "date": "May 23",
+    "url": "https://x.com/JC_builds/status/2058284197262090635",
+    "replies": 3,
+    "retweets": 2,
+    "likes": 21,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2058284197262090635-0-poster.jpg",
+        "video": "tweet-media/2058284197262090635-0.mp4",
+        "poster": "tweet-media/2058284197262090635-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2058249232474337665",
+    "body": "Are apps just slowly becoming restaurant meals?\n\nPeople can vibecode at home, but sometimes it's worth the money and time savings to download an app made by someone else?",
+    "date": "May 23",
+    "url": "https://x.com/JC_builds/status/2058249232474337665",
+    "replies": 12,
+    "retweets": 2,
+    "likes": 19,
+    "views": "\u00b7",
+    "media": []
+  },
+  {
     "id": "2057998001768149210",
     "body": "Spent a few hours rebuilding my app's onboarding from a stack of forms into a narrated video flow.\n\nThe goal is to make the onboarding process fun for the user!",
     "date": "May 23",
     "url": "https://x.com/JC_builds/status/2057998001768149210",
-    "replies": 5,
+    "replies": 7,
     "retweets": 4,
-    "likes": 18,
+    "likes": 24,
     "views": "\u00b7",
     "media": [
       {
@@ -24,7 +53,7 @@
     "url": "https://x.com/JC_builds/status/2057275260446355542",
     "replies": 7,
     "retweets": 9,
-    "likes": 47,
+    "likes": 50,
     "views": "\u00b7",
     "media": [
       {
@@ -58,9 +87,9 @@
     "body": "I built a SwiftUI compiler that runs entirely on-device and is only a 6mb package\n\nYou can:\n\u2022 write SwiftUI code\n\u2022 have AI generate views locally\n\u2022 hit run and see it instantly\n\nNo Mac. No Xcode. All on an iPhone.",
     "date": "May 02",
     "url": "https://x.com/JC_builds/status/2050638222150303978",
-    "replies": 21,
+    "replies": 22,
     "retweets": 10,
-    "likes": 265,
+    "likes": 268,
     "views": "\u00b7",
     "media": [
       {
@@ -78,7 +107,7 @@
     "url": "https://x.com/JC_builds/status/2034796531724038631",
     "replies": 15,
     "retweets": 3,
-    "likes": 165,
+    "likes": 164,
     "views": "\u00b7",
     "media": [
       {
