@@ -4,9 +4,9 @@
     "body": "I built on-device 3d gen for iphone\n\nthe part that surprised me wasn't the speed (>100s) or the package size (~7mb + runtime model download)\n\nit was that ram drops from ~4gb to 1.9gb after model load\n\nleaving plenty of headroom for the rest of the app",
     "date": "May 25",
     "url": "https://x.com/JC_builds/status/2058972712811495808",
-    "replies": 4,
+    "replies": 7,
     "retweets": 2,
-    "likes": 22,
+    "likes": 51,
     "views": "\u00b7",
     "media": [
       {
@@ -22,9 +22,9 @@
     "body": "Finally got the redesign released \ud83c\udf89",
     "date": "May 25",
     "url": "https://x.com/JC_builds/status/2058937258590523496",
-    "replies": 3,
+    "replies": 6,
     "retweets": 1,
-    "likes": 29,
+    "likes": 38,
     "views": "\u00b7",
     "media": [
       {
@@ -69,7 +69,7 @@
     "url": "https://x.com/JC_builds/status/2057998001768149210",
     "replies": 7,
     "retweets": 4,
-    "likes": 24,
+    "likes": 25,
     "views": "\u00b7",
     "media": [
       {
@@ -123,7 +123,7 @@
     "url": "https://x.com/JC_builds/status/2050638222150303978",
     "replies": 22,
     "retweets": 10,
-    "likes": 269,
+    "likes": 272,
     "views": "\u00b7",
     "media": [
       {
