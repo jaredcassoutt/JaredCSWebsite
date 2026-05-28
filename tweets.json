@@ -1,5 +1,23 @@
 [
   {
+    "id": "2059795164001083710",
+    "body": "After having a shocking number of people ask...\n\nHere's the step-by-step guide to how I created the character animations for my app in under 15 minutes\ud83d\udc47",
+    "date": "May 28",
+    "url": "https://x.com/JC_builds/status/2059795164001083710",
+    "replies": 12,
+    "retweets": 12,
+    "likes": 235,
+    "views": "\u00b7",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2059795164001083710-0-poster.jpg",
+        "video": "tweet-media/2059795164001083710-0.mp4",
+        "poster": "tweet-media/2059795164001083710-0-poster.jpg"
+      }
+    ]
+  },
+  {
     "id": "2058972712811495808",
     "body": "I built on-device 3d gen for iphone\n\nthe part that surprised me wasn't the speed (>100s) or the package size (~7mb + runtime model download)\n\nit was that ram drops from ~4gb to 1.9gb after model load\n\nleaving plenty of headroom for the rest of the app",
     "date": "May 25",
