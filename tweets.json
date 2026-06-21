@@ -1,5 +1,41 @@
 [
   {
+    "id": "2066650107303338068",
+    "body": "I built a bendable, editable Liquid Glass text component in SwiftUI\n\nGrab it anywhere, bend and stretch it, even change the text and the glass view reshapes with the letters.\n\nHere's exactly how it works 👇",
+    "date": "Jun 15",
+    "url": "https://x.com/JC_builds/status/2066650107303338068",
+    "replies": 10,
+    "retweets": 4,
+    "likes": 147,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2066650107303338068-0-poster.jpg",
+        "video": "tweet-media/2066650107303338068-0.mp4",
+        "poster": "tweet-media/2066650107303338068-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2065585230996709741",
+    "body": "I built a post-run recap design studio in SwiftUI\n\nLive animated map, 2D and 3D rendering, full customization.\n\nHere's how everything works 👇",
+    "date": "Jun 13",
+    "url": "https://x.com/JC_builds/status/2065585230996709741",
+    "replies": 11,
+    "retweets": 12,
+    "likes": 340,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2065585230996709741-0-poster.jpg",
+        "video": "tweet-media/2065585230996709741-0.mp4",
+        "poster": "tweet-media/2065585230996709741-0-poster.jpg"
+      }
+    ]
+  },
+  {
     "id": "2059795164001083710",
     "body": "After having a shocking number of people ask...\n\nHere's the step-by-step guide to how I created the character animations for my app in under 15 minutes\ud83d\udc47",
     "date": "May 28",
