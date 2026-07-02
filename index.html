@@ -530,14 +530,26 @@ body.ios .window.sheet{
 body.ios .window.sheet .titlebar{display:none}
 body.ios.app-open .dock-wrap{display:none}
 body.ios.app-open #homescreen{display:none}
+/* swipe-up-to-go-home gesture zone along the bottom edge */
+.home-zone{
+  display:none;position:absolute;left:0;right:0;bottom:0;height:36px;
+  z-index:6;touch-action:none;background:none;
+}
+body.ios .window.sheet .home-zone{display:block}
 .home-indicator{
-  display:none;position:absolute;bottom:7px;left:50%;transform:translateX(-50%);
+  position:absolute;bottom:7px;left:50%;transform:translateX(-50%);
   width:130px;height:5px;border-radius:3px;
-  background:rgba(128,128,140,.6);border:none;cursor:pointer;z-index:6;padding:0;
+  background:rgba(128,128,140,.6);border:none;cursor:pointer;padding:0;
+  transition:width .2s ease,background .2s ease;
 }
 .home-indicator:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
-body.ios .window.sheet .home-indicator{display:block}
-body.ios .window.sheet .wbody{padding-bottom:24px}
+.window.gesturing .home-indicator{width:150px;background:rgba(128,128,140,.85)}
+body.ios .window.sheet .wbody{padding-bottom:26px}
+/* the sheet follows the finger raw, then springs back if the swipe is cancelled */
+.window.gesturing{transition:none !important;will-change:transform}
+.window.spring-back{
+  transition:transform .38s cubic-bezier(.32,.72,0,1),border-radius .38s cubic-bezier(.32,.72,0,1) !important;
+}
 
 /* ================= reduced motion ================= */
 @media (prefers-reduced-motion:reduce){
@@ -1025,19 +1037,19 @@ function openWindow(id,srcEl){
   try{ st.el.focus({preventScroll:true}); }catch(e){}
 }
 
-function closeWindow(id){
+function closeWindow(id,skipAnim){
   var st=wins[id]; if(!st||!st.open||st.busy) return;
   var el=st.el;
   var finish=function(){
     el.classList.add('win-hidden');
-    el.classList.remove('win-min','focused','maxed','sheet','dragging');
+    el.classList.remove('win-min','focused','maxed','sheet','dragging','gesturing','spring-back');
     if(st.max&&st.prevRect){ st.rect=st.prevRect; }
     st.open=false; st.min=false; st.max=false; st.busy=false;
     setDot(id);
     refocusTop();
     updateAppOpen();
   };
-  if(st.min){ finish(); return; }
+  if(st.min||skipAnim){ finish(); return; }
   st.busy=true;
   var src=anchorEl(id);
   if(src){
@@ -1166,13 +1178,82 @@ function registerWindow(id){
     toggleMax(id);
   });
 
-  /* iPhone mode: swipe-bar stand-in — tap the home indicator to go home */
+  /* iPhone mode: the home gesture — swipe up from the bottom edge.
+     The sheet tracks the finger (shrinking as it rises, home revealed
+     behind); release far/fast enough and it flies to its icon, release
+     early and it springs straight back. A plain tap still goes home. */
+  var hz=document.createElement('div');
+  hz.className='home-zone';
   var hi=document.createElement('button');
   hi.type='button';
   hi.className='home-indicator';
   hi.setAttribute('aria-label','Go to Home Screen');
-  hi.addEventListener('click',function(){ closeWindow(id); });
-  el.appendChild(hi);
+  hi.addEventListener('click',function(){ if(!gestureMoved) closeWindow(id); });
+  hz.appendChild(hi);
+  el.appendChild(hz);
+
+  var g=null;
+  var gestureMoved=false;
+  hz.addEventListener('pointerdown',function(e){
+    if(!document.body.classList.contains('ios')||!el.classList.contains('sheet')) return;
+    if(st.busy||g) return;
+    g={pid:e.pointerId,y0:e.clientY,lastY:e.clientY,lastT:performance.now(),dy:0,vy:0};
+    gestureMoved=false;
+    el.classList.remove('spring-back');
+    el.classList.add('gesturing');
+    document.body.classList.remove('app-open'); /* reveal home behind the card */
+    try{ hz.setPointerCapture(e.pointerId); }catch(err){}
+  });
+  hz.addEventListener('pointermove',function(e){
+    if(!g||e.pointerId!==g.pid) return;
+    var now=performance.now();
+    var dy=Math.max(0,g.y0-e.clientY);
+    g.vy=(g.lastY-e.clientY)/Math.max(1,now-g.lastT); /* px/ms, upward positive */
+    g.lastY=e.clientY; g.lastT=now; g.dy=dy;
+    if(dy>4) gestureMoved=true;
+    var p=Math.min(1,dy/(window.innerHeight*0.55));
+    el.style.transform='translateY('+(-dy*0.85).toFixed(1)+'px) scale('+(1-p*0.5).toFixed(3)+')';
+    el.style.borderRadius=(18+p*26).toFixed(0)+'px';
+    e.preventDefault();
+  });
+  function endHomeGesture(e){
+    if(!g||e.pointerId!==g.pid) return;
+    var dy=g.dy,vy=g.vy;
+    g=null;
+    try{ hz.releasePointerCapture(e.pointerId); }catch(err){}
+    var commit=dy>window.innerHeight*0.24||(dy>40&&vy>0.55);
+    if(commit){
+      /* fly the card home to its launcher icon */
+      st.busy=true;
+      var ty=-dy*0.85;
+      var src=anchorEl(id);
+      var d=src?centerDelta(el,src.getBoundingClientRect()):{dx:0,dy:0};
+      var from=el.style.transform||'none';
+      var anim=el.animate([
+        {transform:from,opacity:1},
+        {transform:'translate('+d.dx.toFixed(1)+'px,'+(d.dy+ty).toFixed(1)+'px) scale(0.06)',opacity:0}
+      ],{duration:240,easing:'cubic-bezier(0.32,0.72,0,1)'});
+      var done=false;
+      var fin=function(){
+        if(done) return; done=true;
+        el.style.transform=''; el.style.borderRadius='';
+        st.busy=false;
+        closeWindow(id,true);
+      };
+      anim.onfinish=fin;
+      anim.oncancel=fin;
+      setTimeout(fin,340);
+    }else{
+      /* cancelled — spring straight back */
+      el.classList.remove('gesturing');
+      el.classList.add('spring-back');
+      el.style.transform=''; el.style.borderRadius='';
+      updateAppOpen(); /* hide home behind the app again */
+      setTimeout(function(){ el.classList.remove('spring-back'); },400);
+    }
+  }
+  hz.addEventListener('pointerup',endHomeGesture);
+  hz.addEventListener('pointercancel',endHomeGesture);
 }
 ['readme','xcode','books','posts','mail','haplo','about'].forEach(registerWindow);
 
