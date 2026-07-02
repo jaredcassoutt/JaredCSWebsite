@@ -42,18 +42,11 @@ button{font-family:inherit;font-size:inherit}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-/* ================= wallpaper (z 0) ================= */
+/* ================= wallpaper (z 0) — macOS Ventura dark ================= */
 .wallpaper{
   position:fixed;inset:0;z-index:0;overflow:hidden;
-  background:linear-gradient(180deg,#0c1322 0%,#122036 22%,#1c3a55 52%,#2c5a72 74%,#173049 90%,#0e1a2c 100%);
-  animation:hueDrift 60s ease-in-out infinite;
+  background:#101828 url("wallpaper.jpg") center/cover no-repeat;
 }
-.wallpaper::after{ /* late-night desk-lamp glow on the horizon */
-  content:"";position:absolute;left:50%;bottom:-34vh;transform:translateX(-50%);
-  width:150vw;height:74vh;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 100%,rgba(255,180,84,.26) 0%,rgba(120,170,220,.12) 46%,rgba(120,170,220,0) 72%);
-}
-@keyframes hueDrift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-10deg)}}
 
 /* ================= menu bar (z 9500) ================= */
 .menubar{
@@ -489,7 +482,6 @@ body.is-dragging iframe{pointer-events:none}
 /* ================= reduced motion ================= */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
-  .wallpaper{animation:none !important}
 }
 </style>
 </head>
