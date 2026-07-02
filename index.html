@@ -4,1381 +4,1365 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jared Cassoutt — builder of iOS apps &amp; on-device AI</title>
-<meta name="description" content="Jared Cassoutt — runs Haplo. Builds iOS apps and on-device AI tools, publishes open-source for Apple platforms.">
+<meta name="description" content="Jared Cassoutt — runs Haplo. Builds iOS apps and on-device AI tools, publishes open-source for Apple platforms. This site is a Mac — click around.">
 <meta name="keywords" content="Jared Cassoutt, iOS, AI, Haplo, Swift, on-device LLM, SwiftUI, indie">
 <meta name="author" content="Jared Cassoutt">
 <link rel="icon" href="myicon.png">
 <meta property="og:title" content="Jared Cassoutt — builder of iOS apps &amp; on-device AI"/>
-<meta property="og:description" content="Runs Haplo. Builds iOS apps and on-device AI tools."/>
+<meta property="og:description" content="Runs Haplo. Builds iOS apps and on-device AI tools. This site is a Mac — click around."/>
 <meta property="og:image" content="myicon.png"/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ============================================================
-   Jared.xcodeproj — the personal site, presented as its own source
-   ============================================================ */
+/* ================= tokens ================= */
 :root{
-  /* Xcode dark palette */
-  --desktop-1:#0a0b0e;
-  --desktop-2:#101218;
-  --chrome:#292a30;
-  --chrome-hi:#323338;
-  --editor:#1f2024;
-  --navigator:#17181c;
-  --canvas:#212227;
-  --console-bg:#17181c;
-  --hairline:#000000;
-  --hairline-soft:#3a3b40;
-  --sel-blue:#2f69cf;
-  --accent:#4d9bf0;
-  /* syntax */
-  --syn-plain:#dfdfe0;
-  --syn-kw:#fc5fa3;
-  --syn-type:#9ef1dd;
-  --syn-fw:#67b7a4;
-  --syn-str:#fc6a5d;
-  --syn-num:#d0bf69;
-  --syn-com:#7f8b99;
-  --syn-attr:#bf8555;
-  --txt:#dfdfe0;
-  --txt-dim:#b7bac1;
-  --txt-faint:#8a8f98;
-  --ln:#5b6068;
-  --ok:#66d97e;
-  --mono:"JetBrains Mono",ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
-  --ui:"Inter",-apple-system,BlinkMacSystemFont,system-ui,"SF Pro Text","Segoe UI",Roboto,sans-serif;
-  /* spacing scale */
-  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
-  --r-win:10px;
+  --menubar-h:28px;
+  --dock-size:56px;
+  --accent:#0a84ff;
+  --accent-btn-1:#0f74dc;
+  --accent-btn-2:#0862cf; /* white label on this = 5.7:1, AA */
+  --chrome:#f6f6f7;
+  --chrome-line:#d9d9de;
+  --ink:#1d1d1f;
+  --ink-soft:#6e6e73;
+  --red:#ff5f57; --yellow:#febc2e; --green:#28c840;
+  --font:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,'SF Mono',SFMono-Regular,Menlo,Consolas,monospace;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
 body{
-  font-family:var(--ui);
-  color:var(--txt);
-  background:
-    radial-gradient(1200px 700px at 70% -10%, #1b2030 0%, transparent 60%),
-    radial-gradient(900px 600px at 10% 110%, #14161e 0%, transparent 55%),
-    linear-gradient(160deg, var(--desktop-2), var(--desktop-1));
-  min-height:100vh;
+  font-family:var(--font);
+  color:var(--ink);
+  background:#101828;
+  line-height:1.5;
   -webkit-font-smoothing:antialiased;
+  -webkit-text-size-adjust:100%;
 }
-a{color:var(--accent)}
-button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-svg{display:block}
-img{max-width:100%}
+img{display:block}
+button{font-family:inherit;font-size:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 
-/* ---------- desktop + window ---------- */
-.desktop{padding:clamp(8px,2.5vw,26px);min-height:100vh;display:flex;flex-direction:column}
-.window{
-  flex:1;display:flex;flex-direction:column;
-  background:var(--editor);
-  border-radius:var(--r-win);
-  overflow:hidden;
-  box-shadow:0 0 0 1px rgba(255,255,255,.09), 0 24px 70px rgba(0,0,0,.65), 0 4px 16px rgba(0,0,0,.5);
-  min-height:calc(100vh - 110px);
+/* ================= wallpaper (z 0) ================= */
+.wallpaper{
+  position:fixed;inset:0;z-index:0;overflow:hidden;
+  background:linear-gradient(180deg,#0c1322 0%,#122036 22%,#1c3a55 52%,#2c5a72 74%,#173049 90%,#0e1a2c 100%);
+  animation:hueDrift 60s ease-in-out infinite;
 }
-.desktop-caption{
-  text-align:center;font-size:12px;color:var(--txt-faint);
-  padding:14px 8px 2px;
+.wallpaper::after{ /* late-night desk-lamp glow on the horizon */
+  content:"";position:absolute;left:50%;bottom:-34vh;transform:translateX(-50%);
+  width:150vw;height:74vh;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 100%,rgba(255,180,84,.26) 0%,rgba(120,170,220,.12) 46%,rgba(120,170,220,0) 72%);
 }
-.desktop-caption a{color:var(--txt-faint);text-decoration:underline;text-underline-offset:2px}
-.desktop-caption a:hover{color:var(--txt-dim)}
-.desktop-caption span{margin:0 6px;opacity:.5}
+@keyframes hueDrift{0%,100%{filter:hue-rotate(0deg)}50%{filter:hue-rotate(-10deg)}}
 
-/* ---------- toolbar ---------- */
-.toolbar{
-  display:flex;align-items:center;gap:var(--s2);
-  height:52px;padding:0 var(--s3) 0 var(--s3);
-  background:linear-gradient(var(--chrome-hi),var(--chrome));
-  border-bottom:1px solid var(--hairline);
-  flex:none;
+/* ================= menu bar (z 9500) ================= */
+.menubar{
+  position:fixed;top:0;left:0;right:0;z-index:9500;
+  height:var(--menubar-h);
+  display:flex;align-items:center;gap:2px;
+  padding:0 10px;
+  background:rgba(14,18,32,.68);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);
+  backdrop-filter:blur(20px) saturate(1.5);
+  border-bottom:1px solid rgba(255,255,255,.09);
+  font-size:13px;color:rgba(255,255,255,.92);
 }
-.traffic{display:flex;gap:8px;margin-right:var(--s2);flex:none}
-.traffic i{width:12px;height:12px;border-radius:50%;display:block}
-.traffic .tl-r{background:#ff5f57;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.2)}
-.traffic .tl-y{background:#febc2e;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.2)}
-.traffic .tl-g{background:#28c840;box-shadow:inset 0 0 0 .5px rgba(0,0,0,.2)}
-.tb-btn{
-  width:30px;height:26px;border-radius:6px;display:flex;align-items:center;justify-content:center;
-  color:#a6a9b0;flex:none;
+.mb-item{
+  display:inline-flex;align-items:center;gap:6px;
+  background:none;border:none;color:inherit;cursor:default;
+  padding:3px 9px;border-radius:5px;white-space:nowrap;line-height:1;
 }
-.tb-btn:hover{background:rgba(255,255,255,.08);color:#e8e9ec}
-.tb-btn[disabled]{opacity:.35;cursor:default}
-.tb-btn[disabled]:hover{background:none;color:#a6a9b0}
-.tb-btn.run{color:#b9def7}
-.scheme{
-  display:flex;align-items:center;gap:6px;
-  height:26px;padding:0 10px;border-radius:6px;
-  font-size:12px;color:var(--txt-dim);white-space:nowrap;flex:none;
-}
-.mini-icon{position:relative;border-radius:4px;overflow:hidden;background:#2f69cf;display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
-.mini-icon img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
-.mini-icon img.ok{opacity:1}
-.scheme .mini-icon{width:16px;height:16px}
-.scheme .chev{opacity:.55}
-.tb-spacer{flex:1 1 0;min-width:8px}
-/* status pill */
-.status-pill{
-  position:relative;flex:0 1 460px;min-width:0;height:30px;
-  background:#1d1e23;border:1px solid rgba(255,255,255,.06);
-  border-radius:6px;display:flex;align-items:center;gap:8px;
-  padding:0 10px;overflow:hidden;
-  box-shadow:inset 0 1px 2px rgba(0,0,0,.4);
-}
-.status-pill .mini-icon{width:15px;height:15px;border-radius:3.5px;flex:none}
-.status-text{
-  font-size:11.5px;color:var(--txt-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-  flex:1;text-align:center;transition:opacity .3s ease;
-}
-.status-text.fading{opacity:0}
-.status-ok{flex:none;color:var(--ok);display:none}
-.status-pill.done .status-ok{display:block}
-.pill-progress{
-  position:absolute;left:0;bottom:0;height:2px;width:0%;
-  background:linear-gradient(90deg,#3f8ae0,#7cc0ff);
-  transition:width .35s ease;opacity:0;
-}
-.status-pill.building .pill-progress{opacity:1}
-.status-pill.building .pill-progress::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent);
-  animation:shimmer 1.1s linear infinite;
-}
-@keyframes shimmer{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.mb-item:hover{background:rgba(255,255,255,.10)}
+.mb-item[aria-expanded="true"]{background:rgba(255,255,255,.20)}
+.mb-logo img{width:16px;height:16px;border-radius:4px}
+.mb-title{font-weight:700;padding:3px 8px;white-space:nowrap}
+.mb-right{margin-left:auto;display:flex;align-items:center;gap:12px;padding-right:2px}
+.mb-right svg{display:block;opacity:.9}
+.mb-clock{white-space:nowrap;font-variant-numeric:tabular-nums;font-size:12.5px}
 
-/* ---------- workspace ---------- */
-.workspace{flex:1;display:flex;min-height:0;align-items:stretch}
-body.hide-nav .navigator{display:none}
-body.hide-canvas .canvas{display:none}
-
-/* ---------- navigator ---------- */
-.navigator{
-  width:236px;flex:none;background:var(--navigator);
-  border-right:1px solid var(--hairline);
-  display:flex;flex-direction:column;
+/* dropdown menus (z 9600) */
+.menu-panel{
+  position:fixed;top:calc(var(--menubar-h) + 4px);left:8px;z-index:9600;
+  min-width:210px;padding:5px;
+  background:rgba(40,40,48,.88);
+  -webkit-backdrop-filter:blur(28px) saturate(1.6);
+  backdrop-filter:blur(28px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;
+  box-shadow:0 12px 34px rgba(0,0,12,.5),0 2px 8px rgba(0,0,12,.35);
+  font-size:13px;color:#f2f2f4;
 }
-.nav-iconstrip{
-  display:flex;gap:2px;padding:6px 8px;border-bottom:1px solid rgba(255,255,255,.05);flex:none;
-}
-.nav-iconstrip span{width:24px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#6f747d}
-.nav-iconstrip span.on{color:var(--accent)}
-.nav-tree{flex:1;overflow-y:auto;padding:6px 0 10px;font-size:13px}
-.nav-row{
-  display:flex;align-items:center;gap:5px;width:100%;text-align:left;
-  height:24px;padding:0 8px 0 calc(10px + var(--depth,0)*14px);
-  color:#c8cbd2;white-space:nowrap;border-radius:0;text-decoration:none;font-size:13px;
-}
-.nav-row:hover{background:rgba(255,255,255,.05)}
-.nav-row.sel{background:var(--sel-blue);color:#fff}
-.nav-row.sel .file-ico{color:#fff}
-.nav-row .disc{width:12px;flex:none;color:#8a8f98;display:flex;justify-content:center}
-.nav-row .file-ico{width:15px;flex:none;display:flex;justify-content:center}
-.nav-row .file-ico.swift{color:#f2784b}
-.nav-row .file-ico.md{color:#9aa3b2}
-.nav-row .file-ico.pg{color:#58a6ff}
-.nav-row .file-ico.folder{color:#7d95c4}
-.nav-row .file-ico.proj{color:#7fb3f5}
-.nav-row .ext{margin-left:auto;color:#6f747d;flex:none}
-.nav-row.group{color:#aeb2ba;cursor:default}
-.nav-row.projrow{font-weight:600;color:#e3e5e9}
-.nav-filter{
-  display:flex;align-items:center;gap:6px;flex:none;
-  margin:6px 8px 8px;padding:0 8px;height:24px;border-radius:6px;
-  background:#101115;border:1px solid rgba(255,255,255,.07);color:#6f747d;
-}
-.nav-filter input{
-  flex:1;min-width:0;background:none;border:0;color:var(--txt-dim);font-size:12px;outline:none;
-}
-.nav-filter input::placeholder{color:#5c616a}
-
-/* ---------- center column ---------- */
-.center-col{flex:1;min-width:0;display:flex;flex-direction:column}
-.main-row{flex:1;display:flex;min-height:0;align-items:stretch}
-
-/* ---------- editor ---------- */
-.editor-pane{flex:1;min-width:0;display:flex;flex-direction:column;background:var(--editor)}
-.tabbar{
-  display:flex;align-items:stretch;height:30px;flex:none;overflow-x:auto;overflow-y:hidden;
-  background:#242529;border-bottom:1px solid var(--hairline);scrollbar-width:none;
-}
-.tabbar::-webkit-scrollbar{display:none}
-.tab{
-  display:flex;align-items:center;gap:2px;flex:none;
-  border-right:1px solid rgba(0,0,0,.55);
-  background:#242529;color:#9ea3ac;
-}
-.tab.active{background:var(--editor);color:#e4e6ea}
-.tab-btn{display:flex;align-items:center;gap:6px;height:100%;padding:0 8px 0 10px;font-size:12px;white-space:nowrap}
-.tab .file-ico{color:#f2784b}
-.tab .file-ico.md{color:#9aa3b2}
-.tab .file-ico.pg{color:#58a6ff}
-.tab-x{width:18px;height:18px;margin-right:5px;border-radius:4px;display:flex;align-items:center;justify-content:center;color:#7c828c;opacity:0}
-.tab:hover .tab-x,.tab.active .tab-x,.tab-x:focus-visible{opacity:1}
-.tab-x:hover{background:rgba(255,255,255,.12);color:#e4e6ea}
-.jumpbar{
-  display:flex;align-items:center;gap:4px;height:26px;flex:none;
-  padding:0 var(--s3);font-size:11.5px;color:#9ea3ac;
-  background:var(--editor);border-bottom:1px solid rgba(255,255,255,.05);
-  white-space:nowrap;overflow-x:auto;scrollbar-width:none;
-}
-.jumpbar::-webkit-scrollbar{display:none}
-.jumpbar .chev{color:#5c616a;flex:none}
-.jumpbar .file-ico{color:#f2784b;flex:none}
-.jumpbar .file-ico.md{color:#9aa3b2}
-.jumpbar .file-ico.pg{color:#58a6ff}
-.jumpbar b{font-weight:500;color:#c8cbd2}
-.code-scroll{flex:1;overflow:auto;padding:8px 0 28px}
-.cl{display:flex;min-height:20px;line-height:20px;font-family:var(--mono);font-size:13px;width:max-content;min-width:100%}
-.cl .ln{
-  flex:none;width:46px;padding-right:12px;text-align:right;
-  color:var(--ln);font-size:11px;user-select:none;line-height:20px;
-  position:sticky;left:0;background:var(--editor);
-}
-.cl .lc{white-space:pre;color:var(--syn-plain);padding-right:24px}
-/* syntax */
-.k{color:var(--syn-kw)}
-.T{color:var(--syn-type)}
-.t{color:var(--syn-fw)}
-.s{color:var(--syn-str)}
-.n{color:var(--syn-num)}
-.c{color:var(--syn-com)}
-.at{color:var(--syn-attr)}
-.code-link{text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px}
-.code-link:hover{text-decoration-style:solid;filter:brightness(1.15)}
-.code-link.s{color:var(--syn-str)}
-.code-link.md{color:var(--accent)}
-.md-h1{display:inline;font-weight:700;color:#ffffff;font-size:1.25em;font-family:inherit;line-height:inherit;letter-spacing:0;margin:0}
-.md-h2{font-weight:700;color:#e8eaee;font-size:1.1em}
-.md-b{font-weight:700;color:#eceef2}
-.md-q{color:var(--syn-com);font-style:italic}
-.md-i{font-style:italic;color:#d5d8de}
-
-/* ---------- canvas / preview ---------- */
-.canvas{
-  width:340px;flex:none;background:var(--canvas);
-  border-left:1px solid var(--hairline);
-  display:flex;flex-direction:column;min-height:0;
-}
-.canvas-head{
-  display:flex;align-items:center;gap:8px;height:30px;flex:none;
-  padding:0 var(--s3);font-size:11.5px;color:#9ea3ac;
-  border-bottom:1px solid rgba(255,255,255,.05);background:#26272c;
-}
-.canvas-head .dot{width:7px;height:7px;border-radius:50%;background:var(--ok);flex:none}
-.canvas-head .dev{margin-left:auto;color:#7c828c;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.canvas-body{flex:1;overflow-y:auto;padding:var(--s3);display:flex;flex-direction:column;gap:var(--s3)}
-.paused-bar{
+.menu-panel[hidden]{display:none}
+.mi{
   display:flex;align-items:center;gap:8px;width:100%;
-  background:#2c2d33;border:1px solid rgba(255,255,255,.07);border-radius:8px;
-  padding:7px 10px;font-size:11.5px;color:#a0a4ad;text-align:left;
+  background:none;border:none;color:inherit;text-align:left;cursor:default;
+  padding:4px 10px;border-radius:5px;text-decoration:none;white-space:nowrap;line-height:1.5;
 }
-.paused-bar .resume{margin-left:auto;display:flex;align-items:center;gap:5px;color:var(--accent);font-weight:600;flex:none}
-.paused-bar:hover{background:#33343b}
-.pv-stage{flex:1;width:100%;display:flex;align-items:flex-start;justify-content:center;padding-top:4px}
-.pv-anim{opacity:1;width:100%;display:flex;justify-content:center}
-.pv-anim.in{animation:pvIn .5s cubic-bezier(.2,.7,.3,1)}
-@keyframes pvIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
-/* phone frame */
-.phone{
-  width:250px;border-radius:36px;background:#0c0d10;
-  border:5px solid #3a3b40;box-shadow:0 14px 34px rgba(0,0,0,.5), inset 0 0 0 1px #000;
-  padding:14px 14px 20px;position:relative;
+.mi:hover,.mi:focus-visible{background:var(--accent);color:#fff;outline:none}
+.mi .tile{width:16px;height:16px;flex:none;font-size:8px;border-radius:22.5%}
+.mi .tile svg{width:10px;height:10px}
+.msep{height:1px;background:rgba(255,255,255,.16);margin:5px 10px}
+
+/* ================= desktop icons (z 2) ================= */
+.desktop-icons{
+  position:fixed;top:calc(var(--menubar-h) + 20px);right:16px;z-index:2;
+  display:flex;flex-direction:column;gap:14px;
 }
-.phone::before{
-  content:"";position:absolute;top:9px;left:50%;transform:translateX(-50%);
-  width:74px;height:18px;border-radius:10px;background:#000;border:1px solid #26272c;
+.desk-icon{
+  width:88px;display:flex;flex-direction:column;align-items:center;gap:4px;
+  background:none;border:1px solid transparent;border-radius:9px;cursor:default;
+  padding:7px 4px 5px;
 }
-.phone .screen{padding-top:22px}
-/* preview card content */
-.screen{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px}
+.desk-icon:hover{background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22)}
+.desk-icon .ic{width:64px;height:64px;display:grid;place-items:center;filter:drop-shadow(0 3px 6px rgba(0,0,12,.4))}
+.desk-icon .ic svg{width:56px;height:56px}
+.desk-icon .ic img{width:56px;height:56px;object-fit:cover;border-radius:8px}
+.desk-label{
+  font-size:12px;font-weight:500;color:#fff;text-align:center;
+  text-shadow:0 1px 3px rgba(0,0,0,.85);padding:1px 6px;border-radius:5px;
+}
+
+/* ================= icon tile (shared) ================= */
 .tile{
-  position:relative;display:inline-flex;align-items:center;justify-content:center;
-  border-radius:22%;overflow:hidden;flex:none;
-  background:var(--tc,#3b82f6);color:#fff;font-weight:700;font-family:var(--ui);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14), 0 4px 14px rgba(0,0,0,.4);
+  position:relative;display:grid;place-items:center;
+  border-radius:22.5%;overflow:hidden;
+  background:var(--tile,linear-gradient(145deg,#4a4a4e,#232326));
+  color:#fff;font-weight:700;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),0 4px 12px rgba(6,6,20,.35);
 }
-.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}
-.tile img.ok{opacity:1}
-.avatar{
-  width:82px;height:82px;border-radius:50%;object-fit:cover;flex:none;
-  box-shadow:0 0 0 2px rgba(255,255,255,.16), 0 6px 18px rgba(0,0,0,.5);
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.tile svg{width:56%;height:56%}
+/* Mac App Store artwork ships with margins baked in — zoom to match iOS tiles */
+.tile-zoom img{transform:scale(1.26)}
+
+/* ================= THE DOCK (z 9000, above windows) ================= */
+.dock-wrap{
+  position:fixed;left:0;right:0;bottom:10px;z-index:9000;
+  display:flex;justify-content:center;
+  padding:0 8px;pointer-events:none;
 }
-.pv-name{font-size:17px;font-weight:700;color:#f2f3f5;letter-spacing:-.01em}
-.pv-plat{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
-.pv-plat span{
-  font-size:9.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;
-  color:#aeb2ba;background:rgba(255,255,255,.08);border-radius:99px;padding:2.5px 8px;
+.dock{
+  pointer-events:auto;
+  display:flex;align-items:flex-end;gap:6px;
+  padding:7px 9px 4px;
+  background:rgba(255,255,255,.15);
+  -webkit-backdrop-filter:blur(24px) saturate(1.6);
+  backdrop-filter:blur(24px) saturate(1.6);
+  border:1px solid rgba(255,255,255,.26);
+  border-radius:20px;
+  box-shadow:0 12px 40px rgba(6,6,20,.45);
 }
-.pv-pitch{font-size:12.5px;line-height:1.45;color:#c8cbd2;max-width:24ch}
-.pv-loc{font-size:11px;color:#8a8f98;font-family:var(--mono)}
-.pv-proof{
-  font-size:11px;font-family:var(--mono);color:var(--syn-num);
-  background:rgba(208,191,105,.09);border:1px solid rgba(208,191,105,.22);
-  border-radius:7px;padding:5px 9px;max-width:100%;
+.dock-item{
+  position:relative;display:block;width:var(--dock-size);
+  padding:0 0 9px;background:none;border:none;cursor:default;
 }
-.pv-learn{font-size:12px;color:var(--accent);text-decoration:none}
-.pv-learn:hover{text-decoration:underline}
-.social-row{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
-.social-row a{
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:10.5px;font-weight:600;color:#c8cbd2;text-decoration:none;
-  background:rgba(255,255,255,.08);border-radius:99px;padding:4.5px 10px;
+.dock.resetting .dock-item{transition:width .28s cubic-bezier(.2,.7,.3,1)}
+.dock-item .tile{width:100%;aspect-ratio:1;font-size:0}
+.dock-item:focus-visible{outline-offset:1px;border-radius:12px}
+.dock-dot{
+  position:absolute;bottom:2px;left:50%;transform:translateX(-50%);
+  width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.95);
+  opacity:0;transition:opacity .2s ease;
 }
-.social-row a:hover{background:rgba(255,255,255,.16);color:#fff}
-.chips{display:flex;flex-wrap:wrap;gap:5px;justify-content:center;max-width:210px}
-.chips span{
-  font-size:9.5px;font-weight:600;letter-spacing:.03em;
-  color:#aeb2ba;background:rgba(255,255,255,.08);border-radius:99px;padding:2.5px 8px;
+.dock-item.running .dock-dot{opacity:1}
+.dock-label{
+  position:absolute;bottom:calc(100% + 12px);left:50%;
+  transform:translateX(-50%) translateY(3px);
+  background:rgba(24,24,40,.9);color:#fff;font-size:12px;font-weight:500;
+  padding:4px 10px;border-radius:8px;white-space:nowrap;
+  opacity:0;pointer-events:none;transition:opacity .15s ease,transform .15s ease;
 }
-/* studio card */
-.studio-card{display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px;width:100%}
-.studio-stats{display:flex;gap:14px;justify-content:center;font-family:var(--mono);font-size:10.5px;color:#9ea3ac;flex-wrap:wrap}
-.studio-stats b{display:block;font-size:16px;color:#f2f3f5;font-family:var(--ui);font-weight:700}
-.mini-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;width:100%;max-width:250px;margin-top:4px}
-.mini-grid a{
-  display:flex;flex-direction:column;align-items:center;gap:4px;
-  padding:7px 2px;border-radius:9px;font-size:9px;color:#9ea3ac;text-decoration:none;
+.dock-label::after{
+  content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:rgba(24,24,40,.9);
 }
-.mini-grid a:hover{background:rgba(255,255,255,.06);color:#e4e6ea}
-/* career timeline */
-.tl-wrap{display:flex;flex-direction:column;gap:10px;width:100%}
-.tl-card{
-  display:flex;gap:10px;align-items:center;text-align:left;
-  background:#2a2b31;border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:10px;
+.dock-item:hover .dock-label,.dock-item:focus-visible .dock-label{opacity:1;transform:translateX(-50%) translateY(0)}
+@keyframes dockbounce{
+  0%,100%{transform:translateY(0)}
+  18%{transform:translateY(-26px)}
+  38%{transform:translateY(0)}
+  54%{transform:translateY(-11px)}
+  70%{transform:translateY(0)}
 }
-.tl-logo{
-  width:38px;height:38px;border-radius:9px;background:#fff;flex:none;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
+.dock-item.bouncing .tile{animation:dockbounce 1.15s cubic-bezier(.3,.55,.35,1) 1}
+
+/* ================= windows (z 100+, inline) ================= */
+.window{
+  position:fixed;left:0;top:0;width:520px;height:420px;
+  background:var(--chrome);border-radius:10px;
+  box-shadow:0 0 0 .5px rgba(0,0,0,.32),0 22px 56px rgba(0,0,12,.5),0 3px 12px rgba(0,0,12,.3);
+  display:flex;flex-direction:column;overflow:hidden;
+  outline:none;
 }
-.tl-logo img{width:78%;height:78%;object-fit:contain}
-.tl-body{min-width:0}
-.tl-co{font-size:12.5px;font-weight:700;color:#f2f3f5}
-.tl-role{font-size:10.5px;color:#b7bac1;line-height:1.35}
-.tl-yr{margin-left:auto;font-family:var(--mono);font-size:9.5px;color:#949aa4;white-space:nowrap;flex:none}
-.tl-yr.live{color:var(--ok)}
-.tl-note{font-size:10.5px;color:#8a8f98;text-align:center;line-height:1.5}
-/* early project cards */
-.proj-card{
-  width:100%;background:#2a2b31;border:1px solid rgba(255,255,255,.07);border-radius:10px;
-  padding:12px;display:flex;flex-direction:column;gap:6px;text-align:left;
+.window:not(.focused){
+  box-shadow:0 0 0 .5px rgba(0,0,0,.25),0 10px 28px rgba(0,0,12,.3);
 }
-.proj-name{font-size:13px;font-weight:700;color:#f2f3f5}
-.proj-what{font-size:11.5px;color:#b7bac1;line-height:1.45}
-.proj-badge{font-size:9.5px;font-family:var(--mono);color:var(--syn-num)}
-.proj-tech{display:flex;flex-wrap:wrap;gap:5px}
-.proj-tech span{font-size:9px;font-weight:600;color:#aeb2ba;background:rgba(255,255,255,.08);border-radius:99px;padding:2px 7px}
-.proj-demo{font-size:10.5px;color:var(--accent);text-decoration:none}
-.proj-demo:hover{text-decoration:underline}
-/* bookshelf */
-.book-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:100%}
-.book-grid img{
-  width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:5px;display:block;
-  box-shadow:0 3px 10px rgba(0,0,0,.45);background:#2a2b31;
+.win-hidden{display:none !important}
+.win-min{visibility:hidden !important;pointer-events:none !important}
+.window.rect-anim{transition:left .3s cubic-bezier(.32,.72,0,1),top .3s cubic-bezier(.32,.72,0,1),width .3s cubic-bezier(.32,.72,0,1),height .3s cubic-bezier(.32,.72,0,1)}
+.titlebar{
+  flex:none;height:36px;
+  display:flex;align-items:center;gap:8px;
+  padding:0 10px;
+  background:linear-gradient(180deg,#f3f3f5,#e9e9ec);
+  border-bottom:1px solid var(--chrome-line);
+  cursor:grab;user-select:none;-webkit-user-select:none;touch-action:none;
 }
-.book-more{
-  aspect-ratio:2/3;border-radius:5px;display:flex;flex-direction:column;gap:4px;
-  align-items:center;justify-content:center;text-align:center;text-decoration:none;
-  background:#2a2b31;border:1px dashed rgba(255,255,255,.2);color:var(--accent);
-  font-size:10.5px;font-weight:600;padding:4px;
+.window.dragging .titlebar{cursor:grabbing}
+.window.maxed .titlebar,.window.sheet .titlebar{cursor:default}
+.tl{display:flex;gap:8px;flex:none}
+.tl button{
+  width:12px;height:12px;border-radius:50%;border:1px solid rgba(0,0,0,.12);
+  cursor:default;position:relative;padding:0;
 }
-.book-more:hover{background:#33343b}
-/* tweet cards */
-.tweet-card{
-  display:block;width:100%;background:#2a2b31;border:1px solid rgba(255,255,255,.07);
-  border-radius:12px;padding:11px;text-decoration:none;color:var(--txt);
+.tl-r{background:var(--red)} .tl-y{background:var(--yellow)} .tl-g{background:var(--green)}
+.window:not(.focused):not(:hover) .tl button{background:#c8c8cd}
+body.is-dragging{user-select:none;-webkit-user-select:none}
+body.is-dragging iframe{pointer-events:none}
+.tl button::before{
+  position:absolute;inset:0;display:grid;place-items:center;
+  font-size:9px;line-height:1;color:rgba(0,0,0,.55);
+  opacity:0;content:"";
 }
-.tweet-card:hover{border-color:rgba(255,255,255,.2)}
-.tw-head{display:flex;gap:8px;align-items:center}
-.tw-av{width:30px;height:30px;border-radius:50%;object-fit:cover;flex:none}
-.tw-name{font-size:11.5px;font-weight:700;color:#f2f3f5;line-height:1.2}
-.tw-handle{font-size:10.5px;color:#949aa4;line-height:1.2}
-.tw-x{margin-left:auto;color:#8a8f98;flex:none}
-.tw-body{
-  font-size:11.5px;line-height:1.5;color:#c8cbd2;margin-top:7px;text-align:left;
-  white-space:pre-line;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden;
+.tl-r::before{content:"×"}
+.tl-y::before{content:"−"}
+.tl-g::before{content:"⤢";font-size:8px}
+.window:hover .tl button::before,.tl button:focus-visible::before{opacity:1}
+.tb-title{
+  flex:1;text-align:center;
+  font-size:13px;font-weight:600;color:var(--ink);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  margin-right:52px; /* balance the traffic lights */
 }
-.tw-media{margin-top:8px;border-radius:9px;overflow:hidden;background:#1a1b1f}
-.tw-media img{width:100%;max-height:150px;object-fit:cover;display:block}
-.tw-stats{display:flex;gap:14px;margin-top:9px;font-size:10px;color:#949aa4;font-family:var(--mono)}
-.tw-stats span{display:inline-flex;align-items:center;gap:4px}
-.canvas-zoom{
-  display:flex;align-items:center;gap:8px;justify-content:flex-end;flex:none;
-  padding:6px 12px;font-size:10.5px;color:#6f747d;border-top:1px solid rgba(255,255,255,.05);
-  font-family:var(--mono);
+.window:not(.focused) .tb-title{color:#9a9aa0}
+.wbody{flex:1;overflow:auto;-webkit-overflow-scrolling:touch;position:relative}
+
+/* ---- README (TextEdit) ---- */
+.readme-body{
+  padding:26px 30px;
+  font-family:var(--mono);font-size:14px;line-height:1.75;color:#2b2b2e;
+  background:#fbfbfc;
+}
+.readme-body h1{font-size:20px;margin-bottom:4px}
+.readme-tagline{font-weight:700;margin-bottom:14px}
+.readme-body ul{margin:0 0 14px 20px}
+.readme-body p{margin-bottom:14px}
+.readme-hint{color:#6e6e73}
+.readme-body a{color:var(--accent-btn-2)}
+.caret{
+  display:inline-block;width:8px;height:16px;margin-left:3px;vertical-align:-2px;
+  background:var(--accent);animation:caretblink 1.1s steps(1) infinite;
+}
+@keyframes caretblink{50%{opacity:0}}
+
+/* ---- Xcode window (iframe) ---- */
+.xcode-body{background:#1f2024;display:flex}
+.xcode-body iframe{flex:1;width:100%;height:100%;border:0;background:#1f2024}
+.xcode-loading{
+  position:absolute;inset:0;display:grid;place-items:center;
+  color:#9aa0ab;font-family:var(--mono);font-size:13px;background:#1f2024;
+  transition:opacity .4s ease;pointer-events:none;
+}
+.xcode-loading.done{opacity:0}
+
+/* ---- Books window ---- */
+.books-body{
+  background:linear-gradient(180deg,#f4ede2,#efe5d6);
+}
+.books-toolbar{
+  position:sticky;top:0;z-index:3;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:10px 16px;
+  background:rgba(244,237,226,.9);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(120,90,50,.18);
+  font-size:13px;color:#5c4a33;
+}
+.books-toolbar b{font-size:14px;color:#3c3020}
+.books-count{font-family:var(--mono);font-size:11.5px;color:#8a7357}
+.bookcase{
+  --shelf-row:216px;
+  padding:18px 22px 30px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(108px,1fr));
+  grid-auto-rows:var(--shelf-row);
+  column-gap:14px;
+  background:
+    repeating-linear-gradient(180deg,
+      transparent 0 calc(var(--shelf-row) - 14px),
+      rgba(133,94,54,.9) calc(var(--shelf-row) - 14px) calc(var(--shelf-row) - 6px),
+      rgba(90,60,32,.55) calc(var(--shelf-row) - 6px) calc(var(--shelf-row) - 4px),
+      transparent calc(var(--shelf-row) - 4px) var(--shelf-row));
+  background-origin:content-box;
+}
+.book{
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  gap:6px;padding-bottom:16px;
+  background:none;border:none;cursor:default;border-radius:8px;
+}
+.book:hover .book-cover{transform:translateY(-6px) scale(1.03)}
+.book:focus-visible{outline:2px solid #a97b3f;outline-offset:-2px}
+.book-cover{
+  height:136px;width:auto;max-width:96px;border-radius:3px;
+  box-shadow:0 2px 4px rgba(60,40,15,.35),0 10px 18px rgba(60,40,15,.28);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+  background:#ddd;object-fit:cover;
+}
+.book-label{
+  font-size:10.5px;line-height:1.25;color:#5c4a33;text-align:center;
+  max-width:104px;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;
+}
+/* book detail overlay inside the window */
+.book-detail{
+  position:absolute;inset:0;z-index:4;
+  display:flex;align-items:center;justify-content:center;gap:26px;
+  padding:30px;
+  background:rgba(38,30,20,.92);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+}
+.book-detail[hidden]{display:none}
+.book-detail img{height:min(300px,60%);border-radius:5px;box-shadow:0 18px 44px rgba(0,0,0,.55)}
+.book-detail-info{max-width:280px;color:#f3ead9}
+.book-detail-info h3{font-size:20px;margin-bottom:4px}
+.book-detail-info p{color:#cbb794;font-size:14px;margin-bottom:18px}
+.book-detail-actions{display:flex;flex-direction:column;gap:9px;align-items:flex-start}
+.book-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:#f3ead9;color:#3c3020;border:none;border-radius:8px;
+  padding:8px 14px;font-size:13px;font-weight:600;text-decoration:none;cursor:default;
+}
+.book-btn.ghost{background:transparent;color:#f3ead9;border:1px solid rgba(243,234,217,.4)}
+
+/* ---- Posts (X) window ---- */
+.posts-body{background:#000;color:#e7e9ea}
+.posts-head{
+  position:sticky;top:0;z-index:3;
+  display:flex;align-items:center;gap:12px;
+  padding:12px 16px;
+  background:rgba(0,0,0,.82);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  border-bottom:1px solid #2f3336;
+}
+.posts-head img{width:34px;height:34px;border-radius:50%}
+.posts-head b{font-size:14px}
+.posts-head span{display:block;font-size:12.5px;color:#71767b}
+.posts-follow{
+  margin-left:auto;
+  background:#e7e9ea;color:#0f1419;border:none;border-radius:999px;
+  padding:6px 14px;font-size:13px;font-weight:700;text-decoration:none;
+}
+.post{
+  display:block;padding:14px 16px;border-bottom:1px solid #2f3336;
+  color:inherit;text-decoration:none;
+}
+.post:hover{background:#080808}
+.post-top{display:flex;align-items:center;gap:8px;font-size:13.5px;margin-bottom:5px}
+.post-top img{width:36px;height:36px;border-radius:50%;flex:none}
+.post-top b{color:#e7e9ea}
+.post-top span{color:#71767b;font-size:13px}
+.post-body{font-size:14px;line-height:1.5;white-space:pre-wrap;word-wrap:break-word;margin-bottom:10px;color:#e7e9ea}
+.post-media{width:100%;border-radius:14px;border:1px solid #2f3336;margin-bottom:10px;max-height:280px;object-fit:cover}
+.post-stats{display:flex;gap:22px;font-size:12.5px;color:#71767b;font-variant-numeric:tabular-nums}
+.post-stats .ps-likes{color:#f91880}
+
+/* ---- Mail window ---- */
+.mail-body{background:#fff;display:flex;flex-direction:column}
+.mail-toolbar{
+  flex:none;display:flex;align-items:center;gap:10px;
+  padding:9px 14px;border-bottom:1px solid var(--chrome-line);background:#fafafa;
+}
+.mail-send{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(180deg,var(--accent-btn-1),var(--accent-btn-2));
+  color:#fff;border:none;border-radius:7px;
+  padding:6px 14px;font-size:13px;font-weight:600;cursor:default;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 1px 3px rgba(6,6,20,.25);
+}
+.mail-hint{font-size:11.5px;color:var(--ink-soft);margin-left:auto}
+.mail-fields{flex:none;font-size:13.5px}
+.mail-field{
+  display:flex;align-items:center;gap:8px;
+  padding:8px 14px;border-bottom:1px solid #ececef;
+}
+.mail-field label{color:var(--ink-soft);width:58px;flex:none;font-size:12.5px}
+.mail-field input{
+  flex:1;border:none;outline:none;font:inherit;color:var(--ink);background:transparent;
+}
+.mail-field .fixed{color:var(--ink)}
+.mail-msg{
+  flex:1;width:100%;border:none;outline:none;resize:none;
+  padding:14px;font:inherit;font-size:13.5px;line-height:1.6;color:var(--ink);
+}
+.mail-links{
+  flex:none;display:flex;gap:14px;flex-wrap:wrap;
+  padding:10px 14px;border-top:1px solid #ececef;background:#fafafa;font-size:12.5px;
+}
+.mail-links a{color:var(--accent-btn-2);text-decoration:none}
+.mail-links a:hover{text-decoration:underline}
+
+/* ---- Haplo window ---- */
+.haplo-body{padding:26px 24px;text-align:center;background:#fbfbfc}
+.haplo-body img{width:64px;height:64px;border-radius:14px;margin:6px auto 12px;box-shadow:0 6px 16px rgba(6,6,20,.18)}
+.haplo-body h2{font-size:19px}
+.haplo-sub{color:var(--ink-soft);font-size:13px;margin:2px 0 14px}
+.haplo-stats{
+  display:flex;justify-content:center;gap:0;margin:0 auto 18px;max-width:320px;
+  border:1px solid var(--chrome-line);border-radius:10px;background:#fff;overflow:hidden;
+}
+.haplo-stat{flex:1;padding:10px 6px}
+.haplo-stat + .haplo-stat{border-left:1px solid var(--chrome-line)}
+.haplo-stat b{display:block;font-size:17px}
+.haplo-stat span{font-size:11px;color:var(--ink-soft)}
+.haplo-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.haplo-cta{
+  display:inline-flex;align-items:center;gap:7px;
+  background:linear-gradient(180deg,var(--accent-btn-1),var(--accent-btn-2));
+  color:#fff;border:none;border-radius:8px;
+  padding:8px 14px;font-size:13px;font-weight:600;text-decoration:none;
 }
 
-/* ---------- console ---------- */
-.console{flex:none;background:var(--console-bg);border-top:1px solid var(--hairline);display:flex;flex-direction:column}
-.debug-bar{
-  display:flex;align-items:center;gap:6px;height:28px;flex:none;
-  padding:0 var(--s2) 0 var(--s3);background:#202126;border-bottom:1px solid rgba(255,255,255,.05);
+/* ---- About window ---- */
+.about-body{padding:28px 22px;text-align:center}
+.about-logo{margin:6px auto 14px;border-radius:50%;box-shadow:0 6px 16px rgba(6,6,20,.25);width:76px;height:76px;object-fit:cover}
+.about-body h2{font-size:19px;letter-spacing:-.01em}
+.about-sub{color:var(--ink-soft);font-size:12.5px;margin:2px 0 18px}
+.specs{margin:0 auto 20px;border-collapse:collapse;font-size:13px;text-align:left}
+.specs th{color:var(--ink-soft);font-weight:400;padding:3px 14px 3px 0;text-align:right;white-space:nowrap}
+.specs td{color:var(--ink);font-weight:500;padding:3px 0}
+.btn-ghost{
+  display:inline-block;background:#fff;border:1px solid var(--chrome-line);border-radius:7px;
+  color:var(--ink);font-size:12.5px;font-weight:500;
+  padding:5px 12px;text-decoration:none;
+  box-shadow:0 1px 2px rgba(6,6,20,.08);
 }
-.debug-bar .db-title{font-size:11px;color:#8a8f98;margin-right:auto;display:flex;align-items:center;gap:7px;white-space:nowrap}
-.debug-bar .db-title .bp{color:var(--accent)}
-.console-filter{
-  display:flex;align-items:center;gap:5px;height:20px;padding:0 8px;border-radius:5px;
-  background:#101115;border:1px solid rgba(255,255,255,.07);color:#6f747d;width:150px;
-}
-.console-filter input{flex:1;min-width:0;background:none;border:0;color:var(--txt-dim);font-size:11px;outline:none}
-.console-filter input::placeholder{color:#5c616a}
-.db-btn{width:24px;height:22px;border-radius:5px;display:flex;align-items:center;justify-content:center;color:#8a8f98;flex:none}
-.db-btn:hover{background:rgba(255,255,255,.08);color:#e4e6ea}
-.db-btn .flip{transform:rotate(180deg)}
-.console-out{
-  height:158px;overflow-y:auto;padding:8px 14px 12px;
-  font-family:var(--mono);font-size:11.5px;line-height:1.75;color:#aeb2ba;
-}
-.console.collapsed .console-out{display:none}
-.console-out .cline{white-space:pre-wrap;word-break:break-word}
-.console-out .ok{color:var(--ok);font-weight:700}
-.console-out .dim{color:#808a97}
-.console-out .quote{color:var(--syn-str)}
-.console-out a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;text-decoration-style:dotted}
-.console-out a:hover{text-decoration-style:solid}
+.btn-ghost:hover{background:#f2f2f4}
 
-/* ---------- responsive ---------- */
-@media (max-width:1100px){
-  .main-row{flex-direction:column}
-  .canvas{width:auto;border-left:0;border-top:1px solid var(--hairline)}
-  .canvas-body{align-items:center}
-  .canvas-body>*{max-width:360px}
-  .editor-pane{min-height:380px}
-}
-@media (max-width:760px){
-  .desktop{padding:0}
-  .window{border-radius:0;min-height:100vh;box-shadow:none}
-  .workspace{flex-direction:column}
-  .toolbar{padding:0 var(--s2);gap:6px}
-  .scheme{display:none}
-  .tb-btn.opt{display:none}
-  .status-pill{flex-basis:auto;flex-grow:1}
-  .navigator{
-    width:auto;border-right:0;border-bottom:1px solid var(--hairline);
-    flex-direction:row;align-items:center;
-  }
-  .nav-iconstrip,.nav-filter{display:none}
-  .nav-tree{
-    display:flex;flex-direction:row;gap:6px;overflow-x:auto;overflow-y:hidden;
-    padding:8px 10px;scrollbar-width:none;
-  }
-  .nav-tree::-webkit-scrollbar{display:none}
-  .nav-row{
-    flex:none;width:auto;height:28px;padding:0 11px;border-radius:99px;
-    background:rgba(255,255,255,.06);gap:6px;font-size:12px;
-  }
-  .nav-row .disc{display:none}
-  .nav-row.group,.nav-row.projrow{display:none}
-  .nav-row.sel{background:var(--sel-blue)}
-  .tabbar{display:none}
-  .cl{font-size:12px}
-  .cl .ln{width:36px;padding-right:9px}
-  .console-out{height:132px}
-  .console-filter{width:auto;flex:0 1 150px;min-width:64px}
-  .desktop-caption{padding:12px 10px 14px}
+/* selection marquee */
+.marquee{
+  position:fixed;z-index:5;pointer-events:none;
+  background:rgba(10,132,255,.18);border:1px solid var(--accent);
 }
 
-/* ---------- reduced motion ---------- */
-@media (prefers-reduced-motion: reduce){
+/* ================= noscript ================= */
+.noscript-panel{position:fixed;inset:0;z-index:99999;background:#101828;overflow:auto}
+.noscript-inner{max-width:560px;margin:60px auto;padding:0 22px;color:#e8eaf2}
+.noscript-inner h1{margin-bottom:10px}
+.noscript-inner p{margin-bottom:18px;color:#aab2c5}
+.noscript-inner ul{list-style:none}
+.noscript-inner li{padding:9px 0;border-top:1px solid rgba(255,255,255,.14);font-size:14px}
+.noscript-inner a{color:#7cb3ff;font-weight:600}
+
+/* ================= mobile / coarse pointers ================= */
+@media (max-width:740px),(pointer:coarse){
+  :root{--dock-size:48px}
+  .desktop-icons{
+    top:calc(var(--menubar-h) + 10px);left:8px;right:auto;
+    flex-direction:row;gap:6px;
+  }
+  .desk-icon{width:66px;padding:5px 2px 4px}
+  .desk-icon .ic{width:44px;height:44px}
+  .desk-icon .ic svg{width:40px;height:40px}
+  .desk-icon .ic img{width:40px;height:40px}
+  .desk-label{font-size:11px}
+  .dock-wrap{display:block;overflow-x:auto;scrollbar-width:none}
+  .dock-wrap::-webkit-scrollbar{display:none}
+  .dock{width:max-content;margin:0 auto}
+  .window.sheet{
+    left:0 !important;top:var(--menubar-h) !important;
+    width:100% !important;
+    /* stop above the dock (bottom 10 + dock padding 11 + icon 48 + item padding 9 ≈ 78) */
+    height:calc(100% - var(--menubar-h) - 86px) !important;
+    border-radius:0 0 14px 14px;
+  }
+  .window.sheet .tl-g{opacity:.45;pointer-events:none}
+  .mb-title{display:none}
+  .mb-right svg{display:none}
+  .bookcase{--shelf-row:196px;grid-template-columns:repeat(auto-fill,minmax(92px,1fr));padding:14px 14px 24px}
+  .book-cover{height:120px;max-width:84px}
+  .book-detail{flex-direction:column;gap:16px;text-align:center}
+  .book-detail-actions{align-items:center}
+}
+@media (max-width:420px){
+  .haplo-stats{max-width:100%}
+}
+
+/* ================= reduced motion ================= */
+@media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
+  .wallpaper{animation:none !important}
 }
 </style>
 </head>
 <body>
-<p class="sr-only">Jared Cassoutt builds iOS apps and brings AI models on-device. Senior iOS engineer at eBay, founder of Haplo, LLC — eight apps on the App Store. Browse the project files to read about his work.</p>
-<p class="sr-only" aria-live="polite" id="buildAnnounce"></p>
 
-<div class="desktop">
-  <div class="window" role="presentation">
+<noscript>
+  <div class="noscript-panel">
+    <div class="noscript-inner">
+      <h1>Jared Cassoutt</h1>
+      <p>Senior iOS engineer at eBay, founder of Haplo. This page is an interactive Mac desktop and needs JavaScript — here's everything directly:</p>
+      <ul>
+        <li><a href="https://haploapp.com">Haplo</a> — my indie studio, eight apps on the App Store</li>
+        <li><a href="https://github.com/jaredcassoutt">GitHub</a> · <a href="https://github.com/HaploLLC">Haplo OSS</a></li>
+        <li><a href="https://x.com/JC_builds">X — @JC_builds</a> · <a href="https://www.linkedin.com/in/jaredcassoutt/">LinkedIn</a></li>
+        <li><a href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a></li>
+      </ul>
+    </div>
+  </div>
+</noscript>
 
-    <!-- ======== toolbar ======== -->
-    <header class="toolbar">
-      <div class="traffic" aria-hidden="true"><i class="tl-r"></i><i class="tl-y"></i><i class="tl-g"></i></div>
+<div class="wallpaper" id="wallpaper" aria-hidden="true"></div>
 
-      <button class="tb-btn opt" id="navToggle" aria-label="Hide or show the navigator" aria-pressed="false" title="Navigator">
-        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="1" width="14" height="12" rx="2.5"/><line x1="5.5" y1="1" x2="5.5" y2="13"/></svg>
-      </button>
+<header class="menubar" role="menubar" aria-label="Jared's Mac menu bar">
+  <button class="mb-item mb-logo" id="mb-main" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="menu-main">
+    <img src="myicon.png" alt="Jared menu" width="16" height="16">
+  </button>
+  <span class="mb-title">Jared's Mac</span>
+  <button class="mb-item" id="mb-apps" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="menu-apps">Apps</button>
+  <button class="mb-item" id="mb-links" role="menuitem" aria-haspopup="true" aria-expanded="false" aria-controls="menu-links">Links</button>
+  <div class="mb-right">
+    <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true">
+      <path d="M1 3.9C4.9.4 11.1.4 15 3.9" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M3.4 6.4c2.6-2.3 6.6-2.3 9.2 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M5.8 8.9c1.3-1.1 3.1-1.1 4.4 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <circle cx="8" cy="10.8" r="1.1" fill="currentColor"/>
+    </svg>
+    <span class="mb-clock" id="clock">&nbsp;</span>
+  </div>
+</header>
 
-      <button class="tb-btn run" id="runBtn" aria-label="Run — replay the build log" title="Run (⌘R)">
-        <svg width="13" height="14" viewBox="0 0 13 14" fill="currentColor"><path d="M1.5 1.6c0-1 1.05-1.6 1.9-1.1l9 5.4c.8.5.8 1.7 0 2.2l-9 5.4c-.85.5-1.9-.1-1.9-1.1V1.6z"/></svg>
-      </button>
-      <button class="tb-btn opt" disabled aria-label="Stop (nothing is running — everything already shipped)" title="Stop">
-        <svg width="11" height="11" viewBox="0 0 11 11" fill="currentColor"><rect x="0.5" y="0.5" width="10" height="10" rx="2"/></svg>
-      </button>
+<div class="menu-panel" id="menu-main" role="menu" aria-labelledby="mb-main" hidden>
+  <button class="mi" role="menuitem" data-open="about">About This Jared</button>
+  <div class="msep" role="separator"></div>
+  <a class="mi" role="menuitem" href="https://github.com/jaredcassoutt" target="_blank" rel="noopener">GitHub</a>
+  <a class="mi" role="menuitem" href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" rel="noopener">LinkedIn</a>
+  <a class="mi" role="menuitem" href="https://x.com/JC_builds" target="_blank" rel="noopener">X — @JC_builds</a>
+  <div class="msep" role="separator"></div>
+  <a class="mi" role="menuitem" href="mailto:jaredcassoutt@gmail.com">jaredcassoutt@gmail.com</a>
+</div>
+<div class="menu-panel" id="menu-apps" role="menu" aria-labelledby="mb-apps" hidden></div>
+<div class="menu-panel" id="menu-links" role="menu" aria-labelledby="mb-links" hidden>
+  <a class="mi" role="menuitem" href="https://haploapp.com" target="_blank" rel="noopener">haploapp.com</a>
+  <a class="mi" role="menuitem" href="https://apps.apple.com/us/developer/haplo-llc/id1568353330" target="_blank" rel="noopener">App Store developer page</a>
+</div>
 
-      <div class="scheme" title="Scheme: Jared, destination iPhone 16 Pro">
-        <span class="mini-icon"><span aria-hidden="true">J</span><img src="myicon.png" alt="" onload="this.classList.add('ok')" onerror="this.remove()"></span>
-        <span>Jared</span>
-        <svg class="chev" width="7" height="10" viewBox="0 0 7 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 1.5 5.5 5l-4 3.5"/></svg>
-        <span class="scheme-target">iPhone 16 Pro</span>
-      </div>
+<div class="desktop-icons">
+  <button class="desk-icon" data-open="readme" aria-label="Open README.txt">
+    <span class="ic" aria-hidden="true">
+      <svg viewBox="0 0 56 56">
+        <path d="M12 4h24l10 10v36a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="#fff"/>
+        <path d="M36 4l10 10H38a2 2 0 0 1-2-2V4z" fill="#d9d9de"/>
+        <g stroke="#a5a5ad" stroke-width="2.4" stroke-linecap="round">
+          <path d="M17 24h22M17 30h22M17 36h22M17 42h14"/>
+        </g>
+      </svg>
+    </span>
+    <span class="desk-label">README.txt</span>
+  </button>
+</div>
 
-      <div class="tb-spacer"></div>
+<div class="dock-wrap"><nav class="dock" id="dock" aria-label="App dock"></nav></div>
 
-      <div class="status-pill" id="statusPill">
-        <span class="mini-icon" aria-hidden="true"><span>J</span><img src="myicon.png" alt="" onload="this.classList.add('ok')" onerror="this.remove()"></span>
-        <span class="status-text" id="statusText">Loading Jared.xcodeproj…</span>
-        <span class="status-ok" aria-hidden="true">
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="6" cy="6" r="5" opacity=".45"/><path d="M3.6 6.2 5.3 7.8 8.5 4.3"/></svg>
-        </span>
-        <div class="pill-progress" id="pillProgress"></div>
-      </div>
+<!-- ============ README window ============ -->
+<section class="window win-hidden" id="win-readme" aria-labelledby="wt-readme" tabindex="-1">
+  <div class="titlebar" data-win="readme">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close README window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize README window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize README window"></button>
+    </div>
+    <span class="tb-title" id="wt-readme">README.txt</span>
+  </div>
+  <div class="wbody readme-body">
+    <h1># Hi, I'm Jared.</h1>
+    <p class="readme-tagline">I build iOS apps and bring AI models on-device.</p>
+    <p>Senior iOS engineer at eBay. Founder of <a href="https://haploapp.com" target="_blank" rel="noopener">Haplo</a> — eight Swift apps on the App Store. Open-source libraries for on-device LLMs, and iOS-ready model quantizations on HuggingFace.</p>
+    <ul>
+      <li><strong>Xcode</strong> — every project, as source</li>
+      <li><strong>Books</strong> — what I'm reading</li>
+      <li><strong>Posts</strong> — building in public as @JC_builds</li>
+      <li><strong>Mail</strong> — say hi, I reply</li>
+    </ul>
+    <p class="readme-hint">Click an app in the Dock ↓<span class="caret" aria-hidden="true"></span></p>
+  </div>
+</section>
 
-      <div class="tb-spacer"></div>
+<!-- ============ Xcode window (the projects) ============ -->
+<section class="window win-hidden" id="win-xcode" aria-labelledby="wt-xcode" tabindex="-1">
+  <div class="titlebar" data-win="xcode">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close Xcode window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize Xcode window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize Xcode window"></button>
+    </div>
+    <span class="tb-title" id="wt-xcode">Jared.xcodeproj — Xcode</span>
+  </div>
+  <div class="wbody xcode-body">
+    <iframe data-src="xcode.html" title="Jared's projects as an Xcode window"></iframe>
+    <div class="xcode-loading" id="xcode-loading">Building Jared.xcodeproj…</div>
+  </div>
+</section>
 
-      <button class="tb-btn opt" disabled aria-label="Add file (seven files is plenty)" title="Add">
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6.5 1v11M1 6.5h11"/></svg>
-      </button>
-      <button class="tb-btn opt" disabled aria-label="Editor layout" title="Editor layout">
-        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="1" width="14" height="12" rx="2.5"/><line x1="8" y1="1" x2="8" y2="13"/></svg>
-      </button>
-      <button class="tb-btn" id="canvasToggle" aria-label="Hide or show the preview canvas" aria-pressed="false" title="Canvas">
-        <svg width="16" height="14" viewBox="0 0 16 14" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="1" y="1" width="14" height="12" rx="2.5"/><line x1="10.5" y1="1" x2="10.5" y2="13"/></svg>
-      </button>
-    </header>
-
-    <!-- ======== workspace ======== -->
-    <div class="workspace">
-
-      <!-- navigator -->
-      <nav class="navigator" aria-label="Project files">
-        <div class="nav-iconstrip" aria-hidden="true">
-          <span class="on"><svg width="13" height="12" viewBox="0 0 13 12" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 3.2C1 2.1 1.9 1.2 3 1.2h2.2l1.2 1.6H10c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2v-5.6z"/></svg></span>
-          <span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="5" cy="5" r="3.6"/><path d="M8 8l3 3"/></svg></span>
-          <span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 1.2 10.8 6 6 10.8 1.2 6z"/></svg></span>
-          <span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M2 2.5h8M2 6h8M2 9.5h5"/></svg></span>
+<!-- ============ Books window ============ -->
+<section class="window win-hidden" id="win-books" aria-labelledby="wt-books" tabindex="-1">
+  <div class="titlebar" data-win="books">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close Books window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize Books window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize Books window"></button>
+    </div>
+    <span class="tb-title" id="wt-books">Books — Jared's Shelf</span>
+  </div>
+  <div class="wbody books-body">
+    <div class="books-toolbar">
+      <b>Jared's Shelf</b>
+      <span class="books-count" id="books-count"></span>
+    </div>
+    <div class="bookcase" id="bookcase" role="list"></div>
+    <div class="book-detail" id="book-detail" hidden>
+      <img id="bd-cover" src="" alt="">
+      <div class="book-detail-info">
+        <h3 id="bd-title"></h3>
+        <p id="bd-author"></p>
+        <div class="book-detail-actions">
+          <a class="book-btn" id="bd-search" href="#" target="_blank" rel="noopener">Find this book</a>
+          <button class="book-btn ghost" id="bd-back" type="button">Back to the shelf</button>
         </div>
-        <div class="nav-tree" id="navTree"></div>
-        <div class="nav-filter">
-          <svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="5" cy="5" r="3.6"/><path d="M8 8l3 3"/></svg>
-          <input type="text" id="navFilterInput" placeholder="Filter" aria-label="Filter project files">
-        </div>
-      </nav>
-
-      <!-- center: editor + canvas + console -->
-      <div class="center-col">
-        <div class="main-row">
-
-          <main class="editor-pane" aria-label="Source editor">
-            <div class="tabbar" id="tabbar" role="tablist" aria-label="Open files"></div>
-            <div class="jumpbar" id="jumpbar" aria-label="Breadcrumb"></div>
-            <div class="code-scroll" id="codeScroll"></div>
-          </main>
-
-          <aside class="canvas" aria-label="SwiftUI preview">
-            <div class="canvas-head">
-              <span class="dot" aria-hidden="true"></span>
-              <span>Preview</span>
-              <span class="dev" id="canvasDevice">iPhone 16 Pro</span>
-            </div>
-            <div class="canvas-body" id="canvasBody"></div>
-            <div class="canvas-zoom" aria-hidden="true"><span>−</span><span>100%</span><span>+</span></div>
-          </aside>
-
-        </div>
-
-        <!-- console -->
-        <section class="console" id="consolePane" aria-label="Debug console">
-          <div class="debug-bar">
-            <span class="db-title">
-              <svg class="bp" width="11" height="12" viewBox="0 0 11 12" fill="currentColor" aria-hidden="true"><path d="M1 2c0-.6.4-1 1-1h5.2c.3 0 .6.1.8.4L10.7 5c.4.5.4 1.4 0 1.9L8 10.6c-.2.3-.5.4-.8.4H2c-.6 0-1-.4-1-1V2z"/></svg>
-              Jared — build log
-            </span>
-            <div class="console-filter">
-              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true"><circle cx="5" cy="5" r="3.6"/><path d="M8 8l3 3"/></svg>
-              <input type="text" id="consoleFilterInput" placeholder="Filter" aria-label="Filter console output">
-            </div>
-            <button class="db-btn" id="clearConsole" aria-label="Clear console" title="Clear console">
-              <svg width="12" height="13" viewBox="0 0 12 13" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M1 3h10M4.5 3V1.8c0-.4.3-.8.8-.8h1.4c.5 0 .8.4.8.8V3M2.2 3l.7 8c0 .6.5 1 1 1h4.2c.5 0 1-.4 1-1l.7-8"/></svg>
-            </button>
-            <button class="db-btn" id="consoleToggle" aria-label="Collapse or expand console" aria-expanded="true" title="Hide console">
-              <svg id="consoleChev" width="11" height="8" viewBox="0 0 11 8" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 1.5 5.5 6l4-4.5"/></svg>
-            </button>
-          </div>
-          <div class="console-out" id="consoleOut"></div>
-        </section>
       </div>
     </div>
   </div>
+</section>
 
-  <footer class="desktop-caption">
-    © 2026 Jared Cassoutt <span>·</span> Portland, OR <span>·</span>
-    <a href="Projects.html">Projects</a> <span>·</span>
-    <a href="bookshelf.html">Bookshelf</a> <span>·</span>
-    <a href="mailto:jaredcassoutt@gmail.com">Say hi</a>
-  </footer>
-</div>
+<!-- ============ Posts (X) window ============ -->
+<section class="window win-hidden" id="win-posts" aria-labelledby="wt-posts" tabindex="-1">
+  <div class="titlebar" data-win="posts">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close Posts window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize Posts window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize Posts window"></button>
+    </div>
+    <span class="tb-title" id="wt-posts">Posts — @JC_builds</span>
+  </div>
+  <div class="wbody posts-body">
+    <div class="posts-head">
+      <img src="jc-builds-avatar.jpg" alt="">
+      <div><b>Jared</b><span>@JC_builds · building in public</span></div>
+      <a class="posts-follow" href="https://x.com/JC_builds" target="_blank" rel="noopener">Follow</a>
+    </div>
+    <div id="posts-feed"></div>
+  </div>
+</section>
+
+<!-- ============ Mail window ============ -->
+<section class="window win-hidden" id="win-mail" aria-labelledby="wt-mail" tabindex="-1">
+  <div class="titlebar" data-win="mail">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close Mail window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize Mail window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize Mail window"></button>
+    </div>
+    <span class="tb-title" id="wt-mail">New Message</span>
+  </div>
+  <div class="wbody mail-body">
+    <div class="mail-toolbar">
+      <button class="mail-send" id="mail-send" type="button">
+        <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 1.5L7 9M14.5 1.5l-4.5 13-2.5-5.5L2 6.5l12.5-5z"/></svg>
+        Send
+      </button>
+      <span class="mail-hint">opens in your mail app</span>
+    </div>
+    <div class="mail-fields">
+      <div class="mail-field"><label>To:</label><span class="fixed">jaredcassoutt@gmail.com</span></div>
+      <div class="mail-field"><label for="mail-subject">Subject:</label><input id="mail-subject" type="text" value="Hi Jared —"></div>
+    </div>
+    <textarea class="mail-msg" id="mail-msg" aria-label="Message body" placeholder="Type your message… then hit Send and it opens ready-to-go in your mail app."></textarea>
+    <div class="mail-links">
+      <a href="https://github.com/jaredcassoutt" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/jaredcassoutt/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://x.com/JC_builds" target="_blank" rel="noopener">X — @JC_builds</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ Haplo window ============ -->
+<section class="window win-hidden" id="win-haplo" aria-labelledby="wt-haplo" tabindex="-1">
+  <div class="titlebar" data-win="haplo">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close Haplo window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize Haplo window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize Haplo window"></button>
+    </div>
+    <span class="tb-title" id="wt-haplo">Haplo</span>
+  </div>
+  <div class="wbody haplo-body">
+    <img src="haploLogo.png" alt="Haplo logo">
+    <h2>Haplo, LLC</h2>
+    <p class="haplo-sub">My indie studio. We're a tiny studio — ship happens. (often.)</p>
+    <div class="haplo-stats">
+      <div class="haplo-stat"><b>8</b><span>apps shipped</span></div>
+      <div class="haplo-stat"><b>0</b><span>data collected</span></div>
+      <div class="haplo-stat"><b>100%</b><span>Swift</span></div>
+    </div>
+    <div class="haplo-actions">
+      <a class="haplo-cta" href="https://haploapp.com" target="_blank" rel="noopener">Visit haploapp.com</a>
+      <a class="btn-ghost" href="https://apps.apple.com/us/developer/haplo-llc/id1568353330" target="_blank" rel="noopener">App Store developer page</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ About window ============ -->
+<section class="window win-hidden" id="win-about" aria-labelledby="wt-about" tabindex="-1">
+  <div class="titlebar" data-win="about">
+    <div class="tl">
+      <button class="tl-r" data-act="close" aria-label="Close About window"></button>
+      <button class="tl-y" data-act="min" aria-label="Minimize About window"></button>
+      <button class="tl-g" data-act="max" aria-label="Maximize About window"></button>
+    </div>
+    <span class="tb-title" id="wt-about">About This Jared</span>
+  </div>
+  <div class="wbody about-body">
+    <img class="about-logo" src="jc-builds-avatar.jpg" alt="Jared Cassoutt" width="76" height="76">
+    <h2>Jared Cassoutt</h2>
+    <p class="about-sub">Senior iOS engineer @ eBay · Founder of Haplo · Portland, OR</p>
+    <table class="specs">
+      <tbody>
+        <tr><th scope="row">Chip</th><td>Swift-brained</td></tr>
+        <tr><th scope="row">Memory</th><td>34 model quantizations on HuggingFace</td></tr>
+        <tr><th scope="row">Storage</th><td>8 apps, 4 early projects, 1 studio</td></tr>
+        <tr><th scope="row">Graphics</th><td>Baylor '21 · eBay AI Award · 1 patent</td></tr>
+      </tbody>
+    </table>
+    <a class="btn-ghost" href="https://github.com/jaredcassoutt" target="_blank" rel="noopener">View the source…</a>
+  </div>
+</section>
 
 <script>
-/* ============================================================
-   Jared.xcodeproj — main.swift (well, main.js)
-   ============================================================ */
 (function(){
 "use strict";
-var RM = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-/* ---------- syntax token helpers ---------- */
-function esc(x){return String(x).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
-function sp(c,w){return '<span class="'+c+'">'+w+'</span>'}
-function K(w){return sp("k",esc(w))}      // keyword
-function TY(w){return sp("T",esc(w))}     // project type
-function FT(w){return sp("t",esc(w))}     // framework type / call
-function ST(w){return sp("s",esc(w))}     // string
-function NU(w){return sp("n",esc(w))}     // number
-function CM(w){return sp("c",esc(w))}     // comment
-function AT(w){return sp("at",esc(w))}    // attribute
-function urlStr(u){ // a "Swift string" that is a real link
-  return sp("s",'"')+'<a class="code-link s" href="'+u+'" target="_blank" rel="noopener">'+esc(u)+'</a>'+sp("s",'"');
-}
-function mdLink(label,href,internal){
-  if(internal){return '<a class="code-link md" href="#" data-open="'+href+'">'+esc(label)+'</a>'}
-  var blank = /^https?:|^mailto:/.test(href) ? ' target="_blank" rel="noopener"' : '';
-  return '<a class="code-link md" href="'+href+'"'+blank+'>'+esc(label)+'</a>';
-}
+var MENUBAR_H=28;
+var mqReduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+var mqCoarse=window.matchMedia('(pointer: coarse)');
+var mqFine=window.matchMedia('(pointer: fine)');
+var mqNarrow=window.matchMedia('(max-width: 740px)');
+function reduced(){ return mqReduce.matches; }
+function isMobile(){ return mqNarrow.matches||mqCoarse.matches; }
+function clamp(v,a,b){ return Math.max(a,Math.min(b,v)); }
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-/* ---------- real links ---------- */
-var LINKS = {
-  github:  "https://github.com/jaredcassoutt",
-  haplogh: "https://github.com/HaploLLC",
-  haplo:   "https://haploapp.com",
-  huck:    "https://huckadventures.com",
-  linkedin:"https://www.linkedin.com/in/jaredcassoutt/",
-  x:       "https://x.com/JC_builds",
-  email:   "mailto:jaredcassoutt@gmail.com",
-  ebay:    "https://www.ebay.com",
-  l3:      "https://www.l3harris.com",
-  asl:     "https://www.youtube.com/watch?v=A3WSZFOyvfk"
+/* ================= dock apps (real App Store artwork, fetched into icons/) ================= */
+var DOCK=[
+ {id:'xcode', name:'Xcode', tile:'<span class="tile tile-zoom"><img src="icons/xcode.png" alt=""></span>'},
+ {id:'books', name:'Books', tile:'<span class="tile"><img src="icons/books.png" alt=""></span>'},
+ {id:'posts', name:'Posts', tile:'<span class="tile"><img src="icons/x.png" alt=""></span>'},
+ {id:'mail', name:'Mail', tile:'<span class="tile"><img src="icons/mail.png" alt=""></span>'},
+ {id:'haplo', name:'Haplo', tile:'<span class="tile"><img src="icons/haplo.png" alt=""></span>'}
+];
+
+/* ================= build dock ================= */
+var dock=document.getElementById('dock');
+var userClickedDock=false;
+DOCK.forEach(function(app){
+  var b=document.createElement('button');
+  b.type='button';
+  b.className='dock-item';
+  b.setAttribute('data-app',app.id);
+  b.setAttribute('aria-label','Open '+app.name);
+  b.innerHTML=app.tile+'<span class="dock-dot" aria-hidden="true"></span><span class="dock-label" aria-hidden="true">'+app.name+'</span>';
+  b.addEventListener('click',function(){ userClickedDock=true; openWindow(app.id,b); });
+  dock.appendChild(b);
+});
+function dockBtn(id){ return dock.querySelector('.dock-item[data-app="'+id+'"]'); }
+
+/* ================= build Apps menu ================= */
+var menuAppsPanel=document.getElementById('menu-apps');
+DOCK.forEach(function(app){
+  var b=document.createElement('button');
+  b.type='button';
+  b.className='mi';
+  b.setAttribute('role','menuitem');
+  b.innerHTML=app.tile+'<span>'+app.name+'</span>';
+  b.addEventListener('click',function(){
+    closeMenus();
+    openWindow(app.id, dockBtn(app.id)||null);
+  });
+  menuAppsPanel.appendChild(b);
+});
+
+/* ================= live clock ================= */
+var clockEl=document.getElementById('clock');
+var DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+function fmtClock(d){
+  var h=d.getHours(),m=d.getMinutes();
+  var ap=h>=12?'PM':'AM';
+  h=h%12; if(h===0) h=12;
+  return DAYS[d.getDay()]+' '+h+':'+(m<10?'0':'')+m+' '+ap;
+}
+function tickClock(){
+  var d=new Date();
+  clockEl.textContent=fmtClock(d);
+  setTimeout(tickClock,60000-(d.getSeconds()*1000+d.getMilliseconds())+80);
+}
+tickClock();
+
+/* ================= window manager ================= */
+var wins={};
+var zTop=100;
+var openSeq=0;
+var focusedId=null;
+
+var WIN_DEFAULTS={
+  readme:{w:560,h:440},
+  xcode:{w:1180,h:760},
+  books:{w:780,h:560},
+  posts:{w:520,h:640},
+  mail:{w:560,h:500},
+  haplo:{w:460,h:430},
+  about:{w:360,h:470}
 };
+function defSize(id){ return WIN_DEFAULTS[id]||{w:520,h:420}; }
 
-/* ---------- data: the eight Haplo apps ---------- */
-var HAPLO_APPS = [
- {name:"Barrier",       id:"6448244443", color:"#7c3aed", initial:"B", one:"block distracting apps"},
- {name:"Haplo AI",      id:"6746702574", color:"#3b82f6", initial:"H", one:"private AI, 100% on-device"},
- {name:"Investing",     id:"1568353331", color:"#10b981", initial:"I", one:"1,000+ signals per ticker"},
- {name:"Annot8",        id:"6469836426", color:"#22c55e", initial:"A", one:"ML image labeling, macOS"},
- {name:"EasyLogo",      id:"6740788822", color:"#ec4899", initial:"E", one:"grid-based logo design"},
- {name:"Markdown2PDF",  id:"6743325583", color:"#14b8a6", initial:"M", one:"Markdown → beautiful PDF"},
- {name:"Carve",         id:"6754781687", color:"#f97316", initial:"C", one:"workouts + AI chat"},
- {name:"ShipHappens",   id:"6748663243", color:"#f59e0b", initial:"S", one:"releases in 30 min"}
-];
-function storeURL(id){return "https://apps.apple.com/us/app/id"+id}
-
-/* ---------- data: career ---------- */
-var CAREER = [
- {co:"Haplo, LLC", role:"Founder & engineer — 8 apps, on-device AI OSS", yr:"2021 – now", live:true,  logo:"haploLogo.png", url:LINKS.haplo},
- {co:"eBay",       role:"Senior iOS Engineer — Visual Intelligence App Intents, on-device AI, patent-pending dynamic UI", yr:"2021 – now", live:true, logo:"ebayLogo.png", url:LINKS.ebay},
- {co:"Huck Adventures", role:"iOS development intern", yr:"Summer 2021", live:false, logo:"huckLogo.png", url:LINKS.huck},
- {co:"L3 Technologies", role:"Software engineering lead — defense systems firmware", yr:"Fall 2020", live:false, logo:"l3Logo.png", url:LINKS.l3}
-];
-
-/* ---------- data: early projects ---------- */
-var EARLY = [
- {name:"AR Graphing App", what:"Turns equations & datasets into AR charts and 3D mesh models you can walk around.", tech:["Swift","ARKit","SceneKit"], badge:"Oregon Innovation Challenge winner · 2023"},
- {name:"Mobile ASL Translator", what:"Real-time ASL alphabet translation on iOS with a CreateML object-detection model.", tech:["Core ML","CreateML","Vision"], badge:"Video demo", demo:LINKS.asl},
- {name:"Gift Recommendation App", what:"Recommends gifts from a recipient's interests via a Turi Create recommender.", tech:["Swift","Python","Turi Create"], badge:"Personal project"},
- {name:"Group Chat Media App", what:"Password-protected group chats on Firebase. Realtime sync, learned the hard way.", tech:["Swift","Firebase"], badge:"Personal project"}
-];
-
-/* ---------- editor code generators ---------- */
-function readmeLines(){
-  var L=[];
-  L.push('<h1 class="md-h1"># Hi, I’m Jared. I build iOS apps and bring AI models on-device.</h1>');
-  L.push("");
-  L.push(sp("md-b","**Jared Cassoutt**")+" — senior iOS engineer at ["+mdLink("eBay",LINKS.ebay)+"], founder of ["+mdLink("Haplo",LINKS.haplo)+"].");
-  L.push("I ship indie apps, open-source libraries for on-device LLMs and");
-  L.push("diffusion, and iOS-ready model quantizations on HuggingFace.");
-  L.push("This site is the Xcode project. Click around — it all compiles.");
-  L.push("");
-  L.push(sp("md-h2","## Start here")+"  "+sp("md-q","(files open in this window)"));
-  L.push("");
-  L.push("- ["+mdLink("Sources/AboutMe.swift","AboutMe.swift",true)+"] — who I am, in pseudo-SwiftUI");
-  L.push("- ["+mdLink("Sources/Haplo.swift","Haplo.swift",true)+"] — my studio: 8 apps on the App Store");
-  L.push("- ["+mdLink("Sources/Career.swift","Career.swift",true)+"] — eBay · Huck Adventures · L3");
-  L.push("- ["+mdLink("Sources/EarlyProjects.swift","EarlyProjects.swift",true)+"] — the four that taught me the most");
-  L.push("- ["+mdLink("Bookshelf.md","Bookshelf.md",true)+"] — what I’m reading");
-  L.push("- ["+mdLink("Tweets.playground","Tweets.playground",true)+"] — building in public as @JC_builds");
-  L.push("");
-  L.push(sp("md-h2","## Elsewhere"));
-  L.push("");
-  L.push("["+mdLink("GitHub",LINKS.github)+"] · ["+mdLink("Haplo OSS",LINKS.haplogh)+"] · ["+mdLink("LinkedIn",LINKS.linkedin)+"] · ["+mdLink("X — @JC_builds",LINKS.x)+"]");
-  L.push("["+mdLink("haploapp.com",LINKS.haplo)+"] · ["+mdLink("jaredcassoutt@gmail.com",LINKS.email)+"]");
-  L.push("");
-  L.push(sp("md-q","> Press ▶ in the toolbar to rebuild me. It succeeds. It always succeeds."));
-  L.push("");
-  L.push("© 2026 Jared Cassoutt — Portland, OR");
-  return L;
+function anchorEl(id){
+  var d=dockBtn(id); if(d) return d;
+  var desk=document.querySelector('.desk-icon[data-open="'+id+'"]'); if(desk) return desk;
+  return document.getElementById('mb-main');
+}
+function dockTopY(){
+  var dw=document.querySelector('.dock-wrap');
+  var r=dw?dw.getBoundingClientRect():null;
+  return (r&&r.height>0)?r.top:window.innerHeight-90;
+}
+function maxRect(){
+  var top=MENUBAR_H+12;
+  return {x:12,y:top,w:window.innerWidth-24,h:Math.max(220,dockTopY()-12-top)};
+}
+function defaultRect(id){
+  var d=defSize(id);
+  var vw=window.innerWidth,vh=window.innerHeight;
+  var w=Math.min(d.w,vw-24);
+  var h=Math.min(d.h,Math.max(260,dockTopY()-MENUBAR_H-24));
+  var k=(openSeq++)%5;
+  var x=Math.round((vw-w)/2)+k*24;
+  var y=Math.round(MENUBAR_H+Math.max(10,(dockTopY()-MENUBAR_H-h)/2))+k*22;
+  return {x:clamp(x,8,Math.max(8,vw-w-8)),y:clamp(y,MENUBAR_H+4,vh-64),w:w,h:h};
+}
+function clampRect(st){
+  var vw=window.innerWidth,vh=window.innerHeight;
+  st.rect.w=Math.min(st.rect.w,vw-16);
+  st.rect.h=Math.min(st.rect.h,vh-MENUBAR_H-16);
+  st.rect.x=clamp(st.rect.x,-(st.rect.w-100),vw-100);
+  st.rect.y=clamp(st.rect.y,MENUBAR_H,vh-48);
+}
+function applyRect(st){
+  st.el.style.left=st.rect.x+'px';
+  st.el.style.top=st.rect.y+'px';
+  st.el.style.width=st.rect.w+'px';
+  st.el.style.height=st.rect.h+'px';
+}
+function setDot(id){
+  var b=dockBtn(id);
+  if(b) b.classList.toggle('running',wins[id].open);
+}
+function cancelAnims(el){
+  if(el.getAnimations) el.getAnimations().forEach(function(a){ a.cancel(); });
+}
+function animateEl(el,frames,dur,done,persist){
+  if(reduced()||!el.animate){ if(done) done(); return; }
+  var a=el.animate(frames,{duration:dur,easing:'cubic-bezier(0.32,0.72,0,1)',fill:persist?'forwards':'none'});
+  var fired=false;
+  function fin(){ if(fired) return; fired=true; if(done) done(); }
+  a.onfinish=fin;
+  a.oncancel=fin;
+  /* hidden/throttled tabs can starve onfinish — never leave the window manager stuck */
+  setTimeout(fin,dur+120);
+}
+function centerDelta(el,srcRect){
+  var r=el.getBoundingClientRect();
+  return {
+    dx:(srcRect.left+srcRect.width/2)-(r.left+r.width/2),
+    dy:(srcRect.top+srcRect.height/2)-(r.top+r.height/2)
+  };
 }
 
-function aboutLines(){
-  return [
-    K("import")+" "+FT("SwiftUI"),
-    "",
-    CM("// MARK: - AboutMe"),
-    CM("// Mechanical engineer by degree, iOS engineer by obsession."),
-    "",
-    K("struct")+" "+TY("AboutMe")+": "+FT("View")+" {",
-    "    "+K("let")+" name   = "+ST('"Jared Cassoutt"'),
-    "    "+K("let")+" role   = "+ST('"Senior iOS Engineer @ eBay · founder of Haplo"'),
-    "    "+K("let")+" base   = "+ST('"Portland, OR"'),
-    "    "+K("let")+" degree = "+ST('"B.S. Mech. Engineering, Baylor ’21"')+"  "+CM("// plot twist"),
-    "",
-    "    "+K("let")+" focus  = ["+ST('"Swift"')+", "+ST('"SwiftUI"')+", "+ST('"Core ML"')+", "+ST('"Metal"')+",",
-    "                  "+ST('"llama.cpp"')+", "+ST('"GGUF quantization"')+"]",
-    "",
-    "    "+K("let")+" bio = "+sp("s",'"""'),
-    "        "+ST("I build iOS apps and bring AI models on-device —"),
-    "        "+ST("LLMs, diffusion, and vision running on the Neural"),
-    "        "+ST("Engine instead of somebody else’s server."),
-    "        "+sp("s",'"""'),
-    "",
-    "    "+K("var")+" body: "+K("some")+" "+FT("View")+" {",
-    "        "+TY("ProfileCard")+"(name: name, role: role, avatar: "+ST('"jc-builds-avatar"')+")",
-    "            ."+FT("socialLinks")+"([",
-    "                "+FT("Link")+"("+ST('"GitHub"')+",   destination: "+FT("URL")+"(string: "+urlStr(LINKS.github)+")!),",
-    "                "+FT("Link")+"("+ST('"LinkedIn"')+", destination: "+FT("URL")+"(string: "+urlStr(LINKS.linkedin)+")!),",
-    "                "+FT("Link")+"("+ST('"X"')+",        destination: "+FT("URL")+"(string: "+urlStr(LINKS.x)+")!),",
-    "            ])",
-    "    }",
-    "}"
-  ];
+function focusWindow(id){
+  var st=wins[id]; if(!st) return;
+  Object.keys(wins).forEach(function(k){ if(k!==id) wins[k].el.classList.remove('focused'); });
+  st.el.classList.add('focused');
+  if(zTop>8000){ /* renormalize so windows never climb above the dock/menu layers */
+    var list=Object.keys(wins).map(function(k){ return wins[k]; })
+      .sort(function(a,b){ return (+a.el.style.zIndex||0)-(+b.el.style.zIndex||0); });
+    zTop=100;
+    list.forEach(function(s){ s.el.style.zIndex=String(++zTop); });
+  }
+  st.el.style.zIndex=String(++zTop);
+  focusedId=id;
 }
-
-function haploLines(){
-  return [
-    K("import")+" "+FT("SwiftUI"),
-    K("import")+" "+FT("StoreKit")+"   "+CM("// all 8 of these shipped for real"),
-    "",
-    CM("// MARK: - Haplo, LLC — the studio (est. 2021)"),
-    "",
-    K("struct")+" "+TY("Haplo")+": "+FT("View")+" {",
-    "    "+K("let")+" site = "+FT("URL")+"(string: "+urlStr(LINKS.haplo)+")!",
-    "    "+K("let")+" apps: ["+TY("HaploApp")+"] = [",
-    "        .barrier,      "+CM("// block distracting apps when it matters"),
-    "        .haploAI,      "+CM("// private AI, 100% on-device"),
-    "        .investing,    "+CM("// 1,000+ signals per ticker"),
-    "        .annot8,       "+CM("// ML image labeling at hotkey speed"),
-    "        .easyLogo,     "+CM("// grid-based logo design"),
-    "        .markdown2PDF, "+CM("// drag Markdown, drop a beautiful PDF"),
-    "        .carve,        "+CM("// workouts logged in seconds, AI chat"),
-    "        .shipHappens,  "+CM("// App Store releases in 30 min"),
-    "    ]",
-    "    "+K("let")+" openSource = ["+ST('"Gepetto"')+", "+ST('"Mirage"')+", "+ST('"Forge"')+"]  "+CM("// github.com/HaploLLC"),
-    "    "+K("let")+" trackers   = "+NU("0")+"                        "+CM("// and staying there"),
-    "",
-    "    "+K("var")+" body: "+K("some")+" "+FT("View")+" {",
-    "        "+TY("AppGrid")+"(apps)          "+CM("// ← tap an icon in the preview"),
-    "            ."+FT("onTapGesture")+" { "+FT("open")+"(site) }",
-    "    }",
-    "}",
-    "",
-    FT("Link")+"("+ST('"haploapp.com"')+", destination: "+FT("URL")+"(string: "+urlStr(LINKS.haplo)+")!)",
-    FT("Link")+"("+ST('"Open source"')+",  destination: "+FT("URL")+"(string: "+urlStr(LINKS.haplogh)+")!)"
-  ];
+function defocusAll(){
+  Object.keys(wins).forEach(function(k){ wins[k].el.classList.remove('focused'); });
+  focusedId=null;
 }
-
-function careerLines(){
-  return [
-    K("import")+" "+FT("Foundation"),
-    "",
-    CM("// MARK: - Career — one main thread, a few background tasks"),
-    "",
-    K("struct")+" "+TY("Role")+" { "+K("let")+" co: "+FT("String")+"; "+K("let")+" title: "+FT("String")+"; "+K("let")+" years: "+FT("String")+" }",
-    "",
-    K("let")+" career: ["+TY("Role")+"] = [",
-    "    "+TY("Role")+"(co: "+ST('"Haplo, LLC"')+",      title: "+ST('"Founder & engineer"')+",  years: "+ST('"2021 – now"')+"),   "+CM("// foreground"),
-    "    "+TY("Role")+"(co: "+ST('"eBay"')+",            title: "+ST('"Senior iOS Engineer"')+", years: "+ST('"2021 – now"')+"),   "+CM("// background thread"),
-    "    "+TY("Role")+"(co: "+ST('"Huck Adventures"')+", title: "+ST('"iOS intern"')+",          years: "+ST('"Summer 2021"')+"),",
-    "    "+TY("Role")+"(co: "+ST('"L3 Technologies"')+", title: "+ST('"Firmware lead"')+",       years: "+ST('"Fall 2020"')+"),",
-    "]",
-    "",
-    CM("// eBay highlights, for the curious:"),
-    K("let")+" highlights = [",
-    "    "+ST('"Visual Intelligence App Intents — 2025 eBay AI Award"')+",",
-    "    "+ST('"Patent-pending dynamic UI framework — layouts from JSON"')+",",
-    "    "+ST('"Apple Foundation Model workshop @ Apple HQ"')+",",
-    "]",
-    "",
-    K("let")+" education = "+ST('"B.S. Mechanical Engineering, minor Math — Baylor, 2021"'),
-    "",
-    FT("Link")+"("+ST('"haploapp.com"')+", destination: "+FT("URL")+"(string: "+urlStr(LINKS.haplo)+")!)"
-  ];
-}
-
-function earlyLines(){
-  return [
-    K("import")+" "+FT("ARKit")+"      "+CM("// where it started"),
-    K("import")+" "+FT("CreateML")+"   "+CM("// and where it went"),
-    "",
-    CM("// MARK: - EarlyProjects — the four that taught me the most"),
-    "",
-    K("let")+" earlyProjects: ["+TY("Project")+"] = [",
-    "    "+TY("Project")+"(name: "+ST('"AR Graphing App"')+",",
-    "            what: "+ST('"Equations → AR charts you can walk around"')+",",
-    "            tech: ["+ST('"Swift"')+", "+ST('"ARKit"')+", "+ST('"SceneKit"')+"],",
-    "            note: "+ST('"Oregon Innovation Challenge winner, 2023"')+"),",
-    "",
-    "    "+TY("Project")+"(name: "+ST('"Mobile ASL Translator"')+",",
-    "            what: "+ST('"Real-time ASL alphabet translation on iOS"')+",",
-    "            tech: ["+ST('"Core ML"')+", "+ST('"CreateML"')+", "+ST('"Vision"')+"],",
-    "            demo: "+FT("URL")+"(string: "+urlStr(LINKS.asl)+")!),",
-    "",
-    "    "+TY("Project")+"(name: "+ST('"Gift Recommendation App"')+",",
-    "            what: "+ST('"Gift ideas from a recipient’s interests"')+",",
-    "            tech: ["+ST('"Swift"')+", "+ST('"Python"')+", "+ST('"Turi Create"')+"]),",
-    "",
-    "    "+TY("Project")+"(name: "+ST('"Group Chat Media App"')+",",
-    "            what: "+ST('"Password-protected group chats on Firebase"')+",",
-    "            tech: ["+ST('"Swift"')+", "+ST('"Firebase"')+"]),  "+CM("// realtime sync, the hard way"),
-    "]"
-  ];
-}
-
-function bookLines(){
-  var L=[];
-  L.push(sp("md-h1","# Bookshelf"));
-  L.push("");
-  L.push("Books I actually finished — covers render in the preview →");
-  L.push("");
-  L.push(sp("md-h2","## On heavy rotation"));
-  L.push("");
-  L.push("- "+sp("md-i","*Deep Work*")+" — Cal Newport");
-  L.push("- "+sp("md-i","*The Psychology of Money*")+" — Morgan Housel");
-  L.push("- "+sp("md-i","*Creativity, Inc.*")+" — Ed Catmull");
-  L.push("- "+sp("md-i","*Shoe Dog*")+" — Phil Knight");
-  L.push("- "+sp("md-i","*Mastery*")+" — Robert Greene");
-  L.push("- "+sp("md-i","*Hidden Potential*")+" — Adam Grant");
-  L.push("");
-  L.push(sp("md-h2","## For the soul"));
-  L.push("");
-  L.push("- "+sp("md-i","*The Martian*")+" — Andy Weir");
-  L.push("- "+sp("md-i","*The Hobbit*")+" — J.R.R. Tolkien");
-  L.push("- "+sp("md-i","*The Tao of Pooh*")+" — Benjamin Hoff");
-  L.push("");
-  L.push("Full shelf (26 and counting): ["+mdLink("bookshelf.html","bookshelf.html")+"]");
-  L.push("");
-  L.push(sp("md-q","> Yes, *Cracking the Coding Interview* is on there. It worked."));
-  return L;
-}
-
-function tweetLines(){
-  return [
-    K("import")+" "+FT("SwiftUI"),
-    K("import")+" "+FT("PlaygroundSupport")+"   "+CM("// build in public, log in public"),
-    "",
-    CM("// MARK: - @JC_builds — highlights"),
-    "",
-    K("let")+" liquidGlass = "+TY("Tweet")+"(",
-    "    "+ST('"I built a bendable, editable Liquid Glass text component in SwiftUI"')+",",
-    "    likes: "+NU("147")+", replies: "+NU("10")+")",
-    "",
-    K("let")+" runRecap = "+TY("Tweet")+"(",
-    "    "+ST('"I built a post-run recap design studio in SwiftUI — live animated map, 2D & 3D"')+",",
-    "    likes: "+NU("340")+", replies: "+NU("11")+")",
-    "",
-    K("let")+" mascotGuide = "+TY("Tweet")+"(",
-    "    "+ST('"Step-by-step guide to my app’s character animations, in under 15 minutes"')+",",
-    "    likes: "+NU("353")+", replies: "+NU("15")+")",
-    "",
-    CM("// honorable mention: “I jailbroke my Mac’s Neural Engine” (170 likes)"),
-    "",
-    TY("PlaygroundPage")+".current."+FT("setLiveView")+"(",
-    "    "+TY("Timeline")+"([liquidGlass, runRecap, mascotGuide])   "+CM("// → preview pane"),
-    ")",
-    "",
-    FT("Link")+"("+ST('"Follow along"')+", destination: "+FT("URL")+"(string: "+urlStr(LINKS.x)+")!)"
-  ];
-}
-
-var FILES = {
-  "README.md":          {ico:"md", md:true, dev:"iPhone 16 Pro",      lines:readmeLines, preview:"readme"},
-  "AboutMe.swift":      {ico:"swift", group:"Sources", dev:"iPhone 16 Pro", lines:aboutLines, preview:"about"},
-  "Haplo.swift":        {ico:"swift", group:"Sources", dev:"All 8 targets", lines:haploLines, preview:"haplo"},
-  "Career.swift":       {ico:"swift", group:"Sources", dev:"My Mac",        lines:careerLines, preview:"career"},
-  "EarlyProjects.swift":{ico:"swift", group:"Sources", dev:"iPhone 11 (memories)", lines:earlyLines, preview:"early"},
-  "Bookshelf.md":       {ico:"md", md:true, dev:"Any device",        lines:bookLines, preview:"books"},
-  "Tweets.playground":  {ico:"pg", dev:"@JC_builds",                 lines:tweetLines, preview:"tweets"}
-};
-
-/* ---------- artwork (iTunes lookup, JSONP fallback) ---------- */
-var ART = {};
-function tileHTML(opts){ // {color,initial,src,appId,size,alt}
-  var size=opts.size||76;
-  var src = (opts.appId && ART[opts.appId]) || opts.src || null;
-  var img = '<img '+(opts.appId?'data-app-id="'+opts.appId+'" ':'')+(src?'src="'+src+'" ':'')+
-            'alt="" onload="this.classList.add(\'ok\')" onerror="this.remove()">';
-  return '<span class="tile" style="--tc:'+opts.color+';width:'+size+'px;height:'+size+'px;font-size:'+Math.round(size*0.42)+'px" role="img" aria-label="'+esc(opts.alt||"")+'">'+
-         '<span aria-hidden="true">'+esc(opts.initial)+'</span>'+img+'</span>';
-}
-function applyArtwork(results){
-  (results||[]).forEach(function(r){
-    if(r.trackId && r.artworkUrl512){
-      ART[String(r.trackId)] = r.artworkUrl512;
-      document.querySelectorAll('img[data-app-id="'+r.trackId+'"]').forEach(function(img){
-        if(img.src !== r.artworkUrl512) img.src = r.artworkUrl512;
-      });
+function refocusTop(){
+  var top=null,tz=-1;
+  Object.keys(wins).forEach(function(k){
+    var s=wins[k];
+    if(s.open&&!s.min){
+      var z=+s.el.style.zIndex||0;
+      if(z>tz){ tz=z; top=k; }
     }
   });
+  if(top) focusWindow(top); else defocusAll();
 }
-function fetchArtwork(){
-  var ids = HAPLO_APPS.map(function(a){return a.id}).join(",");
-  var base = "https://itunes.apple.com/lookup?id="+ids+"&country=US";
-  fetch(base)
-    .then(function(r){return r.json()})
-    .then(function(d){applyArtwork(d.results)})
-    .catch(function(){ // JSONP fallback (works even from file:// or with CORS hiccups)
-      window.__jcArt = function(d){applyArtwork(d && d.results)};
-      var s=document.createElement("script");
-      s.src = base+"&callback=__jcArt";
-      s.onerror=function(){ /* placeholders are already fine */ };
-      document.head.appendChild(s);
+
+function openWindow(id,srcEl){
+  var st=wins[id]; if(!st||st.busy) return;
+  if(st.open&&!st.min){ focusWindow(id); return; }
+  if(st.open&&st.min){ restoreWindow(id); return; }
+  cancelAnims(st.el);
+  st.el.classList.remove('win-hidden','win-min');
+  if(isMobile()){
+    st.el.classList.add('sheet');
+    st.el.style.left=st.el.style.top=st.el.style.width=st.el.style.height='';
+  }else{
+    st.el.classList.remove('sheet');
+    if(!st.rect) st.rect=defaultRect(id);
+    st.max=false;
+    st.el.classList.remove('maxed');
+    clampRect(st);
+    applyRect(st);
+  }
+  st.open=true; st.min=false;
+  focusWindow(id);
+  setDot(id);
+  /* lazy iframes (Xcode) load on first open */
+  var fr=st.el.querySelector('iframe[data-src]');
+  if(fr){
+    fr.addEventListener('load',function(){
+      var l=document.getElementById(id+'-loading');
+      if(l) l.classList.add('done');
     });
+    fr.src=fr.getAttribute('data-src');
+    fr.removeAttribute('data-src');
+  }
+  st.busy=true;
+  var done=function(){ st.busy=false; };
+  if(id==='readme'&&!srcEl){ /* auto-open: gentle centered zoom */
+    animateEl(st.el,[{transform:'scale(0.92)',opacity:0},{transform:'none',opacity:1}],320,done);
+  }else{
+    var src=srcEl||anchorEl(id);
+    if(src){
+      var d=centerDelta(st.el,src.getBoundingClientRect());
+      animateEl(st.el,[
+        {transform:'translate('+d.dx+'px,'+d.dy+'px) scale(0.06)',opacity:0.4},
+        {transform:'none',opacity:1}
+      ],380,done);
+    }else done();
+  }
+  try{ st.el.focus({preventScroll:true}); }catch(e){}
 }
 
-/* ---------- runtime-fetched content ---------- */
-var BOOKS;   // undefined = loading, null = failed, [] entries = ok
-var TWEETS;  // same
-function fetchBooks(){
-  fetch("book-covers/manifest.json",{cache:"no-cache"})
-    .then(function(r){if(!r.ok)throw 0;return r.json()})
-    .then(function(d){
-      BOOKS = Object.keys(d).map(function(k){
-        var p=k.split("|");
-        return {title:p[0], author:p[1]||"", src:d[k]};
-      });
-      if(activeFile==="Bookshelf.md") renderPreview();
-    })
-    .catch(function(){ BOOKS=null; if(activeFile==="Bookshelf.md") renderPreview(); });
-}
-function fetchTweets(){
-  fetch("tweets.json",{cache:"no-cache"})
-    .then(function(r){if(!r.ok)throw 0;return r.json()})
-    .then(function(d){
-      TWEETS = Array.isArray(d)? d.slice(0,3) : null;
-      if(activeFile==="Tweets.playground") renderPreview();
-    })
-    .catch(function(){ TWEETS=null; if(activeFile==="Tweets.playground") renderPreview(); });
+function closeWindow(id){
+  var st=wins[id]; if(!st||!st.open||st.busy) return;
+  var el=st.el;
+  var finish=function(){
+    el.classList.add('win-hidden');
+    el.classList.remove('win-min','focused','maxed','sheet','dragging');
+    if(st.max&&st.prevRect){ st.rect=st.prevRect; }
+    st.open=false; st.min=false; st.max=false; st.busy=false;
+    setDot(id);
+    refocusTop();
+  };
+  if(st.min){ finish(); return; }
+  st.busy=true;
+  var src=anchorEl(id);
+  if(src){
+    var d=centerDelta(el,src.getBoundingClientRect());
+    animateEl(el,[
+      {transform:'none',opacity:1},
+      {transform:'translate('+d.dx+'px,'+d.dy+'px) scale(0.06)',opacity:0}
+    ],320,finish,true);
+  }else finish();
 }
 
-/* ---------- SVG bits ---------- */
-var SVG_CHEV_R='<svg class="chev" width="6" height="9" viewBox="0 0 6 9" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l3.5 3.5L1 8"/></svg>';
-var SVG_CHEV_D='<svg width="9" height="6" viewBox="0 0 9 6" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M1 1l3.5 3.5L8 1"/></svg>';
-var SVG_DOC='<svg width="11" height="13" viewBox="0 0 11 13" fill="none" stroke="currentColor" stroke-width="1.1" aria-hidden="true"><path d="M1 2c0-.6.4-1 1-1h4.6L10 4.4V11c0 .6-.4 1-1 1H2c-.6 0-1-.4-1-1V2z"/><path d="M6.4 1v3.6H10"/></svg>';
-var SVG_SWIFT='<svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true"><path d="M9.6 8.2c1-1.6.9-3.7-.3-5.6.9 1 1.5 2.2 1.6 3.4.2 2.4-1.4 4.5-4 4.9-1.3.2-2.7-.1-3.8-.8-.5-.3-1-.8-1.3-1.3.7.5 1.6.8 2.5.8-1.4-1-2.6-2.3-3.4-3.6.8.7 3.1 2.4 4.4 2.9C3.9 7.4 2.4 5.6 1.5 4c1.4 1.3 3 2.5 4.7 3.4l.4.2c.1-.1.2-.3.2-.4.3-1.1 0-2.3-.9-3.4 1.9 1.1 3.1 3 3.7 4.4z"/></svg>';
-var SVG_FOLDER='<svg width="12" height="11" viewBox="0 0 13 12" fill="currentColor" aria-hidden="true"><path d="M1 3.2C1 2.1 1.9 1.2 3 1.2h2.2l1.2 1.6H10c1.1 0 2 .9 2 2v4c0 1.1-.9 2-2 2H3c-1.1 0-2-.9-2-2v-5.6z" opacity=".85"/></svg>';
-var SVG_PROJ='<svg width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="1" y="1" width="11" height="11" rx="2.6"/><path d="M4.2 8.8 6.5 3.5l2.3 5.3M4.9 7.3h3.2" stroke-width="1"/></svg>';
-var SVG_EXT='<svg width="9" height="9" viewBox="0 0 9 9" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><path d="M2 7 7 2M3.2 2H7v3.8"/></svg>';
-var SVG_RESUME='<svg width="11" height="11" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M10.5 6a4.5 4.5 0 1 1-1.3-3.2M10.5 1v2.4H8.1"/></svg>';
-var SVG_X='<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>';
-var SVG_GH='<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>';
-var SVG_LI='<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg>';
-var SVG_MAIL='<svg width="12" height="12" viewBox="0 0 14 11" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true"><rect x="0.6" y="0.6" width="12.8" height="9.8" rx="1.6"/><path d="M1 1.4 7 6l6-4.6"/></svg>';
-var SVG_REPLY='<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M1.751 10c0-4.42 3.584-8 8.005-8h4.366c4.49 0 8.129 3.64 8.129 8.13 0 2.96-1.607 5.68-4.196 7.11l-8.054 4.46v-3.69h-.067c-4.49.1-8.183-3.51-8.183-8.01zm8.005-6c-3.317 0-6.005 2.69-6.005 6 0 3.37 2.77 6.08 6.138 6.01l.351-.01h1.761v2.3l5.087-2.81c1.951-1.08 3.163-3.13 3.163-5.36 0-3.39-2.744-6.13-6.129-6.13H9.756z"/></svg>';
-var SVG_RT='<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.5 3.88l4.432 4.14-1.364 1.46L5.5 7.55V16c0 1.1.896 2 2 2H13v2H7.5c-2.209 0-4-1.79-4-4V7.55L1.432 9.48.068 8.02 4.5 3.88zM16.5 6H11V4h5.5c2.209 0 4 1.79 4 4v8.45l2.068-1.93 1.364 1.46-4.432 4.14-4.432-4.14 1.364-1.46 2.068 1.93V8c0-1.1-.896-2-2-2z"/></svg>';
-var SVG_LIKE='<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.697 5.5c-1.222-.06-2.679.51-3.89 2.16l-.805 1.09-.806-1.09C9.984 6.01 8.526 5.44 7.304 5.5c-1.243.07-2.349.78-2.91 1.91-.552 1.12-.633 2.78.479 4.82 1.074 1.97 3.257 4.27 7.129 6.61 3.87-2.34 6.052-4.64 7.126-6.61 1.111-2.04 1.03-3.7.477-4.82-.561-1.13-1.666-1.84-2.908-1.91zm4.187 7.69c-1.351 2.48-4.001 5.12-8.379 7.67l-.503.3-.504-.3c-4.379-2.55-7.029-5.19-8.382-7.67-1.36-2.5-1.41-4.86-.514-6.67.887-1.79 2.647-2.91 4.601-3.01 1.651-.09 3.368.56 4.798 2.01 1.429-1.45 3.146-2.1 4.796-2.01 1.954.1 3.714 1.22 4.601 3.01.896 1.81.846 4.17-.514 6.67z"/></svg>';
+function minimizeWindow(id){
+  var st=wins[id]; if(!st||!st.open||st.min||st.busy) return;
+  var el=st.el;
+  st.busy=true;
+  var finish=function(){
+    el.classList.add('win-min');
+    st.min=true; st.busy=false;
+    refocusTop();
+  };
+  var src=anchorEl(id);
+  if(src){
+    var d=centerDelta(el,src.getBoundingClientRect());
+    animateEl(el,[
+      {transform:'translate(0px,0px) scale(1,1)',opacity:1},
+      {transform:'translate('+(d.dx*0.45)+'px,'+(d.dy*0.6)+'px) scale(0.6,0.3)',opacity:0.75,offset:0.55},
+      {transform:'translate('+d.dx+'px,'+d.dy+'px) scale(0.12,0.04)',opacity:0}
+    ],420,finish,true);
+  }else finish();
+}
 
-/* ---------- navigator ---------- */
-var NAV = [
-  {kind:"proj", label:"Jared"},
-  {kind:"file", file:"README.md", depth:1, ico:"md"},
-  {kind:"group", label:"Sources", depth:1},
-  {kind:"file", file:"AboutMe.swift", depth:2, ico:"swift"},
-  {kind:"file", file:"Haplo.swift", depth:2, ico:"swift"},
-  {kind:"file", file:"Career.swift", depth:2, ico:"swift"},
-  {kind:"file", file:"EarlyProjects.swift", depth:2, ico:"swift"},
-  {kind:"file", file:"Bookshelf.md", depth:1, ico:"md"},
-  {kind:"file", file:"Tweets.playground", depth:1, ico:"pg"},
-  {kind:"group", label:"Elsewhere", depth:1},
-  {kind:"ext", label:"Projects.html", href:"Projects.html", depth:2, samesite:true},
-  {kind:"ext", label:"bookshelf.html", href:"bookshelf.html", depth:2, samesite:true},
-  {kind:"ext", label:"GitHub", href:LINKS.github, depth:2},
-  {kind:"ext", label:"HaploLLC", href:LINKS.haplogh, depth:2},
-  {kind:"ext", label:"LinkedIn", href:LINKS.linkedin, depth:2},
-  {kind:"ext", label:"X — @JC_builds", href:LINKS.x, depth:2}
+function restoreWindow(id){
+  var st=wins[id]; if(!st||!st.open||!st.min||st.busy) return;
+  var el=st.el;
+  cancelAnims(el);
+  el.classList.remove('win-min');
+  st.min=false;
+  focusWindow(id);
+  setDot(id);
+  st.busy=true;
+  var done=function(){ st.busy=false; };
+  var src=anchorEl(id);
+  if(src){
+    var d=centerDelta(el,src.getBoundingClientRect());
+    animateEl(el,[
+      {transform:'translate('+d.dx+'px,'+d.dy+'px) scale(0.12,0.04)',opacity:0},
+      {transform:'translate('+(d.dx*0.45)+'px,'+(d.dy*0.6)+'px) scale(0.6,0.3)',opacity:0.75,offset:0.45},
+      {transform:'translate(0px,0px) scale(1,1)',opacity:1}
+    ],420,done);
+  }else done();
+  try{ el.focus({preventScroll:true}); }catch(e){}
+}
+
+function toggleMax(id){
+  var st=wins[id]; if(!st||!st.open||st.min||st.busy) return;
+  if(isMobile()) return;
+  var el=st.el;
+  focusWindow(id);
+  if(!reduced()) el.classList.add('rect-anim');
+  if(!st.max){
+    st.prevRect={x:st.rect.x,y:st.rect.y,w:st.rect.w,h:st.rect.h};
+    st.rect=maxRect();
+    st.max=true;
+    el.classList.add('maxed');
+  }else{
+    st.rect=st.prevRect||defaultRect(id);
+    st.max=false;
+    el.classList.remove('maxed');
+    clampRect(st);
+  }
+  applyRect(st);
+  setTimeout(function(){ el.classList.remove('rect-anim'); },340);
+}
+
+/* ---- per-window wiring: traffic lights, focus, drag, dblclick zoom ---- */
+function registerWindow(id){
+  var el=document.getElementById('win-'+id);
+  var st={id:id,el:el,open:false,min:false,max:false,busy:false,rect:null,prevRect:null};
+  wins[id]=st;
+  el.querySelectorAll('.tl button').forEach(function(btn){
+    btn.addEventListener('pointerdown',function(e){ e.stopPropagation(); });
+    btn.addEventListener('dblclick',function(e){ e.stopPropagation(); });
+    btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var act=btn.getAttribute('data-act');
+      if(act==='close') closeWindow(id);
+      else if(act==='min') minimizeWindow(id);
+      else if(act==='max') toggleMax(id);
+    });
+  });
+  el.addEventListener('pointerdown',function(){ if(st.open) focusWindow(id); },true);
+
+  var tb=el.querySelector('.titlebar');
+  var drag=null;
+  tb.addEventListener('pointerdown',function(e){
+    if(e.button!==0) return;
+    if(e.target.closest('.tl')) return;
+    if(st.max||el.classList.contains('sheet')||isMobile()) return;
+    drag={px:e.clientX,py:e.clientY,ox:st.rect.x,oy:st.rect.y,pid:e.pointerId};
+    el.classList.add('dragging');
+    document.body.classList.add('is-dragging');
+    try{ tb.setPointerCapture(e.pointerId); }catch(err){}
+    e.preventDefault();
+  });
+  tb.addEventListener('pointermove',function(e){
+    if(!drag||e.pointerId!==drag.pid) return;
+    if(st.max||el.classList.contains('sheet')){ endDrag(e); return; } /* dblclick-zoom mid-drag */
+    var vw=window.innerWidth,vh=window.innerHeight;
+    st.rect.x=clamp(drag.ox+(e.clientX-drag.px),-(st.rect.w-100),vw-100);
+    st.rect.y=clamp(drag.oy+(e.clientY-drag.py),MENUBAR_H,vh-48);
+    applyRect(st);
+  });
+  function endDrag(e){
+    if(!drag||e.pointerId!==drag.pid) return;
+    drag=null;
+    el.classList.remove('dragging');
+    document.body.classList.remove('is-dragging');
+    try{ tb.releasePointerCapture(e.pointerId); }catch(err){}
+  }
+  tb.addEventListener('pointerup',endDrag);
+  tb.addEventListener('pointercancel',endDrag);
+  tb.addEventListener('dblclick',function(e){
+    if(e.target.closest('.tl')) return;
+    toggleMax(id);
+  });
+}
+['readme','xcode','books','posts','mail','haplo','about'].forEach(registerWindow);
+
+/* ================= menu bar menus ================= */
+var menuPairs=[
+  {btn:document.getElementById('mb-main'),panel:document.getElementById('menu-main')},
+  {btn:document.getElementById('mb-apps'),panel:menuAppsPanel},
+  {btn:document.getElementById('mb-links'),panel:document.getElementById('menu-links')}
 ];
-
-function icoHTML(kind){
-  if(kind==="swift") return '<span class="file-ico swift">'+SVG_SWIFT+'</span>';
-  if(kind==="pg")    return '<span class="file-ico pg">'+SVG_SWIFT+'</span>';
-  return '<span class="file-ico md">'+SVG_DOC+'</span>';
+var openMenu=null;
+function showMenu(p){
+  closeMenus();
+  p.panel.hidden=false;
+  var r=p.btn.getBoundingClientRect();
+  var w=p.panel.offsetWidth;
+  p.panel.style.left=Math.max(6,Math.min(r.left,window.innerWidth-w-6))+'px';
+  p.btn.setAttribute('aria-expanded','true');
+  openMenu=p;
 }
-
-var navTree = document.getElementById("navTree");
-function buildNav(){
-  var h = NAV.map(function(n){
-    var depth = n.depth||0;
-    if(n.kind==="proj"){
-      return '<div class="nav-row projrow" style="--depth:0"><span class="disc">'+SVG_CHEV_D+'</span><span class="file-ico proj">'+SVG_PROJ+'</span>'+esc(n.label)+'</div>';
-    }
-    if(n.kind==="group"){
-      return '<div class="nav-row group" style="--depth:'+depth+'"><span class="disc">'+SVG_CHEV_D+'</span><span class="file-ico folder">'+SVG_FOLDER+'</span>'+esc(n.label)+'</div>';
-    }
-    if(n.kind==="ext"){
-      var blank = n.samesite ? '' : ' target="_blank" rel="noopener"';
-      return '<a class="nav-row" style="--depth:'+depth+'" href="'+n.href+'"'+blank+' data-name="'+esc(n.label)+'">'+
-        '<span class="disc"></span><span class="file-ico md">'+SVG_DOC+'</span>'+esc(n.label)+'<span class="ext">'+SVG_EXT+'</span></a>';
-    }
-    return '<button class="nav-row" style="--depth:'+depth+'" data-file="'+n.file+'" data-name="'+n.file+'">'+
-      '<span class="disc"></span>'+icoHTML(n.ico)+esc(n.file)+'</button>';
-  }).join("");
-  navTree.innerHTML = h;
+function closeMenus(){
+  if(!openMenu) return false;
+  openMenu.panel.hidden=true;
+  openMenu.btn.setAttribute('aria-expanded','false');
+  openMenu=null;
+  return true;
 }
-navTree && buildNav();
-
-navTree.addEventListener("click",function(e){
-  var b = e.target.closest("button[data-file]");
-  if(b) openFile(b.getAttribute("data-file"));
+menuPairs.forEach(function(p){
+  p.btn.addEventListener('click',function(e){
+    e.stopPropagation();
+    if(openMenu===p) closeMenus(); else showMenu(p);
+  });
+  /* real menu bar behavior: once open, hovering a sibling title switches */
+  p.btn.addEventListener('mouseenter',function(){
+    if(openMenu&&openMenu!==p) showMenu(p);
+  });
+  p.panel.addEventListener('click',function(e){
+    e.stopPropagation();
+    if(e.target.closest('a.mi')) closeMenus();
+  });
 });
-document.getElementById("navFilterInput").addEventListener("input",function(){
-  var q=this.value.trim().toLowerCase();
-  navTree.querySelectorAll("[data-name]").forEach(function(el){
-    el.style.display = el.getAttribute("data-name").toLowerCase().indexOf(q)>-1 ? "" : "none";
+document.addEventListener('click',function(){ closeMenus(); });
+document.querySelectorAll('.menu-panel .mi[data-open]').forEach(function(mi){
+  mi.addEventListener('click',function(){
+    var id=mi.getAttribute('data-open');
+    closeMenus();
+    openWindow(id); /* anchorEl() picks a visible source (dock icon / logo) */
   });
 });
 
-/* ---------- tabs + jump bar + editor ---------- */
-var activeFile = "README.md";
-var openTabs = ["README.md"];
-var tabbar = document.getElementById("tabbar");
-var jumpbar = document.getElementById("jumpbar");
-var codeScroll = document.getElementById("codeScroll");
-
-function renderTabs(){
-  tabbar.innerHTML = openTabs.map(function(f){
-    var ico = FILES[f].ico;
-    var act = f===activeFile;
-    return '<div class="tab'+(act?" active":"")+'" role="presentation">'+
-      '<button class="tab-btn" role="tab" aria-selected="'+act+'" data-tab="'+f+'">'+icoHTML(ico)+esc(f)+'</button>'+
-      (openTabs.length>1?'<button class="tab-x" data-close="'+f+'" aria-label="Close '+esc(f)+'">'+
-        '<svg width="8" height="8" viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M1 1l6 6M7 1 1 7"/></svg></button>':"")+
-      '</div>';
-  }).join("");
-}
-tabbar.addEventListener("click",function(e){
-  var c = e.target.closest("[data-close]");
-  if(c){
-    var f=c.getAttribute("data-close");
-    var i=openTabs.indexOf(f);
-    if(i>-1 && openTabs.length>1){
-      openTabs.splice(i,1);
-      if(f===activeFile) openFile(openTabs[Math.max(0,i-1)],false);
-      else renderTabs();
+/* ================= desktop icons: forgiving single/double click ================= */
+document.querySelectorAll('.desk-icon').forEach(function(icon){
+  var id=icon.getAttribute('data-open');
+  var pending=null;
+  icon.addEventListener('click',function(e){
+    if(e.detail>=2){
+      if(pending){ clearTimeout(pending); pending=null; }
+      openWindow(id,icon);
+      return;
     }
-    return;
-  }
-  var t = e.target.closest("[data-tab]");
-  if(t) openFile(t.getAttribute("data-tab"));
-});
-
-function renderJumpbar(){
-  var f = FILES[activeFile];
-  var parts='<span class="file-ico proj" style="color:#7fb3f5">'+SVG_PROJ+'</span><b>Jared</b>';
-  if(f.group) parts += SVG_CHEV_R+'<span class="file-ico folder" style="color:#7d95c4">'+SVG_FOLDER+'</span>'+esc(f.group);
-  parts += SVG_CHEV_R+icoHTML(f.ico)+'<b>'+esc(activeFile)+'</b>';
-  jumpbar.innerHTML = parts;
-}
-
-function renderEditor(){
-  var lines = FILES[activeFile].lines();
-  codeScroll.innerHTML = lines.map(function(l,i){
-    return '<div class="cl"><span class="ln" aria-hidden="true">'+(i+1)+'</span><span class="lc">'+(l||"")+'</span></div>';
-  }).join("");
-  codeScroll.scrollTop = 0;
-}
-codeScroll.addEventListener("click",function(e){
-  var a=e.target.closest("a[data-open]");
-  if(a){e.preventDefault();openFile(a.getAttribute("data-open"))}
-});
-
-/* ---------- preview canvas ---------- */
-var canvasBody = document.getElementById("canvasBody");
-var canvasDevice = document.getElementById("canvasDevice");
-
-function socialRow(){
-  return '<div class="social-row">'+
-    '<a href="'+LINKS.github+'" target="_blank" rel="noopener">'+SVG_GH+'GitHub</a>'+
-    '<a href="'+LINKS.linkedin+'" target="_blank" rel="noopener">'+SVG_LI+'LinkedIn</a>'+
-    '<a href="'+LINKS.x+'" target="_blank" rel="noopener">'+SVG_X+'X</a>'+
-    '<a href="'+LINKS.email+'">'+SVG_MAIL+'Email</a>'+
-    '</div>';
-}
-function pausedBar(label,href,linkText){
-  return '<a class="paused-bar" href="'+href+'"'+(/^https?:/.test(href)?' target="_blank" rel="noopener"':'')+' style="text-decoration:none">'+
-    '<span>'+esc(label)+'</span><span class="resume">'+SVG_RESUME+esc(linkText||"Resume")+'</span></a>';
-}
-function replayBar(){
-  return '<button class="paused-bar" id="resumeBtn">'+
-    '<span>Preview paused</span><span class="resume">'+SVG_RESUME+'Resume</span></button>';
-}
-
-function pvReadme(){
-  return '<div class="phone"><div class="screen">'+
-    '<img class="avatar" src="MyImage.png" alt="Portrait of Jared Cassoutt" onerror="this.remove()">'+
-    '<h2 class="pv-name">Jared Cassoutt</h2>'+
-    '<div class="pv-plat"><span>iOS apps</span><span>on-device AI</span></div>'+
-    '<p class="pv-pitch">Senior iOS engineer at eBay. Founder of Haplo. Ships slightly too often.</p>'+
-    '<p class="pv-loc">Portland, OR</p>'+
-    socialRow()+
-    '<p class="pv-proof">8 apps · 11 OSS repos · 34 HF models</p>'+
-    '</div></div>';
-}
-function pvAbout(){
-  return '<div class="phone"><div class="screen">'+
-    '<img class="avatar" src="jc-builds-avatar.jpg" alt="JC Builds avatar" onerror="this.remove()">'+
-    '<h2 class="pv-name">Jared Cassoutt</h2>'+
-    '<p class="pv-pitch">Senior iOS Engineer @ eBay<br>Founder of Haplo, LLC</p>'+
-    '<p class="pv-loc">Portland, OR · Baylor ’21</p>'+
-    '<div class="chips"><span>Swift</span><span>SwiftUI</span><span>Core ML</span><span>Metal</span><span>llama.cpp</span><span>GGUF</span></div>'+
-    socialRow()+
-    '</div></div>';
-}
-function pvHaplo(){
-  return '<div class="studio-card">'+
-    '<span aria-hidden="true">'+tileHTML({color:"#2f69cf",initial:"H",src:"haploLogo.png",appId:null,size:72,alt:""})+'</span>'+
-    '<h2 class="pv-name">Haplo, LLC</h2>'+
-    '<p class="pv-pitch">A tiny studio shipping iOS &amp; macOS apps in Swift. Privacy-first, on-device AI.</p>'+
-    '<div class="studio-stats"><span><b>8</b>apps</span><span><b>1</b>developer</span><span><b>0</b>trackers</span></div>'+
-    '<div class="mini-grid">'+HAPLO_APPS.map(function(a){
-      return '<a href="'+storeURL(a.id)+'" target="_blank" rel="noopener" aria-label="'+esc(a.name)+' — '+esc(a.one)+' — on the App Store">'+
-        '<span aria-hidden="true">'+tileHTML({color:a.color,initial:a.initial,src:null,appId:a.id,size:40,alt:""})+'</span>'+esc(a.name)+'</a>';
-    }).join("")+'</div>'+
-    '<a class="pv-learn" href="'+LINKS.haplo+'" target="_blank" rel="noopener">All apps at haploapp.com →</a>'+
-    '</div>';
-}
-function pvCareer(){
-  return '<div class="tl-wrap">'+CAREER.map(function(r){
-    return '<a class="tl-card" href="'+r.url+'" target="_blank" rel="noopener" style="text-decoration:none">'+
-      '<span class="tl-logo"><img src="'+r.logo+'" alt="" onerror="this.parentNode.textContent=\''+esc(r.co.charAt(0))+'\'"></span>'+
-      '<span class="tl-body"><span class="tl-co">'+esc(r.co)+'</span><br><span class="tl-role">'+esc(r.role)+'</span></span>'+
-      '<span class="tl-yr'+(r.live?' live':'')+'">'+esc(r.yr)+'</span></a>';
-  }).join("")+
-  '<p class="tl-note">B.S. Mechanical Engineering, minor Mathematics<br>Baylor University · 2021</p></div>';
-}
-function pvEarly(){
-  return '<div class="tl-wrap">'+EARLY.map(function(p){
-    return '<div class="proj-card">'+
-      '<span class="proj-badge">// '+esc(p.badge)+'</span>'+
-      '<span class="proj-name">'+esc(p.name)+'</span>'+
-      '<span class="proj-what">'+esc(p.what)+'</span>'+
-      '<span class="proj-tech">'+p.tech.map(function(t){return '<span>'+esc(t)+'</span>'}).join("")+'</span>'+
-      (p.demo?'<a class="proj-demo" href="'+p.demo+'" target="_blank" rel="noopener">Watch the demo →</a>':'')+
-      '</div>';
-  }).join("")+'</div>';
-}
-function pvBooks(){
-  if(BOOKS===undefined){
-    return '<p class="pv-loc" style="padding-top:20px">Building book previews…</p>';
-  }
-  if(BOOKS===null || !BOOKS.length){
-    return pausedBar("Preview paused — shelf didn’t load","bookshelf.html","Resume preview");
-  }
-  var covers = BOOKS.slice(0,15).map(function(b){
-    return '<img src="'+esc(b.src)+'" alt="'+esc(b.title+" by "+b.author)+'" title="'+esc(b.title+" — "+b.author)+'" loading="lazy" onerror="this.remove()">';
-  }).join("");
-  var more = BOOKS.length-15;
-  return '<div class="tl-wrap"><div class="book-grid">'+covers+
-    '<a class="book-more" href="bookshelf.html"><span>+'+(more>0?more:"")+' more</span><span style="font-size:9px;color:#949aa4">full shelf →</span></a>'+
-    '</div></div>';
-}
-function fmtStat(n){return typeof n==="number"? String(n) : esc(String(n||0))}
-function pvTweets(){
-  if(TWEETS===undefined){
-    return '<p class="pv-loc" style="padding-top:20px">Compiling playground…</p>';
-  }
-  if(TWEETS===null || !TWEETS.length){
-    return pausedBar("Preview paused — tweets.json didn’t load",LINKS.x,"Resume on X");
-  }
-  return '<div class="tl-wrap">'+TWEETS.map(function(t){
-    var m = (t.media && t.media.length) ? t.media[0] : null;
-    var mediaHTML = m && m.url ? '<span class="tw-media"><img src="'+esc(m.url)+'" alt="" loading="lazy" onerror="this.parentNode.remove()"></span>' : '';
-    return '<a class="tweet-card" href="'+esc(t.url)+'" target="_blank" rel="noopener">'+
-      '<span class="tw-head">'+
-        '<img class="tw-av" src="jc-builds-avatar.jpg" alt="" onerror="this.remove()">'+
-        '<span><span class="tw-name">JC Builds</span><br><span class="tw-handle">@JC_builds · '+esc(t.date||"")+'</span></span>'+
-        '<span class="tw-x">'+SVG_X+'</span>'+
-      '</span>'+
-      '<span class="tw-body">'+esc(t.body||"")+'</span>'+
-      mediaHTML+
-      '<span class="tw-stats">'+
-        '<span>'+SVG_REPLY+fmtStat(t.replies)+'</span>'+
-        '<span>'+SVG_RT+fmtStat(t.retweets)+'</span>'+
-        '<span>'+SVG_LIKE+fmtStat(t.likes)+'</span>'+
-      '</span></a>';
-  }).join("")+
-  '<a class="pv-learn" style="text-align:center" href="'+LINKS.x+'" target="_blank" rel="noopener">More at x.com/JC_builds →</a></div>';
-}
-
-function renderPreview(){
-  var f = FILES[activeFile];
-  canvasDevice.textContent = f.dev || "iPhone 16 Pro";
-  var inner = "";
-  switch(f.preview){
-    case "readme": inner = pvReadme(); break;
-    case "about":  inner = pvAbout(); break;
-    case "haplo":  inner = pvHaplo(); break;
-    case "career": inner = pvCareer(); break;
-    case "early":  inner = pvEarly(); break;
-    case "books":  inner = pvBooks(); break;
-    case "tweets": inner = pvTweets(); break;
-  }
-  canvasBody.innerHTML = replayBar()+'<div class="pv-stage"><div class="pv-anim" id="pvAnim">'+inner+'</div></div>';
-  if(!RM){var el=document.getElementById("pvAnim");el.classList.add("in")}
-}
-canvasBody.addEventListener("click",function(e){
-  if(e.target.closest("#resumeBtn")){
-    var el=document.getElementById("pvAnim");
-    if(el && !RM){el.classList.remove("in");void el.offsetWidth;el.classList.add("in")}
-  }
-});
-
-/* ---------- file switching ---------- */
-function openFile(name,addTab){
-  if(addTab===undefined) addTab=true;
-  if(!FILES[name]) return;
-  activeFile = name;
-  if(addTab && openTabs.indexOf(name)===-1){
-    openTabs.push(name);
-    if(openTabs.length>5){
-      var drop = openTabs.findIndex(function(t){return t!==name});
-      if(drop>-1) openTabs.splice(drop,1);
-    }
-  }
-  navTree.querySelectorAll(".nav-row[data-file]").forEach(function(el){
-    var sel = el.getAttribute("data-file")===name;
-    el.classList.toggle("sel",sel);
-    if(sel) el.setAttribute("aria-current","true"); else el.removeAttribute("aria-current");
-    if(sel && navTree.scrollWidth > navTree.clientWidth){ // mobile chip strip: minimal scroll into view
-      var lo = el.offsetLeft - navTree.offsetLeft - 12;
-      var hi = el.offsetLeft - navTree.offsetLeft + el.offsetWidth + 12 - navTree.clientWidth;
-      if(navTree.scrollLeft > lo) navTree.scrollLeft = Math.max(0, lo);
-      else if(navTree.scrollLeft < hi) navTree.scrollLeft = hi;
-    }
-  });
-  renderTabs(); renderJumpbar(); renderEditor(); renderPreview();
-}
-
-/* ---------- console build log ---------- */
-var consoleOut = document.getElementById("consoleOut");
-var statusPill = document.getElementById("statusPill");
-var statusText = document.getElementById("statusText");
-var pillProgress = document.getElementById("pillProgress");
-var announce = document.getElementById("buildAnnounce");
-var building=false, cycleTimer=null, buildTimers=[];
-
-function fmtTime(d){
-  return d.toLocaleTimeString("en-US",{hour:"numeric",minute:"2-digit"});
-}
-function fmtStamp(d){
-  function p(n){return (n<10?"0":"")+n}
-  return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes())+":"+p(d.getSeconds());
-}
-
-var LINKS_LINE = '(lldb) po Jared.links  ▸ '+
-  '<a href="'+LINKS.github+'" target="_blank" rel="noopener">GitHub</a> · '+
-  '<a href="'+LINKS.linkedin+'" target="_blank" rel="noopener">LinkedIn</a> · '+
-  '<a href="'+LINKS.x+'" target="_blank" rel="noopener">X</a> · '+
-  '<a href="'+LINKS.email+'">Email</a> · '+
-  '<a href="'+LINKS.haplo+'" target="_blank" rel="noopener">haploapp.com</a>';
-
-function buildSteps(){
-  var now = new Date();
-  return [
-    {t:'<span class="dim">Build target Jared — configuration Release, destination iPhone 16 Pro</span>',d:120,p:8},
-    {t:'Compiling JaredCassoutt.swift… <span class="dim">(1 of 1 — there’s only one of me)</span>',d:420,p:30},
-    {t:'Linking eBay experience… <span class="dim">day job attached quietly in the background</span>',d:380,p:52},
-    {t:'Attaching 8 shipped apps… Barrier · Haplo AI · Investing · Annot8 · EasyLogo · Markdown2PDF · Carve · ShipHappens',d:420,p:74},
-    {t:'CodeSign  <span class="dim">(mechanical engineering degree notarized separately)</span>',d:300,p:90},
-    {t:'<span class="ok">** BUILD SUCCEEDED **</span>  <span class="dim">[0.9 sec]</span>',d:340,p:100},
-    {t:'<span class="dim">'+fmtStamp(now)+' Jared[1993:42]</span> <span class="quote">NSLog: "trained models beat GPT-4o at counting calories, bought paper towels with an on-device agent, still can’t exit vim on the first try."</span>',d:520,p:100},
-    {t:LINKS_LINE,d:300,p:100}
-  ];
-}
-function addCline(html){
-  var d=document.createElement("div");
-  d.className="cline"; d.innerHTML=html;
-  consoleOut.appendChild(d);
-  consoleOut.scrollTop=consoleOut.scrollHeight;
-}
-function finishBuild(){
-  building=false;
-  statusPill.classList.remove("building");
-  statusPill.classList.add("done");
-  pillProgress.style.width="0%";
-  statusText.textContent="Build Succeeded | Today at "+fmtTime(new Date());
-  announce.textContent="Build succeeded. Jared is ready to say hi.";
-  startPillCycle();
-}
-function startPillCycle(){
-  if(RM || cycleTimer) return;
-  var msgs=["Build Succeeded | Today at "+fmtTime(new Date()),"8 apps · 34 models · 1 developer","Portland, OR · probably reading"];
-  var i=0;
-  cycleTimer=setInterval(function(){
-    i=(i+1)%msgs.length;
-    statusText.classList.add("fading");
-    setTimeout(function(){statusText.textContent=msgs[i];statusText.classList.remove("fading")},300);
-  },4500);
-}
-function runBuild(){
-  if(building) return;
-  building=true;
-  buildTimers.forEach(clearTimeout); buildTimers=[];
-  if(cycleTimer){clearInterval(cycleTimer);cycleTimer=null}
-  consoleOut.innerHTML="";
-  statusPill.classList.remove("done");
-  statusPill.classList.add("building");
-  statusText.classList.remove("fading");
-  statusText.textContent="Building Jared: compiling Swift sources…";
-  pillProgress.style.width="4%";
-  var steps=buildSteps();
-  if(RM){
-    steps.forEach(function(s){addCline(s.t)});
-    finishBuild();
-    return;
-  }
-  var acc=0;
-  steps.forEach(function(s,i){
-    acc+=s.d;
-    buildTimers.push(setTimeout(function(){
-      addCline(s.t);
-      pillProgress.style.width=s.p+"%";
-      if(i===steps.length-1) setTimeout(finishBuild,250);
-    },acc));
-  });
-}
-document.getElementById("runBtn").addEventListener("click",runBuild);
-document.getElementById("clearConsole").addEventListener("click",function(){consoleOut.innerHTML=""});
-document.getElementById("consoleFilterInput").addEventListener("input",function(){
-  var q=this.value.trim().toLowerCase();
-  consoleOut.querySelectorAll(".cline").forEach(function(el){
-    el.style.display = el.textContent.toLowerCase().indexOf(q)>-1 ? "" : "none";
+    if(pending) return;
+    pending=setTimeout(function(){ pending=null; openWindow(id,icon); },150);
   });
 });
-var consolePane=document.getElementById("consolePane");
-var consoleToggle=document.getElementById("consoleToggle");
-consoleToggle.addEventListener("click",function(){
-  var collapsed=consolePane.classList.toggle("collapsed");
-  consoleToggle.setAttribute("aria-expanded",String(!collapsed));
-  document.getElementById("consoleChev").classList.toggle("flip",collapsed);
+
+/* ================= wallpaper: defocus + selection marquee ================= */
+var wallpaper=document.getElementById('wallpaper');
+wallpaper.addEventListener('pointerdown',function(e){
+  closeMenus();
+  defocusAll();
+  if(e.pointerType!=='mouse'||e.button!==0) return; /* marquee: mouse only */
+  var sx=e.clientX,sy=e.clientY;
+  var mq=document.createElement('div');
+  mq.className='marquee';
+  document.body.appendChild(mq);
+  function draw(ev){
+    var x=Math.min(sx,ev.clientX),y=Math.max(MENUBAR_H,Math.min(sy,ev.clientY));
+    mq.style.left=x+'px';
+    mq.style.top=y+'px';
+    mq.style.width=Math.abs(ev.clientX-sx)+'px';
+    mq.style.height=Math.max(0,Math.max(sy,ev.clientY)-y)+'px';
+  }
+  draw(e);
+  try{ wallpaper.setPointerCapture(e.pointerId); }catch(err){}
+  function up(){
+    mq.remove();
+    wallpaper.removeEventListener('pointermove',draw);
+    wallpaper.removeEventListener('pointerup',up);
+    wallpaper.removeEventListener('pointercancel',up);
+  }
+  wallpaper.addEventListener('pointermove',draw);
+  wallpaper.addEventListener('pointerup',up);
+  wallpaper.addEventListener('pointercancel',up);
 });
 
-/* ---------- pane toggles ---------- */
-document.getElementById("navToggle").addEventListener("click",function(){
-  var on=document.body.classList.toggle("hide-nav");
-  this.setAttribute("aria-pressed",String(on));
-});
-document.getElementById("canvasToggle").addEventListener("click",function(){
-  var on=document.body.classList.toggle("hide-canvas");
-  this.setAttribute("aria-pressed",String(on));
+/* ================= keyboard ================= */
+document.addEventListener('keydown',function(e){
+  if(e.key==='Escape'){
+    if(closeMenus()) return;
+    var bd=document.getElementById('book-detail');
+    if(bd&&!bd.hidden){ bd.hidden=true; return; }
+    if(focusedId){
+      var st=wins[focusedId];
+      if(st&&st.open&&!st.min) closeWindow(focusedId);
+    }
+  }
 });
 
-/* ---------- boot ---------- */
-openFile("README.md");
-fetchArtwork();
-fetchBooks();
-fetchTweets();
-setTimeout(runBuild, RM?0:450);
+/* ================= dock magnification (stabilized math) ================= */
+if(mqFine.matches&&!mqCoarse.matches&&!reduced()){
+  var items=Array.prototype.slice.call(dock.querySelectorAll('.dock-item'));
+  var baseW=0,centers=[],mouseX=null,rafId=null,resetTimer=null;
+  /* Measure while the dock is at rest (widths cleared) so the falloff
+     uses stable base centers — no feedback jitter at the shelf edges. */
+  var measure=function(){
+    var r=items[0].getBoundingClientRect();
+    if(r.width<1) return;
+    baseW=r.width;
+    centers=items.map(function(it){
+      var b=it.getBoundingClientRect();
+      return b.left+b.width/2;
+    });
+  };
+  var apply=function(){
+    rafId=null;
+    if(mouseX===null||!baseW||!centers.length) return;
+    var range=baseW*2.4;
+    items.forEach(function(it,i){
+      var t=Math.max(0,1-Math.abs(mouseX-centers[i])/range);
+      var s=1+0.85*t*t;
+      it.style.width=(baseW*s).toFixed(2)+'px';
+    });
+  };
+  dock.addEventListener('mouseenter',function(){
+    clearTimeout(resetTimer);
+    dock.classList.remove('resetting'); /* widths snap to base… */
+    measure();                          /* …so this reads true rest layout */
+  });
+  dock.addEventListener('mousemove',function(e){
+    if(!baseW) measure();
+    mouseX=e.clientX;
+    if(!rafId) rafId=requestAnimationFrame(apply);
+  });
+  dock.addEventListener('mouseleave',function(){
+    mouseX=null;
+    if(rafId){ cancelAnimationFrame(rafId); rafId=null; }
+    dock.classList.add('resetting');
+    items.forEach(function(it){ it.style.width=''; });
+    resetTimer=setTimeout(function(){ dock.classList.remove('resetting'); },320);
+  });
+  window.addEventListener('resize',function(){
+    baseW=0; centers=[];
+    items.forEach(function(it){ it.style.width=''; });
+  });
+}
+
+/* ================= resize: keep windows legal ================= */
+window.addEventListener('resize',function(){
+  Object.keys(wins).forEach(function(k){
+    var st=wins[k];
+    if(!st.open) return;
+    if(isMobile()){
+      st.el.classList.add('sheet');
+      st.el.style.left=st.el.style.top=st.el.style.width=st.el.style.height='';
+    }else{
+      st.el.classList.remove('sheet');
+      if(!st.rect) st.rect=defaultRect(k);
+      if(st.max) st.rect=maxRect();
+      clampRect(st);
+      applyRect(st);
+    }
+  });
+});
+
+/* ================= Books: load the real shelf ================= */
+(function loadBooks(){
+  var shelf=document.getElementById('bookcase');
+  var count=document.getElementById('books-count');
+  var detail=document.getElementById('book-detail');
+  var bdCover=document.getElementById('bd-cover');
+  var bdTitle=document.getElementById('bd-title');
+  var bdAuthor=document.getElementById('bd-author');
+  var bdSearch=document.getElementById('bd-search');
+  document.getElementById('bd-back').addEventListener('click',function(){ detail.hidden=true; });
+  fetch('book-covers/manifest.json')
+    .then(function(r){ return r.json(); })
+    .then(function(data){
+      var entries=Object.keys(data);
+      count.textContent=entries.length+' books · always reading';
+      entries.forEach(function(key){
+        var parts=key.split('|');
+        var title=parts[0]||key, author=parts[1]||'';
+        var b=document.createElement('button');
+        b.type='button';
+        b.className='book';
+        b.setAttribute('role','listitem');
+        b.setAttribute('aria-label',title+(author?' by '+author:''));
+        b.innerHTML='<img class="book-cover" loading="lazy" src="'+esc(data[key])+'" alt="">'+
+                    '<span class="book-label">'+esc(title)+'</span>';
+        b.addEventListener('click',function(){
+          bdCover.src=data[key];
+          bdCover.alt='Cover of '+title;
+          bdTitle.textContent=title;
+          bdAuthor.textContent=author?('by '+author):'';
+          bdSearch.href='https://www.google.com/search?q='+encodeURIComponent(title+' '+author+' book');
+          detail.hidden=false;
+        });
+        shelf.appendChild(b);
+      });
+    })
+    .catch(function(){
+      count.textContent='';
+      shelf.innerHTML='<p style="grid-column:1/-1;padding:20px;color:#5c4a33;font-size:13px">Shelf is being restocked — check back in a moment.</p>';
+    });
+})();
+
+/* ================= Posts: load real tweets ================= */
+(function loadPosts(){
+  var feed=document.getElementById('posts-feed');
+  function fmt(n){ return (n>=1000)?(n/1000).toFixed(1).replace(/\.0$/,'')+'K':String(n); }
+  fetch('tweets.json')
+    .then(function(r){ return r.json(); })
+    .then(function(tweets){
+      tweets.forEach(function(t){
+        var a=document.createElement('a');
+        a.className='post';
+        a.href=t.url;
+        a.target='_blank';
+        a.rel='noopener';
+        var media='';
+        if(t.media&&t.media[0]&&t.media[0].url){
+          media='<img class="post-media" loading="lazy" src="'+esc(t.media[0].url)+'" alt="">';
+        }
+        a.innerHTML=
+          '<div class="post-top"><img src="jc-builds-avatar.jpg" alt=""><b>Jared</b><span>@JC_builds · '+esc(t.date||'')+'</span></div>'+
+          '<div class="post-body">'+esc(t.body||'')+'</div>'+media+
+          '<div class="post-stats">'+
+            '<span>'+fmt(t.replies||0)+' replies</span>'+
+            '<span>'+fmt(t.retweets||0)+' reposts</span>'+
+            '<span class="ps-likes">♥ '+fmt(t.likes||0)+'</span>'+
+          '</div>';
+        feed.appendChild(a);
+      });
+    })
+    .catch(function(){
+      feed.innerHTML='<p style="padding:20px;color:#71767b;font-size:13px">Feed unavailable — find me at <a href="https://x.com/JC_builds" style="color:#1d9bf0">x.com/JC_builds</a>.</p>';
+    });
+})();
+
+/* ================= Mail: compose → mailto ================= */
+document.getElementById('mail-send').addEventListener('click',function(){
+  var subject=document.getElementById('mail-subject').value||'Hi Jared —';
+  var body=document.getElementById('mail-msg').value||'';
+  window.location.href='mailto:jaredcassoutt@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+});
+
+/* ================= boot: auto-open README, teach the dock ================= */
+setTimeout(function(){ openWindow('readme'); },350);
+setTimeout(function(){
+  if(reduced()||userClickedDock) return;
+  var first=dock.querySelector('.dock-item');
+  if(!first) return;
+  first.classList.add('bouncing');
+  first.addEventListener('animationend',function h(){
+    first.classList.remove('bouncing');
+    first.removeEventListener('animationend',h);
+  });
+},2000);
 })();
 </script>
 </body>
