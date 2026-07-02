@@ -395,7 +395,24 @@ body.is-dragging iframe{pointer-events:none}
 
 /* ---- Haplo window ---- */
 .haplo-body{padding:26px 24px;text-align:center;background:#fbfbfc}
-.haplo-body img{width:64px;height:64px;border-radius:14px;margin:6px auto 12px;box-shadow:0 6px 16px rgba(6,6,20,.18)}
+.haplo-mark{width:64px;height:64px;border-radius:22%;margin:6px auto 12px;box-shadow:0 6px 16px rgba(6,6,20,.18)}
+.haplo-appgrid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:14px 8px;
+  max-width:340px;margin:0 auto 20px;
+}
+.ha-app{display:flex;flex-direction:column;align-items:center;gap:6px;text-decoration:none}
+.ha-tile{
+  position:relative;width:52px;height:52px;border-radius:22%;overflow:hidden;
+  display:grid;place-items:center;color:#fff;font-weight:700;font-size:19px;
+  background:var(--ha,#8884);
+  box-shadow:inset 0 0 0 1px rgba(0,0,0,.06),0 4px 10px rgba(6,6,20,.18);
+  transition:transform .2s cubic-bezier(.34,1.56,.64,1);
+}
+.ha-app:hover .ha-tile{transform:translateY(-3px) scale(1.06)}
+.ha-app:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
+.ha-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ha-name{font-size:11px;color:var(--ink-soft);line-height:1.2}
+@media (max-width:420px){.haplo-appgrid{grid-template-columns:repeat(4,1fr);gap:10px 6px}}
 .haplo-body h2{font-size:19px}
 .haplo-sub{color:var(--ink-soft);font-size:13px;margin:2px 0 14px}
 .haplo-stats{
@@ -479,6 +496,49 @@ body.is-dragging iframe{pointer-events:none}
   .haplo-stats{max-width:100%}
 }
 
+/* ================= iPhone mode (body.ios, set by JS on phones) ================= */
+#homescreen{display:none}
+body.ios .menubar{background:transparent;-webkit-backdrop-filter:none;backdrop-filter:none;border-bottom:none;height:34px}
+body.ios .mb-item{display:none}
+body.ios .mb-right{flex:1;flex-direction:row-reverse;justify-content:space-between;padding:0 8px}
+body.ios .mb-right svg{display:block !important}
+body.ios .mb-clock{font-weight:600;font-size:14px;text-shadow:0 1px 3px rgba(0,0,0,.5)}
+body.ios .desktop-icons{display:none}
+body.ios #homescreen{
+  display:grid;position:fixed;top:52px;left:0;right:0;z-index:2;
+  grid-template-columns:repeat(4,1fr);gap:20px 6px;
+  padding:0 14px;justify-items:center;
+}
+.hs-icon{background:none;border:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:6px;width:78px;cursor:default}
+.hs-icon:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:16px}
+.hs-tile{
+  width:60px;height:60px;border-radius:22.5%;overflow:hidden;
+  display:grid;place-items:center;background:#fff;
+  box-shadow:0 6px 14px rgba(6,6,20,.35);
+}
+.hs-tile img{width:100%;height:100%;object-fit:cover}
+.hs-tile svg{width:58%;height:58%}
+.hs-label{font-size:11px;font-weight:500;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.8);line-height:1.2}
+body.ios .dock-item[data-app="haplo"]{display:none}
+body.ios .dock{border-radius:28px;padding:10px 12px;background:rgba(255,255,255,.24)}
+/* apps take the full screen like iOS, chrome-free, with a home indicator */
+body.ios .window.sheet{
+  top:34px !important;
+  height:calc(100% - 34px) !important;
+  border-radius:18px 18px 0 0;
+}
+body.ios .window.sheet .titlebar{display:none}
+body.ios.app-open .dock-wrap{display:none}
+body.ios.app-open #homescreen{display:none}
+.home-indicator{
+  display:none;position:absolute;bottom:7px;left:50%;transform:translateX(-50%);
+  width:130px;height:5px;border-radius:3px;
+  background:rgba(128,128,140,.6);border:none;cursor:pointer;z-index:6;padding:0;
+}
+.home-indicator:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+body.ios .window.sheet .home-indicator{display:block}
+body.ios .window.sheet .wbody{padding-bottom:24px}
+
 /* ================= reduced motion ================= */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none !important;transition:none !important}
@@ -518,9 +578,17 @@ body.is-dragging iframe{pointer-events:none}
       <path d="M5.8 8.9c1.3-1.1 3.1-1.1 4.4 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
       <circle cx="8" cy="10.8" r="1.1" fill="currentColor"/>
     </svg>
+    <svg class="mb-batt" width="22" height="11" viewBox="0 0 25 12" aria-hidden="true">
+      <rect x="0.5" y="0.5" width="21" height="11" rx="3" fill="none" stroke="currentColor" opacity=".5"/>
+      <rect x="2" y="2" width="15" height="8" rx="1.6" fill="currentColor"/>
+      <path d="M23.5 4v4c1-.4 1.5-1.1 1.5-2s-.5-1.6-1.5-2z" fill="currentColor" opacity=".5"/>
+    </svg>
     <span class="mb-clock" id="clock">&nbsp;</span>
   </div>
 </header>
+
+<!-- iPhone home screen (phones only) -->
+<div id="homescreen" aria-label="Home screen"></div>
 
 <div class="menu-panel" id="menu-main" role="menu" aria-labelledby="mb-main" hidden>
   <button class="mi" role="menuitem" data-open="about">About This Jared</button>
@@ -534,7 +602,7 @@ body.is-dragging iframe{pointer-events:none}
 <div class="menu-panel" id="menu-apps" role="menu" aria-labelledby="mb-apps" hidden></div>
 <div class="menu-panel" id="menu-links" role="menu" aria-labelledby="mb-links" hidden>
   <a class="mi" role="menuitem" href="https://haploapp.com" target="_blank" rel="noopener">haploapp.com</a>
-  <a class="mi" role="menuitem" href="https://apps.apple.com/us/developer/haplo-llc/id1568353330" target="_blank" rel="noopener">App Store developer page</a>
+  <a class="mi" role="menuitem" href="https://x.com/JC_builds" target="_blank" rel="noopener">Build log — @JC_builds</a>
 </div>
 
 <div class="desktop-icons">
@@ -686,7 +754,7 @@ body.is-dragging iframe{pointer-events:none}
     <span class="tb-title" id="wt-haplo">Haplo</span>
   </div>
   <div class="wbody haplo-body">
-    <img src="haploLogo.png" alt="Haplo logo">
+    <img src="icons/haplo.png" alt="Haplo logo" class="haplo-mark">
     <h2>Haplo, LLC</h2>
     <p class="haplo-sub">My indie studio. We're a tiny studio — ship happens. (often.)</p>
     <div class="haplo-stats">
@@ -694,9 +762,9 @@ body.is-dragging iframe{pointer-events:none}
       <div class="haplo-stat"><b>0</b><span>data collected</span></div>
       <div class="haplo-stat"><b>100%</b><span>Swift</span></div>
     </div>
+    <div class="haplo-appgrid" id="haplo-appgrid" aria-label="Haplo apps"></div>
     <div class="haplo-actions">
       <a class="haplo-cta" href="https://haploapp.com" target="_blank" rel="noopener">Visit haploapp.com</a>
-      <a class="btn-ghost" href="https://apps.apple.com/us/developer/haplo-llc/id1568353330" target="_blank" rel="noopener">App Store developer page</a>
     </div>
   </div>
 </section>
@@ -808,15 +876,20 @@ var WIN_DEFAULTS={
   books:{w:780,h:560},
   posts:{w:520,h:640},
   mail:{w:560,h:500},
-  haplo:{w:460,h:430},
+  haplo:{w:500,h:660},
   about:{w:360,h:470}
 };
 function defSize(id){ return WIN_DEFAULTS[id]||{w:520,h:420}; }
 
 function anchorEl(id){
+  var hs=document.querySelector('body.ios .hs-icon[data-open="'+id+'"]'); if(hs) return hs;
   var d=dockBtn(id); if(d) return d;
   var desk=document.querySelector('.desk-icon[data-open="'+id+'"]'); if(desk) return desk;
   return document.getElementById('mb-main');
+}
+function updateAppOpen(){
+  var open=Object.keys(wins).some(function(k){ return wins[k].open&&!wins[k].min; });
+  document.body.classList.toggle('app-open',open);
 }
 function dockTopY(){
   var dw=document.querySelector('.dock-wrap');
@@ -924,6 +997,7 @@ function openWindow(id,srcEl){
   st.open=true; st.min=false;
   focusWindow(id);
   setDot(id);
+  updateAppOpen();
   /* lazy iframes (Xcode) load on first open */
   var fr=st.el.querySelector('iframe[data-src]');
   if(fr){
@@ -961,6 +1035,7 @@ function closeWindow(id){
     st.open=false; st.min=false; st.max=false; st.busy=false;
     setDot(id);
     refocusTop();
+    updateAppOpen();
   };
   if(st.min){ finish(); return; }
   st.busy=true;
@@ -982,6 +1057,7 @@ function minimizeWindow(id){
     el.classList.add('win-min');
     st.min=true; st.busy=false;
     refocusTop();
+    updateAppOpen();
   };
   var src=anchorEl(id);
   if(src){
@@ -1002,6 +1078,7 @@ function restoreWindow(id){
   st.min=false;
   focusWindow(id);
   setDot(id);
+  updateAppOpen();
   st.busy=true;
   var done=function(){ st.busy=false; };
   var src=anchorEl(id);
@@ -1088,6 +1165,14 @@ function registerWindow(id){
     if(e.target.closest('.tl')) return;
     toggleMax(id);
   });
+
+  /* iPhone mode: swipe-bar stand-in — tap the home indicator to go home */
+  var hi=document.createElement('button');
+  hi.type='button';
+  hi.className='home-indicator';
+  hi.setAttribute('aria-label','Go to Home Screen');
+  hi.addEventListener('click',function(){ closeWindow(id); });
+  el.appendChild(hi);
 }
 ['readme','xcode','books','posts','mail','haplo','about'].forEach(registerWindow);
 
@@ -1336,6 +1421,53 @@ window.addEventListener('resize',function(){
     });
 })();
 
+/* ================= Haplo window: the 8 apps, linked to their pages ================= */
+(function loadHaploApps(){
+  var grid=document.getElementById('haplo-appgrid');
+  if(!grid) return;
+  var APPS=[
+    {t:'6746702574', n:'Haplo AI',    p:'haplo_ai',     c:'linear-gradient(145deg,#60a5fa,#2563eb)', i:'H'},
+    {t:'6448244443', n:'Barrier',     p:'barrier',      c:'linear-gradient(145deg,#9d6bf5,#6d28d9)', i:'B'},
+    {t:'1568353331', n:'Investing',   p:'haplo',        c:'linear-gradient(145deg,#34d399,#059669)', i:'I'},
+    {t:'6469836426', n:'Annot8',      p:'annot8',       c:'linear-gradient(145deg,#4ade80,#16a34a)', i:'A'},
+    {t:'6740788822', n:'EasyLogo',    p:'easylogo',     c:'linear-gradient(145deg,#f472b6,#db2777)', i:'E'},
+    {t:'6743325583', n:'MD2PDF',      p:'markdown2pdf', c:'linear-gradient(145deg,#2dd4bf,#0d9488)', i:'M'},
+    {t:'6754781687', n:'Carve',       p:'carve',        c:'linear-gradient(145deg,#fb923c,#ea580c)', i:'C'},
+    {t:'6748663243', n:'ShipHappens', p:'shiphappens',  c:'linear-gradient(145deg,#fbbf24,#d97706)', i:'S'}
+  ];
+  APPS.forEach(function(app){
+    var a=document.createElement('a');
+    a.className='ha-app';
+    a.href='https://haploapp.com/'+app.p;
+    a.target='_blank';
+    a.rel='noopener';
+    a.setAttribute('aria-label',app.n+' — see the app and download it');
+    a.innerHTML='<span class="ha-tile" style="--ha:'+app.c+'"><img data-haplo-app="'+app.t+'" alt="" style="display:none">'+app.i+'</span>'+
+                '<span class="ha-name">'+app.n+'</span>';
+    grid.appendChild(a);
+  });
+  var LOOKUP='https://itunes.apple.com/lookup?id='+APPS.map(function(a){return a.t;}).join(',')+'&country=US';
+  function applyHaploIcons(data){
+    ((data&&data.results)||[]).forEach(function(r){
+      if(!r.trackId||!r.artworkUrl512) return;
+      grid.querySelectorAll('img[data-haplo-app="'+r.trackId+'"]').forEach(function(img){
+        img.onload=function(){ img.style.display='block'; };
+        img.src=r.artworkUrl512;
+      });
+    });
+  }
+  fetch(LOOKUP)
+    .then(function(r){ return r.json(); })
+    .then(applyHaploIcons)
+    .catch(function(){
+      window.__jaredHaploIcons=applyHaploIcons;
+      var s=document.createElement('script');
+      s.src=LOOKUP+'&callback=__jaredHaploIcons';
+      s.onerror=function(){};
+      document.head.appendChild(s);
+    });
+})();
+
 /* ================= Mail: compose → mailto ================= */
 document.getElementById('mail-send').addEventListener('click',function(){
   var subject=document.getElementById('mail-subject').value||'Hi Jared —';
@@ -1343,8 +1475,32 @@ document.getElementById('mail-send').addEventListener('click',function(){
   window.location.href='mailto:jaredcassoutt@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
 });
 
-/* ================= boot: auto-open README, teach the dock ================= */
-setTimeout(function(){ openWindow('readme'); },350);
+/* ================= iPhone mode: home screen on phones ================= */
+var FILE_SVG='<svg viewBox="0 0 56 56" aria-hidden="true"><path d="M12 4h24l10 10v36a2 2 0 0 1-2 2H12a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" fill="#fff"/><path d="M36 4l10 10H38a2 2 0 0 1-2-2V4z" fill="#d9d9de"/><g stroke="#a5a5ad" stroke-width="2.4" stroke-linecap="round"><path d="M17 24h22M17 30h22M17 36h22M17 42h14"/></g></svg>';
+var homescreen=document.getElementById('homescreen');
+[
+  {id:'readme', label:'README', html:FILE_SVG},
+  {id:'haplo', label:'Haplo', html:'<img src="icons/haplo.png" alt="">'},
+  {id:'about', label:'About Jared', html:'<img src="jc-builds-avatar.jpg" alt="">'}
+].forEach(function(item){
+  var b=document.createElement('button');
+  b.type='button';
+  b.className='hs-icon';
+  b.setAttribute('data-open',item.id);
+  b.setAttribute('aria-label','Open '+item.label);
+  b.innerHTML='<span class="hs-tile" aria-hidden="true">'+item.html+'</span><span class="hs-label">'+item.label+'</span>';
+  b.addEventListener('click',function(){ openWindow(item.id,b); });
+  homescreen.appendChild(b);
+});
+
+function syncIOSMode(){ document.body.classList.toggle('ios',isMobile()); }
+syncIOSMode();
+window.addEventListener('resize',syncIOSMode);
+
+/* ================= boot: auto-open README on desktop, teach the dock ================= */
+if(!isMobile()){
+  setTimeout(function(){ openWindow('readme'); },350);
+}
 setTimeout(function(){
   if(reduced()||userClickedDock) return;
   var first=dock.querySelector('.dock-item');
