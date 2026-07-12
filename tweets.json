@@ -1,10 +1,100 @@
 [
   {
+    "id": "2075720157306204622",
+    "body": "A little late for the 4th of July, but here's a firework component I built🎆\n\nSwiftUI + Metal",
+    "date": "Jul 10",
+    "url": "https://x.com/JC_builds/status/2075720157306204622",
+    "replies": 9,
+    "retweets": 2,
+    "likes": 148,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2075720157306204622-0-poster.jpg",
+        "video": "tweet-media/2075720157306204622-0.mp4",
+        "poster": "tweet-media/2075720157306204622-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2074632709964804449",
+    "body": "I made a 4096-token LLM plan a trip without hallucinating half of it.\n\nNo API calls. Everything runs on-device. Just type \"tokyo\" and see a full day-by-day itinerary. Maps, food, transportation...\n\nHere's exactly how it works 👇",
+    "date": "Jul 07",
+    "url": "https://x.com/JC_builds/status/2074632709964804449",
+    "replies": 12,
+    "retweets": 3,
+    "likes": 119,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2074632709964804449-0-poster.jpg",
+        "video": "tweet-media/2074632709964804449-0.mp4",
+        "poster": "tweet-media/2074632709964804449-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2073775492092633331",
+    "body": "Spent the long weekend updating my app's onboarding",
+    "date": "Jul 05",
+    "url": "https://x.com/JC_builds/status/2073775492092633331",
+    "replies": 24,
+    "retweets": 9,
+    "likes": 384,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2073775492092633331-0-poster.jpg",
+        "video": "tweet-media/2073775492092633331-0.mp4",
+        "poster": "tweet-media/2073775492092633331-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2072427558151634977",
+    "body": "Liquid orb shader 🫧\n\nMade with Metal + SwiftUI.",
+    "date": "Jul 01",
+    "url": "https://x.com/JC_builds/status/2072427558151634977",
+    "replies": 10,
+    "retweets": 14,
+    "likes": 182,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2072427558151634977-0-poster.jpg",
+        "video": "tweet-media/2072427558151634977-0.mp4",
+        "poster": "tweet-media/2072427558151634977-0-poster.jpg"
+      }
+    ]
+  },
+  {
+    "id": "2068934740678439030",
+    "body": "I made Apple's App Store is obsolete.\n\nI built an Claude Code for your iPhone, so you can build and run whatever app you want all on your device!\n\nJust describe an app and it writes the Swift, runs it, reads its own errors, and fixes them. Then it lands on your app's home screen.",
+    "date": "Jun 22",
+    "url": "https://x.com/JC_builds/status/2068934740678439030",
+    "replies": 14,
+    "retweets": 6,
+    "likes": 142,
+    "views": "·",
+    "media": [
+      {
+        "type": "video",
+        "url": "tweet-media/2068934740678439030-0-poster.jpg",
+        "video": "tweet-media/2068934740678439030-0.mp4",
+        "poster": "tweet-media/2068934740678439030-0-poster.jpg"
+      }
+    ]
+  },
+  {
     "id": "2066650107303338068",
     "body": "I built a bendable, editable Liquid Glass text component in SwiftUI\n\nGrab it anywhere, bend and stretch it, even change the text and the glass view reshapes with the letters.\n\nHere's exactly how it works 👇",
     "date": "Jun 15",
     "url": "https://x.com/JC_builds/status/2066650107303338068",
-    "replies": 10,
+    "replies": 9,
     "retweets": 4,
     "likes": 147,
     "views": "·",
@@ -24,7 +114,7 @@
     "url": "https://x.com/JC_builds/status/2065585230996709741",
     "replies": 11,
     "retweets": 12,
-    "likes": 340,
+    "likes": 344,
     "views": "·",
     "media": [
       {
@@ -37,13 +127,13 @@
   },
   {
     "id": "2059795164001083710",
-    "body": "After having a shocking number of people ask...\n\nHere's the step-by-step guide to how I created the character animations for my app in under 15 minutes\ud83d\udc47",
+    "body": "After having a shocking number of people ask...\n\nHere's the step-by-step guide to how I created the character animations for my app in under 15 minutes👇",
     "date": "May 28",
     "url": "https://x.com/JC_builds/status/2059795164001083710",
-    "replies": 15,
+    "replies": 16,
     "retweets": 15,
-    "likes": 353,
-    "views": "\u00b7",
+    "likes": 355,
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -60,8 +150,8 @@
     "url": "https://x.com/JC_builds/status/2058972712811495808",
     "replies": 7,
     "retweets": 2,
-    "likes": 52,
-    "views": "\u00b7",
+    "likes": 53,
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -73,13 +163,13 @@
   },
   {
     "id": "2058937258590523496",
-    "body": "Finally got the redesign released \ud83c\udf89",
+    "body": "Finally got the redesign released 🎉",
     "date": "May 25",
     "url": "https://x.com/JC_builds/status/2058937258590523496",
     "replies": 7,
     "retweets": 1,
     "likes": 39,
-    "views": "\u00b7",
+    "views": "·",
     "media": [
       {
         "type": "photo",
@@ -89,13 +179,13 @@
   },
   {
     "id": "2058284197262090635",
-    "body": "Been seeing everyone hype up app mascots and animations on here.   \n\nSooo...  \n\nLet me introduce you to Greg. Our new mascot for Goblin Mode\ud83d\udc79",
+    "body": "Been seeing everyone hype up app mascots and animations on here.   \n\nSooo...  \n\nLet me introduce you to Greg. Our new mascot for Goblin Mode👹",
     "date": "May 23",
     "url": "https://x.com/JC_builds/status/2058284197262090635",
     "replies": 3,
     "retweets": 2,
-    "likes": 22,
-    "views": "\u00b7",
+    "likes": 21,
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -113,7 +203,7 @@
     "replies": 12,
     "retweets": 2,
     "likes": 20,
-    "views": "\u00b7",
+    "views": "·",
     "media": []
   },
   {
@@ -123,8 +213,8 @@
     "url": "https://x.com/JC_builds/status/2057998001768149210",
     "replies": 8,
     "retweets": 4,
-    "likes": 25,
-    "views": "\u00b7",
+    "likes": 24,
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -136,13 +226,13 @@
   },
   {
     "id": "2057275260446355542",
-    "body": "Most \u201cAI image apps\u201d are just screenshots traveling to a server.\n\nI wanted:\n \u2022 weights on device\n \u2022 generation on device\n \u2022 images never leaving the phone\n\nSo I spent the last week turning sd.cpp into an actual iOS developer experience.\n\nSwiftPM install. One simple generate()",
+    "body": "Most “AI image apps” are just screenshots traveling to a server.\n\nI wanted:\n • weights on device\n • generation on device\n • images never leaving the phone\n\nSo I spent the last week turning sd.cpp into an actual iOS developer experience.\n\nSwiftPM install. One simple generate()",
     "date": "May 21",
     "url": "https://x.com/JC_builds/status/2057275260446355542",
     "replies": 7,
     "retweets": 9,
-    "likes": 51,
-    "views": "\u00b7",
+    "likes": 53,
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -154,13 +244,13 @@
   },
   {
     "id": "2052182069443494172",
-    "body": "Just finished building an AI browser agent that runs entirely on your iPhone.\n\nYou can:\n\u2022 tell it what you need in plain English\n\u2022 watch it tap, scroll, and read pages for you\n\u2022 run unlimited tasks for $0\n\nNo cloud. No API keys. All on an iPhone.",
+    "body": "Just finished building an AI browser agent that runs entirely on your iPhone.\n\nYou can:\n• tell it what you need in plain English\n• watch it tap, scroll, and read pages for you\n• run unlimited tasks for $0\n\nNo cloud. No API keys. All on an iPhone.",
     "date": "May 07",
     "url": "https://x.com/JC_builds/status/2052182069443494172",
-    "replies": 12,
+    "replies": 13,
     "retweets": 2,
     "likes": 73,
-    "views": "\u00b7",
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -172,13 +262,13 @@
   },
   {
     "id": "2050638222150303978",
-    "body": "I built a SwiftUI compiler that runs entirely on-device and is only a 6mb package\n\nYou can:\n\u2022 write SwiftUI code\n\u2022 have AI generate views locally\n\u2022 hit run and see it instantly\n\nNo Mac. No Xcode. All on an iPhone.",
+    "body": "I built a SwiftUI compiler that runs entirely on-device and is only a 6mb package\n\nYou can:\n• write SwiftUI code\n• have AI generate views locally\n• hit run and see it instantly\n\nNo Mac. No Xcode. All on an iPhone.",
     "date": "May 02",
     "url": "https://x.com/JC_builds/status/2050638222150303978",
     "replies": 23,
     "retweets": 10,
-    "likes": 274,
-    "views": "\u00b7",
+    "likes": 295,
+    "views": "·",
     "media": [
       {
         "type": "video",
@@ -190,13 +280,13 @@
   },
   {
     "id": "2034796531724038631",
-    "body": "I trained a model to guess calories from food pics.\n\nIt beats GPT-4o, Claude, and Gemini. Runs locally with only 2GB RAM\n\nAverage error under 51 calories. Here's what I learned \ud83d\udc47",
+    "body": "I trained a model to guess calories from food pics.\n\nIt beats GPT-4o, Claude, and Gemini. Runs locally with only 2GB RAM\n\nAverage error under 51 calories. Here's what I learned 👇",
     "date": "Mar 20",
     "url": "https://x.com/JC_builds/status/2034796531724038631",
     "replies": 15,
     "retweets": 3,
     "likes": 163,
-    "views": "\u00b7",
+    "views": "·",
     "media": [
       {
         "type": "photo",
@@ -206,13 +296,13 @@
   },
   {
     "id": "2031515091636728287",
-    "body": "I jailbroke my Mac's Neural Engine.\n\nNot the GPU. Not the CPU. The AI chip Apple hides behind Siri and photo blur.\n\n15 trillion operations per second. Sitting idle on every MacBook sold since 2020.\n\nI made it run a full LLM. Here's how \ud83e\uddf5",
+    "body": "I jailbroke my Mac's Neural Engine.\n\nNot the GPU. Not the CPU. The AI chip Apple hides behind Siri and photo blur.\n\n15 trillion operations per second. Sitting idle on every MacBook sold since 2020.\n\nI made it run a full LLM. Here's how 🧵",
     "date": "Mar 10",
     "url": "https://x.com/JC_builds/status/2031515091636728287",
     "replies": 10,
     "retweets": 15,
-    "likes": 170,
-    "views": "\u00b7",
+    "likes": 169,
+    "views": "·",
     "media": [
       {
         "type": "photo",
